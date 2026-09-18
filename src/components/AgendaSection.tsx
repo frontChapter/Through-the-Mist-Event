@@ -15,7 +15,7 @@ const AGENDA_ITEMS: AgendaItem[] = [
     number: "۰۱",
     time: "۱۵:۰۰–۱۵:۱۵",
     title: "خوش اومدی",
-    description: "بیا نفس بکش، یه چای دستت بگیر و با آدمهای این جمع آشنا شو.",
+    description: "بیا نفس بکش، یه چای دستت بگیر و با آدم‌های این جمع آشنا شو.",
     category: "پذیرش",
   },
   {
@@ -31,7 +31,7 @@ const AGENDA_ITEMS: AgendaItem[] = [
     time: "۱۵:۳۰–۱۵:۴۵",
     title: "نگاهی به بحران هوش مصنوعی",
     description:
-      "یه دید روشن از اینکه موج AI کجای بازار کار رو داره عوض میکنه، از زبان کارخانه هوش مصنوعی ایران.",
+      "یه دید روشن از اینکه موج AI کجای بازار کار رو داره عوض می‌کنه، از زبان کارخانه هوش مصنوعی ایران.",
     category: "سخنرانی",
   },
   {
@@ -39,36 +39,36 @@ const AGENDA_ITEMS: AgendaItem[] = [
     time: "۱۵:۴۵–۱۷:۱۵",
     title: "کارگاه Group Support",
     description:
-      "نود دقیقه که تنها نیستی؛ کنار آدمهایی که همین بلاتکلیفی رو تجربه میکنن، با هدایت دکتر مهیار پویامهر.",
+      "نود دقیقه که تنها نیستی؛ کنار آدم‌هایی که همین بلاتکلیفی رو تجربه می‌کنن، با هدایت دکتر مهیار پویامهر.",
     category: "کارگاه تعاملی",
   },
   {
     number: "۰۵",
     time: "۱۷:۱۵–۱۷:۳۵",
     title: "یه نفس تازه",
-    description: "وقت چای و گپوگفت با کسایی که همین الان کنارت نشستن.",
-    category: "استراحت و شبکهسازی",
+    description: "وقت چای و گپ‌وگفت با کسایی که همین الان کنارت نشستن.",
+    category: "استراحت و شبکه‌سازی",
   },
   {
     number: "۰۶",
     time: "۱۷:۳۵–۱۷:۵۰",
-    title: "وقتی حمایت به محصول تبدیل میشه",
+    title: "وقتی حمایت به محصول تبدیل می‌شه",
     description:
-      "لیارا میزبان یک تیم کوچیکه که نشونمون میده یه ایدهی نرمافزاری عامالمنفعه (CodeMeet) چطور با حمایت مالی، تبدیل به یک محصول واقعی شده.",
+      "لیارا میزبان یک تیم کوچیکه که نشونمون می‌ده یه ایده‌ی نرم‌افزاری عام‌المنفعه (CodeMeet) چطور با حمایت مالی، تبدیل به یک محصول واقعی شده.",
     category: "معرفی حامی",
   },
   {
     number: "۰۷",
     time: "۱۷:۵۰–۱۹:۱۵",
-    title: "حرفهای رودررو",
+    title: "حرف‌های رودررو",
     description:
-      "صالح شجاعی و پویا صبرآموز، بدون فیلتر، از پارادایمهای تازهی بازار کار میگن؛ همون سؤالهایی که تو هم داری، اینجا پرسیده میشه.",
+      "صالح شجاعی و پویا صبرآموز، بدون فیلتر، از پارادایم‌های تازه‌ی بازار کار می‌گن؛ همون سؤال‌هایی که تو هم داری، اینجا پرسیده می‌شه.",
     category: "پنل تخصصی",
   },
   {
     number: "۰۸",
     time: "۱۹:۱۵–۱۹:۳۰",
-    title: "جمعبندی و خداحافظی",
+    title: "جمع‌بندی و خداحافظی",
     description:
       "یه لحظه برای نوشتن اینکه از امروز چی برداشتی، و بعد عکس یادگاری با بقیه.",
     category: "اختتامیه",
@@ -85,8 +85,8 @@ const getBadgeStyle = (category: string) => {
       return "bg-sky-500/10 text-sky-300 border-sky-500/25 font-medium";
     case "معرفی حامی":
       return "bg-purple-500/10 text-purple-300 border-purple-500/25 font-medium";
-    case "استراحت و شبکهسازی":
     case "استراحت و شبکه‌سازی":
+    case "استراحت و شبکهسازی":
       return "bg-emerald-500/10 text-emerald-300 border-emerald-500/25 font-medium";
     case "افتتاحیه":
       return "bg-blue-500/10 text-blue-300 border-blue-500/25 font-medium";
@@ -174,8 +174,8 @@ export default function AgendaSection() {
 
             {/* Curriculum List Header */}
             <div className="text-[11px] tracking-wider text-zinc-500 pb-2 border-b border-white/10 flex justify-between shrink-0 font-medium">
-              <div className="flex items-center gap-6 sm:gap-8">
-                <span className="w-8">شماره</span>
+              <div className="flex items-center gap-4 sm:gap-6">
+                <span className="w-7 sm:w-8 shrink-0">شماره</span>
                 <span>برنامه و سرفصل‌ها</span>
               </div>
               <span>نوع بخش</span>
@@ -197,7 +197,7 @@ export default function AgendaSection() {
                     className="py-3 px-2.5 flex items-start justify-between gap-4 group hover:bg-white/[0.03] rounded-xl transition-all duration-150"
                   >
                     {/* Number & Content */}
-                    <div className="flex items-start gap-3 sm:gap-5 min-w-0 flex-1">
+                    <div className="flex items-start gap-4 sm:gap-6 min-w-0 flex-1">
                       <span className="text-base sm:text-lg font-black text-zinc-500 group-hover:text-[#c5a880] transition-colors w-7 sm:w-8 shrink-0 font-mono pt-0.5">
                         {item.number}
                       </span>
@@ -206,7 +206,10 @@ export default function AgendaSection() {
                           <span className="text-xs sm:text-sm font-bold text-white group-hover:text-[#c5a880] transition-colors">
                             {item.title}
                           </span>
-                          <span className="text-[10px] sm:text-[11px] font-mono text-[#c5a880] bg-[#c5a880]/10 px-2 py-0.5 rounded border border-[#c5a880]/20 shrink-0">
+                          <span
+                            dir="ltr"
+                            className="text-[10px] sm:text-[11px] font-mono text-[#c5a880] bg-[#c5a880]/10 px-2 py-0.5 rounded border border-[#c5a880]/20 shrink-0 inline-block"
+                          >
                             {item.time}
                           </span>
                         </div>
