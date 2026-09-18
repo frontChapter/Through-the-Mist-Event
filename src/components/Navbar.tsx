@@ -2,6 +2,7 @@
 
 import React, { useState, useEffect, useCallback } from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 import { motion, AnimatePresence } from 'framer-motion';
 
 // Exactly 5 navigation items in Persian RTL order
@@ -112,8 +113,6 @@ export default function Navbar() {
 
   const textColor = isLightSection ? 'text-[#111111]' : 'text-[#FFFFFF]';
   const textMuted = isLightSection ? 'text-[#111111]/70 hover:text-[#111111]' : 'text-[#FFFFFF]/70 hover:text-[#FFFFFF]';
-  const logoColor = isLightSection ? 'text-[#111111]' : 'text-[#FFFFFF]';
-  const crossColor = isLightSection ? 'text-[#111111]/40' : 'text-[#FFFFFF]/40';
   const indicatorColor = isLightSection ? 'bg-[#111111]' : 'bg-[#FFFFFF]';
 
   return (
@@ -122,7 +121,7 @@ export default function Navbar() {
       className={`fixed top-0 left-0 right-0 z-50 pointer-events-auto w-full transition-colors duration-300 font-sans backdrop-blur-md border-b ${headerBgClass}`}
     >
       <div className="container mx-auto max-w-7xl px-6 sm:px-10 h-16 sm:h-20 flex items-center justify-between">
-        {/* Right side in RTL: Handwritten Logo 'apa' with subtle double cross */}
+        {/* Right side in RTL: Frontchapter Logo */}
         <div className="flex items-center">
           <Link
             href="/"
@@ -132,18 +131,33 @@ export default function Navbar() {
                 new CustomEvent('fullpage-jump-to', { detail: { targetId: 'hero' } })
               );
             }}
-            className="group flex items-center gap-2 select-none"
+            className="group flex items-center select-none transition-transform duration-200 hover:scale-[1.02]"
+            aria-label="صفحه اصلی فرانت‌چپتر"
           >
-            <span
-              className={`font-bold text-2xl sm:text-3xl tracking-tight transition-colors duration-300 ${logoColor}`}
-            >
-              apa
-            </span>
-            <span
-              className={`text-xs tracking-tighter select-none font-light transition-colors duration-300 ${crossColor}`}
-            >
-              &#x2715;&#x2715;
-            </span>
+            <div className="relative h-8 sm:h-9 w-[128px] sm:w-[144px]">
+              {/* White text logo for dark background sections */}
+              <Image
+                src="/images/logo-dark.svg"
+                alt="فرانت‌چپتر"
+                fill
+                priority
+                unoptimized
+                className={`object-contain object-right transition-opacity duration-300 ${
+                  isLightSection ? 'opacity-0' : 'opacity-100'
+                }`}
+              />
+              {/* Dark text logo for light background sections */}
+              <Image
+                src="/images/logo.svg"
+                alt="فرانت‌چپتر"
+                fill
+                priority
+                unoptimized
+                className={`object-contain object-right transition-opacity duration-300 ${
+                  isLightSection ? 'opacity-100' : 'opacity-0'
+                }`}
+              />
+            </div>
           </Link>
         </div>
 
