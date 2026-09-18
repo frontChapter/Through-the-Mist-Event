@@ -21,7 +21,7 @@ export default function EventFooter() {
       {/* Background Video Climax */}
       <div className="absolute inset-0 z-0 overflow-hidden bg-[#0a0a0a]">
         <video
-          src="https://framerusercontent.com/assets/PRufuH4Vl5QnSNo9x0LrwWeOgBU.mp4"
+          src="/assets/footer-ambient.mp4"
           autoPlay
           loop
           muted

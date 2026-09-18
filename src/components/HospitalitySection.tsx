@@ -159,7 +159,7 @@ export default function HospitalitySection() {
       <div
         className="absolute inset-0 opacity-[0.06] pointer-events-none bg-repeat bg-center mix-blend-screen"
         style={{
-          backgroundImage: `url('https://framerusercontent.com/images/rR6HYXBrMmX4cRpXfXUOvpvpB0.png')`,
+          backgroundImage: `url('/assets/hospitality-bg-wave.png')`,
           backgroundSize: '256px 256px',
         }}
       />
@@ -269,7 +269,7 @@ export default function HospitalitySection() {
                 className="absolute right-0 top-6 w-[240px] aspect-[3/4] rounded-2xl overflow-hidden shadow-[0_24px_60px_rgba(0,0,0,0.8)] border border-white/10 z-10 will-change-transform"
               >
                 <img
-                  src="https://framerusercontent.com/images/bIjl57OIXrKB53E2sQBDjP8L84.jpg"
+                  src="/assets/hospitality-suite-hallway.jpg"
                   alt="راهروی سوئیت زیبایی آپا"
                   className="w-full h-full object-cover filter contrast-105 brightness-95"
                 />
@@ -281,7 +281,7 @@ export default function HospitalitySection() {
                 className="absolute left-0 bottom-8 w-[260px] aspect-[4/3] rounded-2xl overflow-hidden shadow-[0_24px_60px_rgba(0,0,0,0.9)] border border-white/15 z-20 will-change-transform"
               >
                 <img
-                  src="https://framerusercontent.com/images/IBcxMoSH8dSiNEl5xhH80cm4gvM.jpg"
+                  src="/assets/hospitality-clinical-prep.jpg"
                   alt="تدارکات بالینی"
                   className="w-full h-full object-cover filter contrast-105"
                 />
@@ -329,7 +329,7 @@ export default function HospitalitySection() {
                 className="absolute right-2 top-4 w-[230px] aspect-[3/4] rounded-2xl overflow-hidden shadow-[0_24px_60px_rgba(0,0,0,0.8)] border border-white/10 z-10 will-change-transform"
               >
                 <img
-                  src="https://framerusercontent.com/images/NTvqBz8aWl1T8B0PjcmumJqn3IA.jpg"
+                  src="/assets/hospitality-evening-guests.jpg"
                   alt="مهمانان رسپشن شبانه"
                   className="w-full h-full object-cover filter contrast-105 brightness-95"
                 />
@@ -341,7 +341,7 @@ export default function HospitalitySection() {
                 className="absolute left-0 bottom-4 w-[250px] aspect-[4/5] rounded-2xl overflow-hidden shadow-[0_24px_60px_rgba(0,0,0,0.9)] border border-white/15 z-20 will-change-transform"
               >
                 <img
-                  src="https://framerusercontent.com/images/6VrWQPo3Rtfmp3e8grPrsdQiKZk.jpg"
+                  src="/assets/hospitality-nyc-night.jpg"
                   alt="فضای شبانه نیویورک سیتی"
                   className="w-full h-full object-cover filter contrast-110"
                 />
@@ -396,7 +396,7 @@ export default function HospitalitySection() {
                 className="absolute right-0 top-8 w-[250px] aspect-[4/3] rounded-2xl overflow-hidden shadow-[0_24px_60px_rgba(0,0,0,0.8)] border border-white/10 z-10 will-change-transform"
               >
                 <img
-                  src="https://framerusercontent.com/images/8Y5jpKsgNpmxQM2aXcWp6IHJE.jpg"
+                  src="/assets/hospitality-dinner-table.jpg"
                   alt="میز شام خصوصی"
                   className="w-full h-full object-cover filter contrast-105"
                 />
@@ -408,7 +408,7 @@ export default function HospitalitySection() {
                 className="absolute left-2 bottom-6 w-[240px] aspect-[3/4] rounded-2xl overflow-hidden shadow-[0_24px_60px_rgba(0,0,0,0.9)] border border-white/15 z-20 will-change-transform"
               >
                 <img
-                  src="https://framerusercontent.com/images/oIr8BpwXZAYjuUCUk0Dbm2IpUI.jpg"
+                  src="/assets/hospitality-dinner-dr-apa.jpg"
                   alt="دکتر مایکل آپا در ضیافت شام"
                   className="w-full h-full object-cover filter contrast-105 brightness-95"
                 />

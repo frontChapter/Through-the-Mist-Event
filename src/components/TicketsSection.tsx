@@ -50,7 +50,7 @@ export default function TicketsSection() {
                 <div
                   className="absolute inset-0 opacity-15 pointer-events-none bg-cover bg-center mix-blend-overlay"
                   style={{
-                    backgroundImage: `url('https://framerusercontent.com/images/uwkJE15JwIgnyC86lkSh6VNfqQ.png')`,
+                    backgroundImage: `url('/assets/tickets-card-texture.png')`,
                   }}
                 />
 

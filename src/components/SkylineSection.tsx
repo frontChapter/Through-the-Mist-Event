@@ -14,7 +14,7 @@ export default function SkylineSection() {
       {/* B&W Skyline Image */}
       <div className="absolute inset-0 w-full h-full pointer-events-none">
         <img
-          src="https://framerusercontent.com/images/d4BIIWbUg28oBzQsJxxuvVqWg.png"
+          src="/assets/skyline-nyc.png"
           alt="منهتن نیویورک"
           className="w-full h-full object-cover filter grayscale contrast-125 brightness-75"
         />
@@ -27,7 +27,7 @@ export default function SkylineSection() {
         initial={{ opacity: 0, x: 30 }}
         animate={{ opacity: 0.35, x: 0 }}
         transition={{ duration: 1.5 }}
-        src="https://framerusercontent.com/images/kwUU1rBWv681HtZLrg68CeCE.png"
+        src="/assets/hospitality-catering.png"
         alt="Clouds Left"
         className="absolute top-1/4 -right-20 w-1/2 opacity-35 object-contain pointer-events-none mix-blend-screen"
       />
@@ -35,7 +35,7 @@ export default function SkylineSection() {
         initial={{ opacity: 0, x: -30 }}
         animate={{ opacity: 0.4, x: 0 }}
         transition={{ duration: 1.5 }}
-        src="https://framerusercontent.com/images/v3RCF0bz9htqXJTGrH2bP6CS2FY.png"
+        src="/assets/hospitality-reception.png"
         alt="Clouds Right"
         className="absolute bottom-10 -left-20 w-3/5 opacity-40 object-contain pointer-events-none mix-blend-screen"
       />

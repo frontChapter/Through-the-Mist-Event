@@ -54,7 +54,7 @@ export default function ApaMethodSection() {
             {/* Dr. Apa Signature */}
             <div className="pt-1">
               <img
-                src="https://framerusercontent.com/images/oeEkBPY3x7o5P5DOQh04YDRFh2E.png"
+                src="/assets/dr-apa-signature.png"
                 alt="امضای دکتر مایکل آپا"
                 className="h-9 w-auto opacity-75 object-contain"
               />

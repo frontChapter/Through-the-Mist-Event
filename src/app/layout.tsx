@@ -23,7 +23,7 @@ export const metadata: Metadata = {
     title: 'Design x Hand | طراحی با دست | دکتر مایکل آپا',
     description:
       'نخستین دوره عملی و جامع طراحی لبخند با هدایت دکتر مایکل آپا در نیویورک.',
-    images: ['https://framerusercontent.com/images/ru3JYJkJjwugZXqDPji7aEIhCDg.png'],
+    images: ['/assets/og-preview.png'],
   },
 };
 

@@ -97,21 +97,21 @@ export const EXPERIENCE_DATA = {
       title: 'گردهمایی خصوصی و تور استودیو',
       description:
         'شرکت‌کنندگان سطح حلقه اختصاصی (Inner Circle) به تور صمیمانه و اختصاصی از سوییت زیبایی آپا در دانشگاه NYU و سپس دورهمی عصرگاهی در دفتر آپا استتیک نیویورک دعوت می‌شوند.',
-      image: 'https://framerusercontent.com/images/deKq4QUS91JvHj1mVTvbdf4e38.png',
+      image: '/assets/hospitality-studio-tour.png',
     },
     {
       tag: 'پذیرایی و میان‌وعده‌ها',
       title: 'تجربه پذیرایی ویژه و اختصاصی',
       description:
         'هر روز در ساعت ۸:۰۰ صبح با صبحانه اختصاصی برای آغاز پرانرژی آغاز می‌شود و در طول روز با ناهار دست‌چین‌شده، استراحت‌های برنامه‌ریزی‌شده و خدمات مداوم قهوه تخصصی و نوشیدنی همراه خواهد بود.',
-      image: 'https://framerusercontent.com/images/kwUU1rBWv681HtZLrg68CeCE.png',
+      image: '/assets/hospitality-catering.png',
     },
     {
       tag: 'برنامه‌های عصرگاهی',
       title: 'رسپشن عصرانه و شام خصوصی',
       description:
         'پایان روز اول با کوکتل، گفتگو و میان‌وعده‌های دست‌چین‌شده در کنار دکتر آپا، سایر شرکت‌کنندگان و تیم بالینی آپا در نیویورک. همچنین ضیافت شام خصوصی برای شرکت‌کنندگان سطح اینر سرکل.',
-      image: 'https://framerusercontent.com/images/v3RCF0bz9htqXJTGrH2bP6CS2FY.png',
+      image: '/assets/hospitality-reception.png',
     },
   ],
   passes: [

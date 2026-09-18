@@ -10,8 +10,8 @@ export default function AgendaSection() {
   const currentData = selectedDay === 'day1' ? EXPERIENCE_DATA.dayOne : EXPERIENCE_DATA.dayTwo;
   const castImage =
     selectedDay === 'day1'
-      ? 'https://framerusercontent.com/images/1M8usMCWBnKXUc0FRJ7wtG2liTE.jpg'
-      : 'https://framerusercontent.com/images/jdxv5yOFrXxmdUzwBSpsAnTSr9s.jpg';
+      ? '/assets/agenda-day-1.jpg'
+      : '/assets/agenda-day-2.jpg';
 
   return (
     <section

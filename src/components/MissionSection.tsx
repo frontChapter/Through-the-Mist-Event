@@ -60,7 +60,7 @@ export default function MissionSection() {
           <div className="lg:col-span-6 relative flex items-center justify-center h-full max-h-[55vh]">
             <div className="relative w-full max-w-md aspect-[3/4] h-full max-h-[55vh] rounded-3xl overflow-hidden shadow-[0_24px_60px_rgba(0,0,0,0.12)] border border-black/5 bg-[#EAE6DF]">
               <video
-                src="https://framerusercontent.com/assets/y1uCxXHBZ8vhZO8qlT5Z3nvVxU.mp4"
+                src="/assets/mission-sculpture.mp4"
                 autoPlay
                 loop
                 muted

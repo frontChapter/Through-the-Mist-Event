@@ -4,10 +4,10 @@ import React from 'react';
 import { EXPERIENCE_DATA } from '@/data/experience-data';
 
 const HOTEL_IMAGES: Record<string, string> = {
-  'The Ned NoMad': 'https://framerusercontent.com/images/tmxxQx1ikX10NldKAMomonXZRBo.jpg',
-  'The New York EDITION': 'https://framerusercontent.com/images/X7JuNGJcs89yORUrw6mffKhX5pI.jpg',
-  'The Marmara Park Avenue': 'https://framerusercontent.com/images/IEW5cXSsOyiyaHzWWk0WoAVSO28.jpg',
-  'The Langham': 'https://framerusercontent.com/images/hPzqLQsmss4e2xxh3keFhaXY.jpg',
+  'The Ned NoMad': '/assets/hotel-ned-nomad.jpg',
+  'The New York EDITION': '/assets/hotel-new-york-edition.jpg',
+  'The Marmara Park Avenue': '/assets/hotel-marmara-park-avenue.jpg',
+  'The Langham': '/assets/hotel-the-langham.jpg',
 };
 
 export default function LocationSection() {
@@ -72,7 +72,7 @@ export default function LocationSection() {
 
           <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
             {EXPERIENCE_DATA.location.hotels.map((hotel) => {
-              const photo = HOTEL_IMAGES[hotel.name] || 'https://framerusercontent.com/images/tmxxQx1ikX10NldKAMomonXZRBo.jpg';
+              const photo = HOTEL_IMAGES[hotel.name] || '/assets/hotel-ned-nomad.jpg';
 
               return (
                 <div
