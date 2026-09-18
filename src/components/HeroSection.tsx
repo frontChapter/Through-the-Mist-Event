@@ -1,8 +1,8 @@
-'use client';
+"use client";
 
-import React, { useRef } from 'react';
-import { motion, useScroll, useTransform } from 'framer-motion';
-import { EXPERIENCE_DATA } from '@/data/experience-data';
+import React, { useRef } from "react";
+import { motion, useScroll, useTransform } from "framer-motion";
+import { EXPERIENCE_DATA } from "@/data/experience-data";
 
 export default function HeroSection() {
   const containerRef = useRef<HTMLElement>(null);
@@ -10,11 +10,15 @@ export default function HeroSection() {
   // Scroll animation for pinned container effect
   const { scrollYProgress } = useScroll({
     target: containerRef,
-    offset: ['start start', 'end start'],
+    offset: ["start start", "end start"],
   });
 
   // Perspective exit fade & depth scale
-  const contentOpacity = useTransform(scrollYProgress, [0, 0.6, 0.95], [1, 0.8, 0]);
+  const contentOpacity = useTransform(
+    scrollYProgress,
+    [0, 0.6, 0.95],
+    [1, 0.8, 0],
+  );
   const contentScale = useTransform(scrollYProgress, [0, 1], [1, 0.93]);
   const contentY = useTransform(scrollYProgress, [0, 1], [0, 60]);
   const videoScale = useTransform(scrollYProgress, [0, 1], [1, 1.08]);
@@ -51,8 +55,8 @@ export default function HeroSection() {
           transition={{ duration: 0.8, delay: 0.1 }}
           className="flex flex-col"
         >
-          <span className="text-[11px] text-zinc-400">تاریخ رویداد</span>
-          <span className="font-semibold text-white">{EXPERIENCE_DATA.hero.dates}</span>
+          <span className="text-[11px] text-zinc-400">تاریخ برگزاری</span>
+          <span className="font-semibold text-white">پنجشنبه، ۲ مهر ۱۴۰۵</span>
         </motion.div>
 
         <motion.div
@@ -61,8 +65,10 @@ export default function HeroSection() {
           transition={{ duration: 0.8, delay: 0.1 }}
           className="flex flex-col text-left"
         >
-          <span className="text-[11px] text-zinc-400">مکان رویداد</span>
-          <span className="font-semibold text-white">{EXPERIENCE_DATA.hero.location}</span>
+          <span className="text-[11px] text-zinc-400">محل برگزاری</span>
+          <span className="font-semibold text-white">
+            تهران • کارخانه نوآوری آزادی (زاویه)
+          </span>
         </motion.div>
       </div>
 
@@ -79,7 +85,7 @@ export default function HeroSection() {
           className="mb-8"
         >
           <span className="text-xs sm:text-sm tracking-[0.35em] text-[#c5a880] uppercase block font-semibold">
-            طراحی با دست | DESIGN × HAND
+            رویداد حضوری فرانت‌چپتر
           </span>
         </motion.div>
 
@@ -91,10 +97,10 @@ export default function HeroSection() {
           className="space-y-3"
         >
           <p className="text-2xl sm:text-3xl md:text-4xl text-zinc-300 font-light tracking-normal">
-            مسترکلاس زیبایی و طراحی لبخند با
+            یافتن مسیر در روزهای پر از ابهام
           </p>
           <h1 className="text-5xl sm:text-7xl md:text-8xl font-black text-white tracking-tight leading-[1.1] drop-shadow-2xl">
-            دکتر مایکل آپا
+            در میان مِه
           </h1>
         </motion.div>
 
@@ -105,7 +111,7 @@ export default function HeroSection() {
           transition={{ duration: 1, delay: 0.55 }}
           className="mt-8 max-w-xl text-zinc-300 font-light text-sm sm:text-base leading-relaxed tracking-normal"
         >
-          {EXPERIENCE_DATA.hero.subtitle}
+          توان قدم برداشتن در دورانی که به نظر میرسد هیچ چیزی پیش رو نیست
         </motion.p>
       </motion.div>
 
