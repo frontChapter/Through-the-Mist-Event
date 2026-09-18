@@ -9,11 +9,19 @@ export default function GlobalFloatingCta() {
   const checkVisibility = useCallback(() => {
     const windowHeight = window.innerHeight;
 
-    // Check if user is in Reservations or Footer section
+    // Check if user is in Reservations, Footer, or Two-Days (which has its own Reserve Now button)
     const resEl = document.getElementById('reservations');
     const footerEl = document.getElementById('footer');
+    const twoDaysEl = document.getElementById('two-days');
 
     let inConflictSection = false;
+
+    if (twoDaysEl) {
+      const rect = twoDaysEl.getBoundingClientRect();
+      if (rect.top < windowHeight * 0.75 && rect.bottom > windowHeight * 0.25) {
+        inConflictSection = true;
+      }
+    }
 
     if (resEl) {
       const rect = resEl.getBoundingClientRect();

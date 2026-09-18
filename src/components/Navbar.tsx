@@ -55,7 +55,9 @@ export default function Navbar() {
     const scrollY = window.scrollY;
     for (let i = NAV_ITEMS.length - 1; i >= 0; i--) {
       const item = NAV_ITEMS[i];
-      const el = document.getElementById(item.id);
+      // Map 'agenda' item to check both 'two-days' and 'agenda'
+      const targetElementId = item.id === 'agenda' ? 'two-days' : item.id;
+      const el = document.getElementById(targetElementId) || document.getElementById(item.id);
       if (el) {
         const top = el.offsetTop - 140;
         if (scrollY >= top) {
@@ -101,8 +103,10 @@ export default function Navbar() {
     setMobileMenuOpen(false);
     setActiveTab(id);
 
+    const targetId = id === 'agenda' ? 'two-days' : id;
+
     window.dispatchEvent(
-      new CustomEvent('fullpage-jump-to', { detail: { targetId: id } })
+      new CustomEvent('fullpage-jump-to', { detail: { targetId } })
     );
   };
 

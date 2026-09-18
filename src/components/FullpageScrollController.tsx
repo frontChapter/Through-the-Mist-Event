@@ -178,6 +178,22 @@ export default function FullpageScrollController() {
         }
       }
 
+      // 4b. GSAP Pinned Multi-Phase Timeline coordination on #agenda
+      const stAgenda = typeof window !== 'undefined' ? ScrollTrigger.getById('agenda-pin') : null;
+      const agendaIndex = SECTION_IDS.indexOf('agenda');
+      const isAtAgenda = currentIndexRef.current === agendaIndex;
+
+      if (stAgenda && (stAgenda.isActive || isAtAgenda)) {
+        if (deltaY > 0 && stAgenda.progress < 0.98) {
+          // Allow natural Lenis scrub through the pinned agenda section until all phases complete
+          return;
+        }
+        if (deltaY < 0 && stAgenda.progress > 0.02) {
+          // Allow natural Lenis scrub backwards through the pinned agenda section
+          return;
+        }
+      }
+
       // 5. Trigger clean section snap
       e.preventDefault();
       if (deltaY > 0) {

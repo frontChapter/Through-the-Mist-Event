@@ -9,7 +9,7 @@ const config: Config = {
     extend: {
       fontFamily: {
         sans: ['var(--font-dana)', 'system-ui', '-apple-system', 'sans-serif'],
-        serif: ['var(--font-dana)', 'Georgia', 'serif'],
+        serif: ['"Cormorant Garamond"', 'var(--font-dana)', 'Georgia', 'serif'],
         mono: ['var(--font-dana)', 'monospace'],
       },
     },
