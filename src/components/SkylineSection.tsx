@@ -41,7 +41,6 @@ export default function SkylineSection() {
       />
 
       {/* Central Architectural Manifesto Quote */}
-      {/* Central Architectural Manifesto Quote */}
       <div className="relative z-10 max-w-4xl px-8 text-center">
         <p className="text-2xl sm:text-4xl md:text-5xl lg:text-5xl text-white font-light leading-relaxed">
           دیدن راه،{" "}
