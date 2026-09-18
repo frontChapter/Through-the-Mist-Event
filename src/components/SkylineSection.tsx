@@ -1,7 +1,7 @@
-'use client';
+"use client";
 
-import React from 'react';
-import { motion } from 'framer-motion';
+import React from "react";
+import { motion } from "framer-motion";
 
 export default function SkylineSection() {
   return (
@@ -14,8 +14,8 @@ export default function SkylineSection() {
       {/* B&W Skyline Image */}
       <div className="absolute inset-0 w-full h-full pointer-events-none">
         <img
-          src="/assets/skyline-nyc.png"
-          alt="منهتن نیویورک"
+          src="/assets/skyline-tehran.webp"
+          alt="خط افق تهران"
           className="w-full h-full object-cover filter grayscale contrast-125 brightness-75"
         />
         {/* Subtle dark overlay */}
@@ -41,13 +41,18 @@ export default function SkylineSection() {
       />
 
       {/* Central Architectural Manifesto Quote */}
-      <div className="relative z-10 max-w-4xl px-8 text-center space-y-6">
-        <p className="text-2xl sm:text-4xl md:text-5xl lg:text-5xl text-white font-light leading-relaxed tracking-normal">
-          مجسمه‌ساز آنچه را که <span className="font-bold underline decoration-white/40 underline-offset-8">پنهان است</span> می‌بیند. معمار نقشه‌ها را ترسیم می‌کند. هنرمند با اصالت شکل می‌دهد. و مهندس تضمین می‌کند که بنا <span className="font-bold underline decoration-white/40 underline-offset-8">پایدار می‌ماند</span>.
-        </p>
-
-        <p className="text-xl sm:text-2xl md:text-3xl text-zinc-300 font-normal tracking-wide">
-          در اینجا، تمامی این ارکان را در خدمت طراحی لبخند گرد هم آورده‌ایم.
+      {/* Central Architectural Manifesto Quote */}
+      <div className="relative z-10 max-w-4xl px-8 text-center">
+        <p className="text-2xl sm:text-4xl md:text-5xl lg:text-5xl text-white font-light leading-relaxed">
+          دیدن راه،{" "}
+          <span className="font-bold underline decoration-white/40 underline-offset-8">
+            ممکن نیست
+          </span>
+          <br className="hidden sm:inline" /> فقط مه است و ما،{" "}
+          <span className="font-bold underline decoration-white/40 underline-offset-8">
+            وسط آن
+          </span>
+          .
         </p>
       </div>
 
