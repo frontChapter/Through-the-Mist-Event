@@ -194,6 +194,22 @@ export default function FullpageScrollController() {
         }
       }
 
+      // 4c. GSAP Pinned Timeline coordination on #mission
+      const stMission = typeof window !== 'undefined' ? ScrollTrigger.getById('mission-pin') : null;
+      const missionIndex = SECTION_IDS.indexOf('mission');
+      const isAtMission = currentIndexRef.current === missionIndex;
+
+      if (stMission && (stMission.isActive || isAtMission)) {
+        if (deltaY > 0 && stMission.progress < 0.96) {
+          // Allow natural Lenis scrub through the mission storytelling timeline
+          return;
+        }
+        if (deltaY < 0 && stMission.progress > 0.04) {
+          // Allow natural Lenis scrub backwards through the mission section
+          return;
+        }
+      }
+
       // 5. Trigger clean section snap
       e.preventDefault();
       if (deltaY > 0) {
@@ -229,7 +245,7 @@ export default function FullpageScrollController() {
     };
   }, [goToNext, goToPrev]);
 
-  // Mobile swipe navigation
+  // Mobile swipe navigation with support for pinned sections
   useEffect(() => {
     let touchStartY = 0;
 
@@ -241,7 +257,29 @@ export default function FullpageScrollController() {
       const touchEndY = e.changedTouches[0].clientY;
       const delta = touchStartY - touchEndY;
 
-      if (Math.abs(delta) > 50) {
+      if (Math.abs(delta) > 45) {
+        // Prevent snapping while mobile user is scrolling inside pinned sections
+        const stMission = typeof window !== 'undefined' ? ScrollTrigger.getById('mission-pin') : null;
+        const isAtMission = currentIndexRef.current === SECTION_IDS.indexOf('mission');
+        if (stMission && (stMission.isActive || isAtMission)) {
+          if (delta > 0 && stMission.progress < 0.95) return;
+          if (delta < 0 && stMission.progress > 0.05) return;
+        }
+
+        const stAgenda = typeof window !== 'undefined' ? ScrollTrigger.getById('agenda-pin') : null;
+        const isAtAgenda = currentIndexRef.current === SECTION_IDS.indexOf('agenda');
+        if (stAgenda && (stAgenda.isActive || isAtAgenda)) {
+          if (delta > 0 && stAgenda.progress < 0.95) return;
+          if (delta < 0 && stAgenda.progress > 0.05) return;
+        }
+
+        const stExp = typeof window !== 'undefined' ? ScrollTrigger.getById('experience-pin') : null;
+        const isAtExp = currentIndexRef.current === SECTION_IDS.indexOf('experience');
+        if (stExp && (stExp.isActive || isAtExp)) {
+          if (delta > 0 && stExp.progress < 0.95) return;
+          if (delta < 0 && stExp.progress > 0.05) return;
+        }
+
         if (delta > 0) {
           goToNext();
         } else {
