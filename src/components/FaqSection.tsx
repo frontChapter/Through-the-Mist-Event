@@ -14,30 +14,30 @@ export default function FaqSection() {
     <section
       id="faq"
       data-theme="light"
-      dir="ltr"
-      className="relative h-screen w-full min-h-screen bg-[#FFFFFF] text-[#111111] flex flex-col justify-center pt-20 pb-8 px-6 sm:px-12 border-t border-black/5 text-left overflow-hidden"
+      dir="rtl"
+      className="relative h-screen w-full min-h-screen bg-[#FFFFFF] text-[#111111] flex flex-col justify-center pt-20 pb-8 px-6 sm:px-12 border-t border-black/5 text-right overflow-hidden"
     >
       <div className="container mx-auto max-w-4xl h-full flex flex-col justify-center space-y-6">
         {/* Section Header */}
         <div className="space-y-2 shrink-0">
           <div className="flex items-center gap-3">
-            <span className="font-mono text-xs uppercase tracking-[0.25em] text-black/50">
-              06 / Inquiries
+            <span className="text-xs uppercase tracking-[0.2em] text-black/60 font-semibold">
+              ۰۶ / پرسش‌ها
             </span>
             <span className="w-8 h-[1px] bg-black/20" />
           </div>
-          <h2 className="font-serif italic text-3xl sm:text-5xl font-normal text-[#111111] tracking-tight">
-            Frequently Asked Questions
+          <h2 className="text-3xl sm:text-5xl font-bold text-[#111111] tracking-tight">
+            سوالات متداول
           </h2>
-          <p className="font-sans font-light text-sm sm:text-base text-black/60 max-w-xl">
-            Everything you need to know about the curriculum, CE credits, logistics, and accommodations.
+          <p className="font-light text-sm sm:text-base text-black/60 max-w-xl">
+            تمام نکات لازم درباره سرفصل‌های آموزشی، امتیاز بازآموزی (CE)، تدارکات و اقامت.
           </p>
         </div>
 
         {/* CSS Grid Zero-Layout-Shift Smooth Accordion with data-inner-scroll */}
         <div
           data-inner-scroll="true"
-          className="divide-y divide-black/10 border-y border-black/10 overflow-y-auto max-h-[52vh] pr-3 select-text"
+          className="divide-y divide-black/10 border-y border-black/10 overflow-y-auto max-h-[52vh] pl-3 select-text"
           style={{ scrollbarWidth: 'thin', scrollbarColor: 'rgba(0,0,0,0.2) transparent' }}
         >
           {EXPERIENCE_DATA.faqs.map((faq, index) => {
@@ -49,10 +49,10 @@ export default function FaqSection() {
                 <button
                   type="button"
                   onClick={() => toggleAccordion(index)}
-                  className="w-full flex items-center justify-between text-left gap-6 group cursor-pointer"
+                  className="w-full flex items-center justify-between text-right gap-6 group cursor-pointer"
                   aria-expanded={isOpen}
                 >
-                  <h3 className="font-serif italic text-lg sm:text-xl text-[#111111] group-hover:text-black/70 transition-colors font-normal leading-snug">
+                  <h3 className="text-base sm:text-lg text-[#111111] group-hover:text-black/70 transition-colors font-bold leading-snug">
                     {faq.question}
                   </h3>
                   <div
@@ -85,7 +85,7 @@ export default function FaqSection() {
                   }`}
                 >
                   <div className="overflow-hidden">
-                    <p className="font-sans text-xs sm:text-sm text-black/70 font-light leading-relaxed max-w-3xl pb-2">
+                    <p className="text-xs sm:text-sm text-black/75 font-normal leading-relaxed max-w-3xl pb-2">
                       {faq.answer}
                     </p>
                   </div>
@@ -96,15 +96,15 @@ export default function FaqSection() {
         </div>
 
         {/* Concierge Contact Line */}
-        <div className="pt-2 flex flex-col sm:flex-row items-baseline justify-between gap-4 font-mono text-xs text-black/60 uppercase tracking-widest border-t border-black/5 shrink-0">
-          <span>Need custom arrangements or private group enrollment?</span>
+        <div className="pt-2 flex flex-col sm:flex-row items-baseline justify-between gap-4 text-xs text-black/60 tracking-wider border-t border-black/5 shrink-0">
+          <span>نیاز به هماهنگی‌های اختصاصی یا ثبت‌نام گروهی دارید؟</span>
           <a
             href="mailto:experience@designxhand.com"
-            className="text-black font-semibold underline underline-offset-4 hover:opacity-75 transition-opacity inline-flex items-center gap-1.5 group"
+            className="text-black font-bold underline underline-offset-4 hover:opacity-75 transition-opacity inline-flex items-center gap-1.5 group"
           >
-            <span>Contact Concierge</span>
+            <span>ارتباط با تیم تشریفات</span>
             <svg
-              className="w-3.5 h-3.5 transition-transform group-hover:translate-x-0.5"
+              className="w-3.5 h-3.5 transition-transform group-hover:-translate-x-0.5"
               viewBox="0 0 24 24"
               fill="none"
               stroke="currentColor"
@@ -113,7 +113,7 @@ export default function FaqSection() {
               strokeLinejoin="round"
               aria-hidden="true"
             >
-              <path d="M5 12h14M12 5l7 7-7 7" />
+              <path d="M19 12H5M12 19l-7-7 7-7" />
             </svg>
           </a>
         </div>

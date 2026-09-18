@@ -8,8 +8,9 @@ const config: Config = {
   theme: {
     extend: {
       fontFamily: {
-        serif: ['"Cormorant Garamond"', 'Georgia', 'serif'],
-        sans: ['"Neue Haas Grotesk Display Pro"', 'system-ui', '-apple-system', 'sans-serif'],
+        sans: ['var(--font-dana)', 'system-ui', '-apple-system', 'sans-serif'],
+        serif: ['var(--font-dana)', 'Georgia', 'serif'],
+        mono: ['var(--font-dana)', 'monospace'],
       },
     },
   },

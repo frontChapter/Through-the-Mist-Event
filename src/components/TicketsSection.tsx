@@ -9,22 +9,22 @@ export default function TicketsSection() {
     <section
       id="reservations"
       data-theme="dark"
-      dir="ltr"
-      className="relative h-screen w-full min-h-screen bg-[#070707] text-white flex flex-col justify-center py-20 px-6 sm:px-12 border-t border-white/10 overflow-hidden text-left"
+      dir="rtl"
+      className="relative h-screen w-full min-h-screen bg-[#070707] text-white flex flex-col justify-center py-20 px-6 sm:px-12 border-t border-white/10 overflow-hidden text-right"
     >
       <div className="container mx-auto max-w-6xl h-full flex flex-col justify-center">
         {/* Header Block */}
         <div className="text-center max-w-3xl mx-auto space-y-2 mb-8 shrink-0">
-          <div className="inline-flex items-center gap-2 font-mono text-[10px] uppercase tracking-[0.3em] text-[#c5a880] bg-[#c5a880]/10 px-3.5 py-1 rounded-full border border-[#c5a880]/20">
+          <div className="inline-flex items-center gap-2 text-[11px] tracking-wider text-[#c5a880] bg-[#c5a880]/10 px-4 py-1.5 rounded-full border border-[#c5a880]/20 font-medium">
             <span>{EXPERIENCE_DATA.hero.deadline}</span>
           </div>
 
-          <h2 className="font-serif italic text-3xl sm:text-5xl font-normal text-white tracking-tight">
-            Choose Your Level of Access
+          <h2 className="text-3xl sm:text-5xl font-bold text-white tracking-tight">
+            سطح دسترسی خود را انتخاب کنید
           </h2>
 
-          <p className="font-sans font-light text-xs sm:text-sm text-zinc-400 max-w-xl mx-auto leading-relaxed">
-            Strictly limited bench capacity to ensure direct, unhurried guidance from Dr. Apa.
+          <p className="font-light text-xs sm:text-sm text-zinc-400 max-w-xl mx-auto leading-relaxed">
+            ظرفیت کارگاه جهت تضمین نظارت و هدایت انفرادی دکتر آپا به شدت محدود است.
           </p>
         </div>
 
@@ -57,41 +57,41 @@ export default function TicketsSection() {
                 {/* Top Section */}
                 <div className="relative z-10 space-y-4">
                   <div className="flex items-center justify-between gap-4">
-                    <span className="font-mono text-[9px] uppercase tracking-[0.25em] text-[#c5a880]">
+                    <span className="text-[11px] tracking-wider text-[#c5a880] font-semibold">
                       {pass.category}
                     </span>
                     {pass.isSoldOut && (
-                      <span className="font-mono text-[9px] uppercase tracking-widest px-2.5 py-0.5 rounded-full bg-red-950/60 border border-red-500/30 text-red-300">
-                        Sold Out
+                      <span className="text-[10px] tracking-wider px-3 py-1 rounded-full bg-red-950/60 border border-red-500/30 text-red-300 font-medium">
+                        تکمیل ظرفیت
                       </span>
                     )}
                   </div>
 
                   <div>
-                    <h3 className="font-serif italic text-2xl sm:text-3xl text-white font-normal">
+                    <h3 className="text-2xl sm:text-3xl text-white font-bold">
                       {pass.name}
                     </h3>
-                    <p className="mt-1.5 text-xs text-zinc-400 font-sans font-light leading-relaxed">
+                    <p className="mt-1.5 text-xs text-zinc-400 font-light leading-relaxed">
                       {pass.subtitle}
                     </p>
                   </div>
 
                   {/* Price */}
                   <div className="pt-2 pb-3 border-y border-white/10 flex items-baseline gap-2">
-                    <span className="font-serif text-4xl sm:text-5xl font-light text-white tracking-tight">
+                    <span className="text-3xl sm:text-4xl font-black text-white tracking-tight">
                       {pass.price}
                     </span>
-                    <span className="font-mono text-[10px] uppercase tracking-widest text-zinc-400">
-                      {pass.currency} / Doctor
+                    <span className="text-xs tracking-wider text-zinc-400 font-medium">
+                      {pass.currency} / هر دندان‌پزشک
                     </span>
                   </div>
 
                   {/* Feature Inclusions */}
-                  <div className="space-y-2 pt-1">
+                  <div className="space-y-2.5 pt-1">
                     {pass.features.slice(0, 4).map((feature, fIdx) => (
                       <div key={fIdx} className="flex items-start gap-2.5 text-xs text-zinc-300 font-light">
                         <svg
-                          className="w-3.5 h-3.5 text-[#c5a880] mt-0.5 shrink-0"
+                          className="w-4 h-4 text-[#c5a880] mt-0.5 shrink-0"
                           viewBox="0 0 24 24"
                           fill="none"
                           stroke="currentColor"
@@ -102,7 +102,7 @@ export default function TicketsSection() {
                         >
                           <polyline points="20 6 9 17 4 12" />
                         </svg>
-                        <span className="leading-snug">{feature}</span>
+                        <span className="leading-relaxed">{feature}</span>
                       </div>
                     ))}
                   </div>
@@ -114,18 +114,18 @@ export default function TicketsSection() {
                     <button
                       disabled
                       type="button"
-                      className="w-full py-3 rounded-full border border-white/20 bg-white/5 text-zinc-400 font-mono text-xs uppercase tracking-widest cursor-not-allowed text-center"
+                      className="w-full py-3 rounded-full border border-white/20 bg-white/5 text-zinc-400 text-xs tracking-wider cursor-not-allowed text-center font-medium"
                     >
-                      Waitlist Only • Sold Out
+                      لیست انتظار • تکمیل ظرفیت
                     </button>
                   ) : (
                     <a
                       href="#reservations"
-                      className="group flex items-center justify-center gap-1.5 w-full py-3 rounded-full bg-white text-black hover:bg-zinc-200 font-mono text-xs uppercase tracking-widest font-bold transition-all duration-300 shadow-xl text-center"
+                      className="group flex items-center justify-center gap-2 w-full py-3.5 rounded-full bg-white text-black hover:bg-zinc-200 text-xs tracking-wider font-bold transition-all duration-300 shadow-xl text-center"
                     >
                       <span>{pass.ctaText}</span>
                       <svg
-                        className="w-3.5 h-3.5 transition-transform group-hover:translate-x-0.5"
+                        className="w-3.5 h-3.5 transition-transform group-hover:-translate-x-1"
                         viewBox="0 0 24 24"
                         fill="none"
                         stroke="currentColor"
@@ -134,7 +134,7 @@ export default function TicketsSection() {
                         strokeLinejoin="round"
                         aria-hidden="true"
                       >
-                        <path d="M5 12h14M12 5l7 7-7 7" />
+                        <path d="M19 12H5M12 19l-7-7 7-7" />
                       </svg>
                     </a>
                   )}

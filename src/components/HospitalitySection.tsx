@@ -10,7 +10,7 @@ export default function HospitalitySection() {
   const containerRef = useRef<HTMLDivElement>(null);
   const trackRef = useRef<HTMLDivElement>(null);
   const headingTitleRef = useRef<HTMLHeadingElement>(null);
-  const [currentHeading, setCurrentHeading] = useState<'Pre-Event' | 'After Hours'>('Pre-Event');
+  const [currentHeading, setCurrentHeading] = useState<'پیش‌رویداد' | 'برنامه‌های عصرگاهی'>('پیش‌رویداد');
 
   // Parallax refs for floating image clusters
   const p1Ref = useRef<HTMLDivElement>(null);
@@ -45,17 +45,17 @@ export default function HospitalitySection() {
           onUpdate: (self) => {
             // Transition heading gracefully around 48% scroll progress
             if (self.progress > 0.46) {
-              setCurrentHeading('After Hours');
+              setCurrentHeading('برنامه‌های عصرگاهی');
             } else {
-              setCurrentHeading('Pre-Event');
+              setCurrentHeading('پیش‌رویداد');
             }
           },
         },
       });
 
-      // 1. Horizontal scrubbing movement through all 3 milestone stops
+      // 1. Horizontal scrubbing movement through all 3 milestone stops (flowing Right-to-Left in RTL)
       tl.to(track, {
-        x: () => -getScrollDistance(),
+        x: () => getScrollDistance(),
         ease: 'none',
         duration: 1.0,
       });
@@ -152,8 +152,8 @@ export default function HospitalitySection() {
       ref={containerRef}
       id="experience"
       data-theme="dark"
-      dir="ltr"
-      className="relative w-full h-screen bg-[#080808] text-white overflow-hidden text-left select-none"
+      dir="rtl"
+      className="relative w-full h-screen bg-[#080808] text-white overflow-hidden text-right select-none"
     >
       {/* 1. Visual Atmosphere & Canvas: Dark Slate Texture + Noise Grain */}
       <div
@@ -165,36 +165,36 @@ export default function HospitalitySection() {
       />
       <div className="absolute inset-0 bg-gradient-to-b from-black/80 via-transparent to-black/80 pointer-events-none" />
 
-      {/* Pinned Top-Left Narrative Heading */}
-      <div className="absolute top-10 sm:top-14 left-6 sm:left-14 z-20 pointer-events-none">
+      {/* Pinned Top-Right Narrative Heading in RTL */}
+      <div className="absolute top-10 sm:top-14 right-6 sm:right-14 z-20 pointer-events-none">
         <div className="flex items-center gap-3">
-          <span className="font-mono text-xs uppercase tracking-[0.25em] text-[#c5a880]">
-            03 / The Experience
+          <span className="text-xs uppercase tracking-[0.2em] text-[#c5a880] font-semibold">
+            ۰۳ / تجربه رویداد
           </span>
           <span className="w-8 h-[1px] bg-[#c5a880]/30" />
         </div>
         <h2
           ref={headingTitleRef}
-          className="font-serif italic text-4xl sm:text-6xl lg:text-7xl font-light text-white tracking-tight mt-1 transition-all duration-700 ease-out drop-shadow-lg"
+          className="text-4xl sm:text-6xl lg:text-7xl font-bold text-white tracking-tight mt-1 transition-all duration-700 ease-out drop-shadow-lg"
         >
           {currentHeading}
         </h2>
       </div>
 
-      {/* Pinned Top-Right Navigation hint */}
-      <div className="absolute top-12 sm:top-16 right-6 sm:right-14 z-20 pointer-events-none font-mono text-[10px] uppercase tracking-[0.3em] text-zinc-400 hidden sm:block">
-        Horizontal Timeline • Scroll down to advance
+      {/* Pinned Top-Left Navigation hint in RTL */}
+      <div className="absolute top-12 sm:top-16 left-6 sm:left-14 z-20 pointer-events-none text-xs tracking-wider text-zinc-400 hidden sm:block">
+        خط زمانی افقی • برای مشاهده به پایین اسکرول کنید
       </div>
 
       {/* 2. Pinned Horizontal Track */}
       <div className="relative z-10 w-full h-full flex items-center">
         <div
           ref={trackRef}
-          className="relative flex items-center h-full pl-[28vw] sm:pl-[24vw] pr-[20vw] w-max will-change-transform"
+          className="relative flex items-center h-full pr-[28vw] sm:pr-[24vw] pl-[20vw] w-max will-change-transform"
         >
           {/* Continuous Glowing Gold Sine Wave SVG across the entire track */}
           <svg
-            className="absolute top-1/2 left-0 -translate-y-1/2 w-[3400px] h-[320px] pointer-events-none overflow-visible z-0 opacity-70"
+            className="absolute top-1/2 right-0 -translate-y-1/2 w-[3400px] h-[320px] pointer-events-none overflow-visible z-0 opacity-70 scale-x-[-1]"
             viewBox="0 0 3400 320"
             fill="none"
           >
@@ -230,59 +230,59 @@ export default function HospitalitySection() {
           {/* ═════════════════════════════════════════════════════════════════════ */}
           <div className="relative flex items-center gap-12 sm:gap-16 shrink-0 w-[880px] z-10">
             {/* Wave Node Pinpoint */}
-            <div className="absolute top-1/2 left-0 -translate-y-1/2 -translate-x-1/2 z-20 flex items-center justify-center">
+            <div className="absolute top-1/2 right-0 -translate-y-1/2 translate-x-1/2 z-20 flex items-center justify-center">
               <div className="w-5 h-5 rounded-full bg-[#c5a880]/20 animate-ping absolute" />
               <div className="w-3 h-3 rounded-full bg-[#c5a880] border-2 border-black shadow-[0_0_12px_#c5a880]" />
             </div>
 
             {/* Milestone 1 Text & Details */}
-            <div className="w-[380px] space-y-5 shrink-0 pl-6">
+            <div className="w-[380px] space-y-5 shrink-0 pr-6">
               {/* Date & Time above wave */}
-              <div className="space-y-1.5 font-mono text-[11px] tracking-widest uppercase text-zinc-400">
-                <div className="text-[#c5a880]">Thursday, September 17</div>
-                <div className="text-zinc-500">6:00 – 8:00 PM</div>
+              <div className="space-y-1 text-xs tracking-wider text-zinc-400">
+                <div className="text-[#c5a880] font-medium">پنج‌شنبه، ۲۶ شهریور ۱۴۰۵</div>
+                <div className="text-zinc-500">۱۸:۰۰ الی ۲۰:۰۰</div>
               </div>
 
               {/* Inner Circle Badge */}
               <div>
-                <span className="inline-block font-mono text-[9px] uppercase tracking-[0.3em] px-3 py-1 rounded-full border border-[#c5a880]/40 text-[#c5a880] bg-[#c5a880]/10">
-                  [ INNER CIRCLE ]
+                <span className="inline-block text-[10px] tracking-wider px-3 py-1 rounded-full border border-[#c5a880]/40 text-[#c5a880] bg-[#c5a880]/10 font-medium">
+                  [ حلقه اختصاصی ]
                 </span>
               </div>
 
               {/* Title & Description below wave */}
               <div className="space-y-3">
-                <h3 className="font-serif italic text-2xl sm:text-3xl text-white font-normal leading-tight">
-                  Pre-Event Welcome Tour
+                <h3 className="text-2xl sm:text-3xl text-white font-bold leading-tight">
+                  تور اختصاصی و بازدید از استودیو
                 </h3>
-                <p className="font-sans text-xs sm:text-sm text-zinc-400 font-light leading-relaxed">
-                  Apa Inner Circle attendees are invited to an intimate private tour and gathering at Apa Aesthetic New York with the Apa Aesthetic clinical team.
+                <p className="text-xs sm:text-sm text-zinc-400 font-light leading-relaxed">
+                  دعوت ویژه از اعضای حلقه اختصاصی جهت بازدید خصوصی از سوئیت زیبایی آپا در دانشگاه NYU و دورهمی صمیمانه در دفتر آپا استتیک نیویورک.
                 </p>
               </div>
             </div>
 
-            {/* Milestone 1 Asymmetric Image Cluster (Overlapping Duo) */}
+            {/* Milestone 1 Asymmetric Image Cluster */}
             <div className="relative w-[440px] h-[480px] shrink-0 flex items-center">
-              {/* Photo 1: Tall Architectural Hallway */}
+              {/* Photo 1 */}
               <div
                 ref={p1Ref}
-                className="absolute left-0 top-6 w-[240px] aspect-[3/4] rounded-2xl overflow-hidden shadow-[0_24px_60px_rgba(0,0,0,0.8)] border border-white/10 z-10 will-change-transform"
+                className="absolute right-0 top-6 w-[240px] aspect-[3/4] rounded-2xl overflow-hidden shadow-[0_24px_60px_rgba(0,0,0,0.8)] border border-white/10 z-10 will-change-transform"
               >
                 <img
                   src="https://framerusercontent.com/images/bIjl57OIXrKB53E2sQBDjP8L84.jpg"
-                  alt="Apa Aesthetic Suite Hallway"
+                  alt="راهروی سوئیت زیبایی آپا"
                   className="w-full h-full object-cover filter contrast-105 brightness-95"
                 />
               </div>
 
-              {/* Photo 2: Clinical Tools / Hands-On (Landscape overlapping) */}
+              {/* Photo 2 */}
               <div
                 ref={p2Ref}
-                className="absolute right-0 bottom-8 w-[260px] aspect-[4/3] rounded-2xl overflow-hidden shadow-[0_24px_60px_rgba(0,0,0,0.9)] border border-white/15 z-20 will-change-transform"
+                className="absolute left-0 bottom-8 w-[260px] aspect-[4/3] rounded-2xl overflow-hidden shadow-[0_24px_60px_rgba(0,0,0,0.9)] border border-white/15 z-20 will-change-transform"
               >
                 <img
                   src="https://framerusercontent.com/images/IBcxMoSH8dSiNEl5xhH80cm4gvM.jpg"
-                  alt="Clinical Preparations"
+                  alt="تدارکات بالینی"
                   className="w-full h-full object-cover filter contrast-105"
                 />
               </div>
@@ -297,52 +297,52 @@ export default function HospitalitySection() {
           {/* ═════════════════════════════════════════════════════════════════════ */}
           <div className="relative flex items-center gap-12 sm:gap-16 shrink-0 w-[880px] z-10">
             {/* Wave Node Pinpoint */}
-            <div className="absolute top-1/2 left-0 -translate-y-1/2 -translate-x-1/2 z-20 flex items-center justify-center">
+            <div className="absolute top-1/2 right-0 -translate-y-1/2 translate-x-1/2 z-20 flex items-center justify-center">
               <div className="w-5 h-5 rounded-full bg-[#c5a880]/20 animate-ping absolute" />
               <div className="w-3 h-3 rounded-full bg-[#c5a880] border-2 border-black shadow-[0_0_12px_#c5a880]" />
             </div>
 
             {/* Milestone 2 Text & Details */}
-            <div className="w-[380px] space-y-5 shrink-0 pl-6">
+            <div className="w-[380px] space-y-5 shrink-0 pr-6">
               {/* Date & Time above wave */}
-              <div className="space-y-1.5 font-mono text-[11px] tracking-widest uppercase text-zinc-400">
-                <div className="text-[#c5a880]">Friday, September 18</div>
-                <div className="text-zinc-500">8:00 PM – Late</div>
+              <div className="space-y-1 text-xs tracking-wider text-zinc-400">
+                <div className="text-[#c5a880] font-medium">جمعه، ۲۷ شهریور ۱۴۰۵</div>
+                <div className="text-zinc-500">۲۰:۰۰ تا پاسی از شب</div>
               </div>
 
               {/* Title & Description */}
               <div className="space-y-3">
-                <h3 className="font-serif italic text-2xl sm:text-3xl text-white font-normal leading-tight">
-                  Evening Reception
+                <h3 className="text-2xl sm:text-3xl text-white font-bold leading-tight">
+                  گردهمایی و رسپشن شبانه
                 </h3>
-                <p className="font-sans text-xs sm:text-sm text-zinc-400 font-light leading-relaxed">
-                  Close out Day One with cocktails, conversation and curated bites alongside Dr. Apa, fellow attendees, and the Apa Aesthetic New York team.
+                <p className="text-xs sm:text-sm text-zinc-400 font-light leading-relaxed">
+                  پایان روز اول با گفتگو، کوکتل و میان‌وعده‌های دست‌چین‌شده در کنار دکتر آپا، سایر شرکت‌کنندگان و تیم بالینی آپا در نیویورک.
                 </p>
               </div>
             </div>
 
-            {/* Milestone 2 Asymmetric Image Cluster (Layered Vertical Duo) */}
+            {/* Milestone 2 Asymmetric Image Cluster */}
             <div className="relative w-[440px] h-[480px] shrink-0 flex items-center">
-              {/* Photo 3: Ambient Portrait / Guests */}
+              {/* Photo 3 */}
               <div
                 ref={p3Ref}
-                className="absolute left-2 top-4 w-[230px] aspect-[3/4] rounded-2xl overflow-hidden shadow-[0_24px_60px_rgba(0,0,0,0.8)] border border-white/10 z-10 will-change-transform"
+                className="absolute right-2 top-4 w-[230px] aspect-[3/4] rounded-2xl overflow-hidden shadow-[0_24px_60px_rgba(0,0,0,0.8)] border border-white/10 z-10 will-change-transform"
               >
                 <img
                   src="https://framerusercontent.com/images/NTvqBz8aWl1T8B0PjcmumJqn3IA.jpg"
-                  alt="Evening Reception Guests"
+                  alt="مهمانان رسپشن شبانه"
                   className="w-full h-full object-cover filter contrast-105 brightness-95"
                 />
               </div>
 
-              {/* Photo 4: Moody Night Atmosphere */}
+              {/* Photo 4 */}
               <div
                 ref={p4Ref}
-                className="absolute right-0 bottom-4 w-[250px] aspect-[4/5] rounded-2xl overflow-hidden shadow-[0_24px_60px_rgba(0,0,0,0.9)] border border-white/15 z-20 will-change-transform"
+                className="absolute left-0 bottom-4 w-[250px] aspect-[4/5] rounded-2xl overflow-hidden shadow-[0_24px_60px_rgba(0,0,0,0.9)] border border-white/15 z-20 will-change-transform"
               >
                 <img
                   src="https://framerusercontent.com/images/6VrWQPo3Rtfmp3e8grPrsdQiKZk.jpg"
-                  alt="New York City Night Atmosphere"
+                  alt="فضای شبانه نیویورک سیتی"
                   className="w-full h-full object-cover filter contrast-110"
                 />
               </div>
@@ -357,59 +357,59 @@ export default function HospitalitySection() {
           {/* ═════════════════════════════════════════════════════════════════════ */}
           <div className="relative flex items-center gap-12 sm:gap-16 shrink-0 w-[880px] z-10">
             {/* Wave Node Pinpoint */}
-            <div className="absolute top-1/2 left-0 -translate-y-1/2 -translate-x-1/2 z-20 flex items-center justify-center">
+            <div className="absolute top-1/2 right-0 -translate-y-1/2 translate-x-1/2 z-20 flex items-center justify-center">
               <div className="w-5 h-5 rounded-full bg-[#c5a880]/20 animate-ping absolute" />
               <div className="w-3 h-3 rounded-full bg-[#c5a880] border-2 border-black shadow-[0_0_12px_#c5a880]" />
             </div>
 
             {/* Milestone 3 Text & Details */}
-            <div className="w-[380px] space-y-5 shrink-0 pl-6">
+            <div className="w-[380px] space-y-5 shrink-0 pr-6">
               {/* Date & Time */}
-              <div className="space-y-1.5 font-mono text-[11px] tracking-widest uppercase text-zinc-400">
-                <div className="text-[#c5a880]">Saturday, September 19</div>
-                <div className="text-zinc-500">5:30 – 8:00 PM</div>
+              <div className="space-y-1 text-xs tracking-wider text-zinc-400">
+                <div className="text-[#c5a880] font-medium">شنبه، ۲۸ شهریور ۱۴۰۵</div>
+                <div className="text-zinc-500">۱۷:۳۰ الی ۲۰:۰۰</div>
               </div>
 
               {/* Inner Circle Badge */}
               <div>
-                <span className="inline-block font-mono text-[9px] uppercase tracking-[0.3em] px-3 py-1 rounded-full border border-[#c5a880]/40 text-[#c5a880] bg-[#c5a880]/10">
-                  [ INNER CIRCLE ]
+                <span className="inline-block text-[10px] tracking-wider px-3 py-1 rounded-full border border-[#c5a880]/40 text-[#c5a880] bg-[#c5a880]/10 font-medium">
+                  [ حلقه اختصاصی ]
                 </span>
               </div>
 
               {/* Title & Description */}
               <div className="space-y-3">
-                <h3 className="font-serif italic text-2xl sm:text-3xl text-white font-normal leading-tight">
-                  Private dinner with Dr. Apa
+                <h3 className="text-2xl sm:text-3xl text-white font-bold leading-tight">
+                  ضیافت شام خصوصی با دکتر آپا
                 </h3>
-                <p className="font-sans text-xs sm:text-sm text-zinc-400 font-light leading-relaxed">
-                  Reserved exclusively for Inner Circle attendees, this intimate private dinner offers a smaller setting to connect with Dr. Apa and Apa Associates over a curated dining experience.
+                <p className="text-xs sm:text-sm text-zinc-400 font-light leading-relaxed">
+                  مختص اعضای اینر سرکل؛ یک فضای صمیمانه و ممتاز برای گفتگوی مستقیم، منتورشیپ فردی و تبادل تجربیات بالینی همراه با صرف شام مجلل.
                 </p>
               </div>
             </div>
 
             {/* Milestone 3 Asymmetric Image Cluster */}
             <div className="relative w-[440px] h-[480px] shrink-0 flex items-center">
-              {/* Photo 5: Curated Dining Arrangement */}
+              {/* Photo 5 */}
               <div
                 ref={p5Ref}
-                className="absolute left-0 top-8 w-[250px] aspect-[4/3] rounded-2xl overflow-hidden shadow-[0_24px_60px_rgba(0,0,0,0.8)] border border-white/10 z-10 will-change-transform"
+                className="absolute right-0 top-8 w-[250px] aspect-[4/3] rounded-2xl overflow-hidden shadow-[0_24px_60px_rgba(0,0,0,0.8)] border border-white/10 z-10 will-change-transform"
               >
                 <img
                   src="https://framerusercontent.com/images/8Y5jpKsgNpmxQM2aXcWp6IHJE.jpg"
-                  alt="Private Dining Table Setup"
+                  alt="میز شام خصوصی"
                   className="w-full h-full object-cover filter contrast-105"
                 />
               </div>
 
-              {/* Photo 6: Dr. Michael Apa with Guests */}
+              {/* Photo 6 */}
               <div
                 ref={p6Ref}
-                className="absolute right-2 bottom-6 w-[240px] aspect-[3/4] rounded-2xl overflow-hidden shadow-[0_24px_60px_rgba(0,0,0,0.9)] border border-white/15 z-20 will-change-transform"
+                className="absolute left-2 bottom-6 w-[240px] aspect-[3/4] rounded-2xl overflow-hidden shadow-[0_24px_60px_rgba(0,0,0,0.9)] border border-white/15 z-20 will-change-transform"
               >
                 <img
                   src="https://framerusercontent.com/images/oIr8BpwXZAYjuUCUk0Dbm2IpUI.jpg"
-                  alt="Dr. Michael Apa at Dinner"
+                  alt="دکتر مایکل آپا در ضیافت شام"
                   className="w-full h-full object-cover filter contrast-105 brightness-95"
                 />
               </div>

@@ -19,7 +19,7 @@ export default function MethodIntroSection() {
       ref={containerRef}
       id="two-days"
       data-theme="dark"
-      dir="ltr"
+      dir="rtl"
       className="relative h-screen w-full min-h-screen px-6 sm:px-12 bg-[#090909] text-white flex flex-col items-center justify-center text-center overflow-hidden"
     >
       {/* Background radial glow */}
@@ -29,20 +29,20 @@ export default function MethodIntroSection() {
         style={{ opacity, scale }}
         className="relative z-10 max-w-4xl mx-auto space-y-6"
       >
-        <span className="font-mono text-xs uppercase tracking-[0.35em] text-zinc-400 block">
-          Clinical Masterclass
+        <span className="text-xs uppercase tracking-[0.3em] text-zinc-400 block font-medium">
+          مسترکلاس جامع بالینی
         </span>
 
-        <h2 className="font-serif italic text-4xl sm:text-6xl md:text-7xl font-light text-white tracking-tight leading-tight">
-          Two days. Two patients. One method.
+        <h2 className="text-4xl sm:text-6xl md:text-7xl font-bold text-white tracking-tight leading-tight">
+          دو روز. دو بیمار. یک متدولوژی.
         </h2>
 
-        <p className="font-serif italic text-base sm:text-xl text-[#c5a880] font-light tracking-wide max-w-xl mx-auto">
-          An intimate, hands-on immersion into the full smile design protocol alongside Dr. Michael Apa.
+        <p className="text-base sm:text-xl text-[#c5a880] font-light tracking-wide max-w-xl mx-auto leading-relaxed">
+          یک تجربه عمیق و عملی در اجرای صفر تا صد پروتکل طراحی لبخند در کنار دکتر مایکل آپا.
         </p>
 
         <div className="pt-6 flex justify-center">
-          <span className="w-12 h-[1px] bg-[#c5a880]/40" />
+          <span className="w-16 h-[1px] bg-[#c5a880]/40" />
         </div>
       </motion.div>
     </section>

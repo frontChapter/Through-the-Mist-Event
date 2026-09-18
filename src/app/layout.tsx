@@ -1,15 +1,28 @@
 import type { Metadata } from 'next';
+import localFont from 'next/font/local';
 import './designxhand.css';
 import './globals.css';
 
+const dana = localFont({
+  src: [
+    {
+      path: '../../public/fonts/DanaVF.woff2',
+      weight: '100 900',
+      style: 'normal',
+    },
+  ],
+  variable: '--font-dana',
+  display: 'swap',
+});
+
 export const metadata: Metadata = {
-  title: 'Design x Hand | September 18-19 | New York, NY',
+  title: 'Design x Hand | طراحی با دست | دکتر مایکل آپا',
   description:
-    'The first ever hands-on course in cosmetic dentistry led by Dr. Michael Apa.',
+    'نخستین دوره عملی و جامع طراحی لبخند با هدایت دکتر مایکل آپا در نیویورک.',
   openGraph: {
-    title: 'Design x Hand | September 18-19 | New York, NY',
+    title: 'Design x Hand | طراحی با دست | دکتر مایکل آپا',
     description:
-      'The first ever hands-on course in cosmetic dentistry led by Dr. Michael Apa.',
+      'نخستین دوره عملی و جامع طراحی لبخند با هدایت دکتر مایکل آپا در نیویورک.',
     images: ['https://framerusercontent.com/images/ru3JYJkJjwugZXqDPji7aEIhCDg.png'],
   },
 };
@@ -20,8 +33,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" dir="ltr">
-      <body dir="ltr" className="bg-black text-white antialiased min-h-screen selection:bg-white/20 selection:text-white text-left">
+    <html lang="fa" dir="rtl" className={dana.variable}>
+      <body dir="rtl" className="bg-black text-white antialiased min-h-screen selection:bg-white/20 selection:text-white text-right font-sans">
         {children}
       </body>
     </html>

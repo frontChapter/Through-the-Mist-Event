@@ -56,7 +56,7 @@ export default function GlobalFloatingCta() {
 
   return (
     <div
-      dir="ltr"
+      dir="rtl"
       className="fixed bottom-6 left-1/2 -translate-x-1/2 z-[90] pointer-events-none"
     >
       <AnimatePresence>
@@ -70,19 +70,19 @@ export default function GlobalFloatingCta() {
           >
             <div className="group flex flex-col items-center justify-center bg-[#111111]/95 hover:bg-[#161616] text-white border border-white/15 px-7 py-2.5 rounded-full shadow-[0_12px_36px_rgba(0,0,0,0.8)] backdrop-blur-xl transition-all duration-300 hover:border-white/30 hover:shadow-[0_16px_40px_rgba(0,0,0,0.95)] min-w-[190px] w-auto text-center select-none">
               {/* Subtle top indicator text */}
-              <span className="font-serif italic text-[11px] text-zinc-400 tracking-wide block whitespace-nowrap">
-                Limited seats available
+              <span className="text-[11px] text-[#c5a880] tracking-wide block whitespace-nowrap font-medium">
+                ظرفیت بسیار محدود
               </span>
 
               {/* Main CTA Link */}
               <button
                 type="button"
                 onClick={handleScrollToReservations}
-                className="font-mono text-xs font-semibold tracking-[0.18em] uppercase text-white flex items-center justify-center gap-1.5 pt-0.5 hover:text-zinc-200 transition-colors cursor-pointer whitespace-nowrap"
+                className="text-xs font-bold tracking-wider uppercase text-white flex items-center justify-center gap-2 pt-0.5 hover:text-zinc-200 transition-colors cursor-pointer whitespace-nowrap"
               >
-                <span>Reserve Now</span>
+                <span>رزرو صندلی</span>
                 <svg
-                  className="w-3.5 h-3.5 text-zinc-400 group-hover:translate-x-0.5 transition-transform"
+                  className="w-3.5 h-3.5 text-zinc-400 group-hover:-translate-x-1 transition-transform"
                   viewBox="0 0 24 24"
                   fill="none"
                   stroke="currentColor"
@@ -91,7 +91,7 @@ export default function GlobalFloatingCta() {
                   strokeLinejoin="round"
                   aria-hidden="true"
                 >
-                  <path d="M5 12h14M12 5l7 7-7 7" />
+                  <path d="M19 12H5M12 19l-7-7 7-7" />
                 </svg>
               </button>
             </div>

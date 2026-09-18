@@ -4,13 +4,13 @@ import React, { useState, useEffect, useCallback } from 'react';
 import Link from 'next/link';
 import { motion, AnimatePresence } from 'framer-motion';
 
-// Exactly 5 navigation items in strict LTR order
+// Exactly 5 navigation items in Persian RTL order
 const NAV_ITEMS = [
-  { label: 'Mission', id: 'mission' },
-  { label: 'Agenda', id: 'agenda' },
-  { label: 'Method', id: 'method' },
-  { label: 'Reservations', id: 'reservations' },
-  { label: 'FAQ', id: 'faq' },
+  { label: 'ماموریت', id: 'mission' },
+  { label: 'برنامه', id: 'agenda' },
+  { label: 'متدولوژی', id: 'method' },
+  { label: 'رزرو', id: 'reservations' },
+  { label: 'سوالات متداول', id: 'faq' },
 ];
 
 export default function Navbar() {
@@ -118,11 +118,11 @@ export default function Navbar() {
 
   return (
     <header
-      dir="ltr"
+      dir="rtl"
       className={`fixed top-0 left-0 right-0 z-50 pointer-events-auto w-full transition-colors duration-300 font-sans backdrop-blur-md border-b ${headerBgClass}`}
     >
-      <div className="container mx-auto max-w-7xl px-6 sm:px-10 h-16 sm:h-20 flex items-center justify-between text-left">
-        {/* Leftmost (Left): Handwritten Serif Logo 'apa' with subtle double cross */}
+      <div className="container mx-auto max-w-7xl px-6 sm:px-10 h-16 sm:h-20 flex items-center justify-between">
+        {/* Right side in RTL: Handwritten Logo 'apa' with subtle double cross */}
         <div className="flex items-center">
           <Link
             href="/"
@@ -135,19 +135,19 @@ export default function Navbar() {
             className="group flex items-center gap-2 select-none"
           >
             <span
-              className={`font-serif italic text-2xl sm:text-3xl font-light tracking-tight transition-colors duration-300 ${logoColor}`}
+              className={`font-bold text-2xl sm:text-3xl tracking-tight transition-colors duration-300 ${logoColor}`}
             >
               apa
             </span>
             <span
-              className={`font-mono text-xs tracking-tighter select-none font-light transition-colors duration-300 ${crossColor}`}
+              className={`text-xs tracking-tighter select-none font-light transition-colors duration-300 ${crossColor}`}
             >
               &#x2715;&#x2715;
             </span>
           </Link>
         </div>
 
-        {/* Center: 5 Nav Items in Strict LTR Order with glide underline */}
+        {/* Center: 5 Nav Items with glide underline */}
         <nav className="hidden md:flex items-center gap-6 lg:gap-8 absolute left-1/2 -translate-x-1/2">
           {NAV_ITEMS.map((item) => {
             const isActive = activeTab === item.id;
@@ -156,8 +156,8 @@ export default function Navbar() {
                 key={item.id}
                 href={`#${item.id}`}
                 onClick={(e) => handleNavClick(e, item.id)}
-                className={`relative py-1 text-[11px] font-mono uppercase tracking-[0.2em] transition-colors duration-200 ${
-                  isActive ? `${textColor} font-semibold` : textMuted
+                className={`relative py-1 text-xs font-medium tracking-wide transition-colors duration-200 ${
+                  isActive ? `${textColor} font-bold` : textMuted
                 }`}
               >
                 <span>{item.label}</span>
@@ -165,7 +165,7 @@ export default function Navbar() {
                 {isActive && (
                   <motion.span
                     layoutId="activeNavUnderline"
-                    className={`absolute bottom-0 left-0 right-0 h-[1.5px] ${indicatorColor}`}
+                    className={`absolute bottom-0 left-0 right-0 h-[2px] ${indicatorColor}`}
                     transition={{
                       type: 'spring',
                       stiffness: 400,
@@ -178,16 +178,16 @@ export default function Navbar() {
           })}
         </nav>
 
-        {/* Rightmost (Right): SEATS status CTA */}
+        {/* Left side in RTL: SEATS status CTA with left-pointing arrow */}
         <div className="hidden md:flex items-center gap-4">
           <a
             href="#reservations"
             onClick={(e) => handleNavClick(e, 'reservations')}
-            className={`text-[11px] font-mono uppercase tracking-[0.2em] underline underline-offset-4 transition-colors duration-300 inline-flex items-center gap-1.5 group ${textMuted}`}
+            className={`text-xs font-medium tracking-wide underline underline-offset-4 transition-colors duration-300 inline-flex items-center gap-1.5 group ${textMuted}`}
           >
-            <span>Seats</span>
+            <span>رزرو صندلی</span>
             <svg
-              className="w-3 h-3 transition-transform group-hover:translate-x-0.5"
+              className="w-3.5 h-3.5 transition-transform group-hover:-translate-x-0.5"
               viewBox="0 0 24 24"
               fill="none"
               stroke="currentColor"
@@ -196,7 +196,7 @@ export default function Navbar() {
               strokeLinejoin="round"
               aria-hidden="true"
             >
-              <path d="M5 12h14M12 5l7 7-7 7" />
+              <path d="M19 12H5M12 19l-7-7 7-7" />
             </svg>
           </a>
         </div>
@@ -206,7 +206,7 @@ export default function Navbar() {
           type="button"
           onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
           className={`md:hidden p-2 rounded-lg transition-colors duration-300 ${textColor}`}
-          aria-label="Toggle Menu"
+          aria-label="منو"
         >
           <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             {mobileMenuOpen ? (
@@ -226,8 +226,8 @@ export default function Navbar() {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -10 }}
             transition={{ duration: 0.2 }}
-            dir="ltr"
-            className={`mx-4 mb-4 rounded-2xl p-6 shadow-2xl backdrop-blur-2xl md:hidden flex flex-col space-y-4 font-mono text-xs uppercase tracking-widest border text-left ${
+            dir="rtl"
+            className={`mx-4 mb-4 rounded-2xl p-6 shadow-2xl backdrop-blur-2xl md:hidden flex flex-col space-y-4 text-xs tracking-wider border text-right ${
               isLightSection
                 ? 'bg-white/95 text-[#111111] border-black/10'
                 : 'bg-black/95 text-white border-white/15'

@@ -4,8 +4,8 @@
 
 @layer base {
   html, body {
-    direction: ltr !important;
-    text-align: left !important;
+    direction: rtl !important;
+    text-align: right !important;
     background-color: #0a0a0a;
     color: #f1f5f9;
     overflow-x: hidden;
