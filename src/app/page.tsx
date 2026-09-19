@@ -17,6 +17,7 @@ import ApaMethodSection from '@/components/ApaMethodSection';
 import TicketsSection from '@/components/TicketsSection';
 import LocationSection from '@/components/LocationSection';
 import FaqSection from '@/components/FaqSection';
+import SponsorsSection from '@/components/SponsorsSection';
 import EventFooter from '@/components/EventFooter';
 
 export default function ExperiencePage() {
@@ -63,9 +64,12 @@ export default function ExperiencePage() {
 
           {/* Section 10: FAQ (Pure White) */}
           <FaqSection />
+
+          {/* Section 11: Sponsors & Supporters (Dark) */}
+          <SponsorsSection />
         </main>
 
-        {/* Section 11: Outro & Sculptural Climax */}
+        {/* Section 12: Outro & Sculptural Climax */}
         <EventFooter />
       </div>
     </SmoothScrollProvider>

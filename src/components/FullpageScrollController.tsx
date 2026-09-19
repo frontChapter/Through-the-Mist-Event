@@ -14,6 +14,7 @@ const SECTION_IDS = [
   'reservations',
   'location',
   'faq',
+  'sponsors',
   'footer',
 ];
 

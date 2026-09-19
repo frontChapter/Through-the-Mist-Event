@@ -1,11 +1,57 @@
 
 
+export interface SponsorItem {
+  id: string;
+  name: string;
+  enName: string;
+  role: string;
+  description: string;
+  logoDark: string;
+  logoWhite: string;
+  url: string;
+}
+
 export interface FaqItem {
   question: string;
   answer: string;
 }
 
 export const EXPERIENCE_DATA = {
+  sponsors: [
+    {
+      id: "iaif",
+      name: "کارخانه هوش مصنوعی ایران",
+      enName: "Iran AI Factory",
+      role: "همکار راهبردی و اکوسیستم نوآوری",
+      description:
+        "پیشران توسعه، توانمندسازی و به‌کارگیری فناوری‌های هوش مصنوعی؛ همکار راهبردی رویداد «در میان مه» در همراهی با جامعه متخصصان.",
+      logoDark: "/assets/sponsors/iaif-dark.png",
+      logoWhite: "/assets/sponsors/iaif-white.png",
+      url: "https://aiif.ai/",
+    },
+    {
+      id: "liara",
+      name: "لیارا کلود",
+      enName: "Liara Cloud",
+      role: "اسپانسر ابری و زیرساخت",
+      description:
+        "پلتفرم ابری پیشرو در ارائه خدمات PaaS و هاستینگ ابری در ایران؛ حامی همیشگی کامیونیتی‌های فنی، توسعه‌دهندگان و فناوری‌های وب.",
+      logoDark: "/assets/sponsors/liara-dark.png",
+      logoWhite: "/assets/sponsors/liara-white.png",
+      url: "https://liara.ir",
+    },
+    {
+      id: "frontchapter",
+      name: "فرانت‌چپتر",
+      enName: "FrontChapter",
+      role: "برگزارکننده و جامعه تخصصی",
+      description:
+        "بزرگ‌ترین جامعه تخصصی فرانت‌اند و فناوری‌های وب در ایران؛ بستری برای یادگیری پیوسته، اشتراک تجربه و شبکه‌سازی حرفه‌ای.",
+      logoDark: "/assets/sponsors/frontchapter-dark.png",
+      logoWhite: "/assets/sponsors/frontchapter-white.png",
+      url: "https://frontchapter.ir",
+    },
+  ] as SponsorItem[],
   hero: {
     dates: "پنجشنبه، ۲ مهر ۱۴۰۵",
     location: "تهران • کارخانه نوآوری آزادی (زاویه)",

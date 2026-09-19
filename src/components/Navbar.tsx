@@ -5,13 +5,14 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { motion, AnimatePresence } from 'framer-motion';
 
-// Exactly 5 navigation items in Persian RTL order
+// Navigation items in Persian RTL order
 const NAV_ITEMS = [
   { label: 'ماموریت', id: 'mission' },
   { label: 'برنامه', id: 'agenda' },
   { label: 'متدولوژی', id: 'method' },
   { label: 'رزرو', id: 'reservations' },
   { label: 'سوالات متداول', id: 'faq' },
+  { label: 'حامیان', id: 'sponsors' },
 ];
 
 export default function Navbar() {
