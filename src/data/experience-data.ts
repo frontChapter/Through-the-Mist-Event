@@ -180,32 +180,31 @@ export const EXPERIENCE_DATA = {
     },
   ],
   location: {
-    city: "منهتن، نیویورک سیتی",
-    venue: "دانشکده دندان‌پزشکی دانشگاه نیویورک (NYU)",
-    address: "345 E 24th St, New York, NY 10010",
-    area: "گرامرسی / کیپس بی",
-    hotels: [
+    city: "تهران، کارخانه نوآوری آزادی",
+    venue: "فضای کار اشتراکی زاویه",
+    address: "کارخانه نوآوری آزادی، تهران",
+    area: "تهران • کارخانه نوآوری آزادی",
+    mapUrl: "https://neshan.org/maps/places/4e09fb9c5fe83b144bf619b64313d78f",
+    embedMapUrl:
+      "https://neshan.org/maps/iframe/places/4e09fb9c5fe83b144bf619b64313d78f#c35.700-51.319-20z-0p/35.699950527535606/51.31910263372955",
+    gallery: [
       {
-        name: "The Ned NoMad",
-        area: "ناحیه‌ی NoMad",
-        url: "https://www.thened.com/nomad",
+        title: "فضای اصلی کارگاه",
+        image: "/assets/venue-zavieh-1.jpg",
       },
       {
-        name: "The New York EDITION",
-        area: "منطقه Flatiron",
-        url: "https://www.editionhotels.com/new-york/",
+        title: "سالن پنل و گفت‌وگو",
+        image: "/assets/venue-zavieh-2.jpg",
       },
       {
-        name: "The Marmara Park Avenue",
-        area: "منطقه Murray Hill",
-        url: "https://park.marmaranyc.com/",
+        title: "ورودی و پذیرش",
+        image: "/assets/venue-zavieh-3.jpg",
       },
       {
-        name: "The Langham",
-        area: "خیابان پنجم (Fifth Ave)",
-        url: "https://www.langhamhotels.com/en/the-langham/new-york/",
+        title: "فضای پذیرایی",
+        image: "/assets/venue-zavieh-4.jpg",
       },
-    ] as HotelItem[],
+    ],
   },
   faqs: [
     {

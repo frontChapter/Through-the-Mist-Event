@@ -1,125 +1,132 @@
-'use client';
+"use client";
 
-import React from 'react';
-import { EXPERIENCE_DATA } from '@/data/experience-data';
-
-const HOTEL_IMAGES: Record<string, string> = {
-  'The Ned NoMad': '/assets/hotel-ned-nomad.jpg',
-  'The New York EDITION': '/assets/hotel-new-york-edition.jpg',
-  'The Marmara Park Avenue': '/assets/hotel-marmara-park-avenue.jpg',
-  'The Langham': '/assets/hotel-the-langham.jpg',
-};
+import React from "react";
+import { EXPERIENCE_DATA } from "@/data/experience-data";
 
 export default function LocationSection() {
+  const { location } = EXPERIENCE_DATA;
+
   return (
     <section
       id="location"
       data-theme="dark"
       dir="rtl"
-      className="relative h-screen w-full min-h-screen bg-[#0a0a0a] text-white flex flex-col justify-center py-20 px-6 sm:px-12 border-t border-white/10 overflow-hidden text-right"
+      className="relative min-h-screen w-full bg-[#0a0a0a] text-white flex flex-col justify-center py-16 sm:py-20 px-6 sm:px-12 border-t border-white/10 text-right overflow-hidden"
     >
-      <div className="container mx-auto max-w-7xl h-full flex flex-col justify-center space-y-6">
+      <div className="container mx-auto max-w-7xl flex flex-col space-y-6 sm:space-y-8">
         {/* Section Header */}
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 pb-4 border-b border-white/10 shrink-0">
           <div className="space-y-1">
             <div className="flex items-center gap-3">
               <span className="text-xs uppercase tracking-[0.2em] text-zinc-400 font-semibold">
-                ۰۵ / موقعیت مکانی و اقامتگاه‌ها
+                محل برگزاری
               </span>
               <span className="w-8 h-[1px] bg-white/20" />
             </div>
             <h2 className="text-3xl sm:text-5xl font-bold text-white tracking-tight">
-              منهتن، نیویورک سیتی
+              تهران، کارخانه نوآوری آزادی
             </h2>
           </div>
 
-          <div className="text-xs text-zinc-400 space-y-0.5 text-left">
-            <p className="text-white font-semibold">{EXPERIENCE_DATA.location.venue}</p>
-            <p>{EXPERIENCE_DATA.location.address}</p>
+          <div className="flex flex-col sm:flex-row sm:items-center gap-4 justify-between md:justify-end">
+            <div className="text-xs text-zinc-400 space-y-0.5 md:text-left">
+              <p className="text-white font-semibold">فضای کار اشتراکی زاویه</p>
+              <p>کارخانه نوآوری آزادی، تهران</p>
+            </div>
+
+            <a
+              href="https://neshan.org/maps/places/4e09fb9c5fe83b144bf619b64313d78f"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 px-3.5 py-2 rounded-xl bg-white/10 hover:bg-white/20 text-xs text-white font-medium border border-white/15 backdrop-blur-md transition-all duration-200 group self-start sm:self-auto"
+            >
+              <span>Open in Maps</span>
+              <svg
+                className="w-3.5 h-3.5 transition-transform group-hover:-translate-x-0.5"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                aria-hidden="true"
+              >
+                <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" />
+                <polyline points="15 3 21 3 21 9" />
+                <line x1="10" y1="14" x2="21" y2="3" />
+              </svg>
+            </a>
           </div>
         </div>
 
         {/* Custom Dark Styled Map Container */}
-        <div className="rounded-3xl overflow-hidden border border-white/10 relative h-[180px] sm:h-[220px] bg-[#111111] shadow-[0_20px_50px_rgba(0,0,0,0.8)] shrink-0">
+        <div className="rounded-2xl overflow-hidden border border-white/10 relative bg-[#111111] shadow-[0_20px_50px_rgba(0,0,0,0.8)] shrink-0">
           <iframe
-            title="نقشه دانشکده دندان‌پزشکی NYU"
-            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3023.3643033877965!2d-73.98064272346914!3d40.73860087138978!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89c25908e330543f%3A0x6bfe76e27b6136d8!2sNYU%20College%20of%20Dentistry!5e0!3m2!1sen!2sus!4v1700000000000!5m2!1sen!2sus"
+            title="map-iframe"
+            src="https://neshan.org/maps/iframe/places/4e09fb9c5fe83b144bf619b64313d78f#c35.700-51.319-20z-0p/35.699950527535606/51.31910263372955"
             width="100%"
-            height="100%"
-            style={{ border: 0, filter: 'invert(90%) hue-rotate(180deg) contrast(1.1) brightness(0.85)' }}
-            allowFullScreen={false}
+            height="450"
+            allowFullScreen
             loading="lazy"
-            referrerPolicy="no-referrer-when-downgrade"
+            className="rounded-2xl border-0 w-full h-[320px] sm:h-[400px] md:h-[450px]"
           />
 
-          <div className="absolute top-4 right-4 max-w-xs bg-black/85 backdrop-blur-xl border border-white/15 p-3.5 rounded-xl shadow-2xl space-y-1 text-right">
+          {/* Host Info Box */}
+          <div className="absolute top-4 right-4 max-w-xs bg-black/85 backdrop-blur-xl border border-white/15 p-3.5 rounded-xl shadow-2xl space-y-1 text-right pointer-events-none">
             <span className="text-[10px] uppercase tracking-wider text-[#c5a880] block font-semibold">
-              کلینیک و سوئیت‌های میزبان
+              میزبان رویداد
             </span>
-            <h4 className="text-sm sm:text-base text-white font-bold">دانشکده دندان‌پزشکی دانشگاه نیویورک (NYU)</h4>
+            <h4 className="text-sm sm:text-base text-white font-bold">
+              فضای کار اشتراکی زاویه
+            </h4>
             <p className="text-xs text-zinc-400">
-              منهتن • گرامرسی / کیپس بی
+              تهران • کارخانه نوآوری آزادی
             </p>
           </div>
         </div>
 
-        {/* Recommended Hotels Grid */}
+        {/* Venue Gallery */}
         <div className="space-y-3 shrink-0">
           <div className="flex items-center justify-between border-b border-white/10 pb-2 text-xs tracking-wider text-zinc-400 font-medium">
-            <span>اقامتگاه‌های پیشنهادی و منتخب</span>
-            <span>گرامرسی • نوود • فلت‌آیرن</span>
+            <span>نمایی از فضای برگزاری</span>
+            <span className="text-zinc-500">کارخانه نوآوری آزادی • زاویه</span>
           </div>
 
           <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
-            {EXPERIENCE_DATA.location.hotels.map((hotel) => {
-              const photo = HOTEL_IMAGES[hotel.name] || '/assets/hotel-ned-nomad.jpg';
-
-              return (
-                <div
-                  key={hotel.name}
-                  className="rounded-xl overflow-hidden border border-white/10 bg-zinc-950 flex flex-col group hover:border-white/30 transition-all duration-200"
-                >
-                  <div className="relative aspect-[16/9] overflow-hidden bg-black">
-                    <img
-                      src={photo}
-                      alt={hotel.name}
-                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300 filter contrast-105"
-                    />
-                    <div className="absolute top-2 right-2 bg-black/70 backdrop-blur-md px-2.5 py-0.5 rounded text-[10px] tracking-wider text-zinc-200 border border-white/10 font-medium">
-                      {hotel.area}
-                    </div>
-                  </div>
-
-                  <div className="p-3 flex flex-col justify-between flex-1 space-y-2">
-                    <h4 className="text-sm font-bold text-white group-hover:text-[#c5a880] transition-colors truncate">
-                      {hotel.name}
-                    </h4>
-
-                    <a
-                      href={hotel.url}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="text-[10px] tracking-wider text-zinc-400 group-hover:text-white flex items-center justify-between pt-1 border-t border-white/5 transition-colors font-medium"
-                    >
-                      <span>مشاهده روی نقشه</span>
-                      <svg
-                        className="w-3 h-3 transition-transform group-hover:-translate-x-0.5"
-                        viewBox="0 0 24 24"
-                        fill="none"
-                        stroke="currentColor"
-                        strokeWidth="2"
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        aria-hidden="true"
-                      >
-                        <path d="M19 12H5M12 19l-7-7 7-7" />
-                      </svg>
-                    </a>
-                  </div>
+            {location.gallery.map((item, idx) => (
+              <div
+                key={idx}
+                className="rounded-xl overflow-hidden border border-white/10 bg-zinc-950 flex flex-col group hover:border-white/30 transition-all duration-200"
+              >
+                <div className="relative aspect-[16/10] overflow-hidden bg-zinc-900">
+                  <img
+                    src={item.image}
+                    alt={item.title}
+                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300 filter contrast-105"
+                  />
                 </div>
-              );
-            })}
+
+                <div className="p-3">
+                  <h4 className="text-xs sm:text-sm font-medium text-zinc-200 group-hover:text-[#c5a880] transition-colors truncate">
+                    {item.title}
+                  </h4>
+                </div>
+              </div>
+            ))}
           </div>
+        </div>
+
+        {/* Capacity & Venue Footer */}
+        <div className="flex flex-col sm:flex-row items-center justify-between gap-3 pt-4 border-t border-white/10 text-xs text-zinc-400 shrink-0">
+          <div className="flex items-center gap-2">
+            <span className="w-2 h-2 rounded-full bg-[#c5a880] animate-pulse" />
+            <span className="text-zinc-200 font-semibold">
+              ظرفیت محدود • ۵۰ نفر
+            </span>
+          </div>
+          <p className="text-zinc-400 text-center sm:text-left">
+            پذیرش شرکت‌کنندگان در فضای کار اشتراکی زاویه • پنجشنبه، ۲ مهر ۱۴۰۵
+          </p>
         </div>
       </div>
     </section>
