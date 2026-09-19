@@ -1,137 +1,168 @@
-'use client';
+"use client";
 
-import React, { useRef, useEffect, useState } from 'react';
-import gsap from 'gsap';
-import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import React, { useRef, useEffect } from "react";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 gsap.registerPlugin(ScrollTrigger);
+
+export interface TimelineStation {
+  id: number;
+  stationNumber: string;
+  badge: string;
+  title: string;
+  description: string;
+  image: string;
+}
+
+export const TIMELINE_STATIONS: TimelineStation[] = [
+  {
+    id: 1,
+    stationNumber: "۰۱",
+    badge: "نقطه‌ی شروع",
+    title: "سالی که همه‌چیز زیر سؤال رفت",
+    description:
+      "یک سال پر از ابهام؛ سالی که خیلی از فرض‌های قدیمیمون درباره‌ی آینده، دیگر جواب نداد.",
+    image: "/assets/timeline-01-uncertainty.jpg",
+  },
+  {
+    id: 2,
+    stationNumber: "۰۲",
+    badge: "موج تازه",
+    title: "وقتی هوش مصنوعی همه‌چیز را دگرگون کرد",
+    description:
+      "ابزارهایی که یک‌شبه جای کدنویس، طراح و نویسنده را گرفتند و قواعد بازی را عوض کردند.",
+    image: "/assets/timeline-02-ai-wave.jpg",
+  },
+  {
+    id: 3,
+    stationNumber: "۰۳",
+    badge: "پیامدها",
+    title: "مسیرهایی که دیگر همان مسیر قبلی نبودند",
+    description:
+      "شغل‌هایی که شکل عوض کردند، پروژه‌هایی که متوقف شدند، برنامه‌هایی که باید از نو نوشته می‌شدند.",
+    image: "/assets/timeline-03-aftermath.jpg",
+  },
+  {
+    id: 4,
+    stationNumber: "۰۴",
+    badge: "سؤال مشترک",
+    title: "حالا چه‌کار کنیم؟",
+    description:
+      "سؤالی که تقریباً همه‌ی ما، هرکدام به‌تنهایی، با خودمان داشتیم.",
+    image: "/assets/timeline-04-question.jpg",
+  },
+  {
+    id: 5,
+    stationNumber: "۰۵",
+    badge: "جرقه",
+    title: "به‌جای سکوت، دور هم جمع شدیم",
+    description:
+      "فرانت‌چپتر تصمیم گرفت این بار، به‌جای تنها ماندن، این سؤال را با هم جواب بدهد؛ همین‌جا «در میان مه» شکل گرفت.",
+    image: "/assets/timeline-05-frontchapter.jpg",
+  },
+  {
+    id: 6,
+    stationNumber: "۰۶",
+    badge: "محل برگزاری",
+    title: "فضای کار اشتراکی زاویه",
+    description:
+      "کارخانه نوآوری آزادی تهران؛ جایی که قرار است ۵۰ نفر دور هم جمع شویم و مسیر را با هم پیدا کنیم.",
+    image: "/assets/timeline-06-venue.jpg",
+  },
+];
+
+// Dynamically generate a smooth sinusoidal Bezier path matching station steps
+function generateSineWavePath(
+  totalWidth: number,
+  wavelength = 1000,
+  amplitude = 90,
+  midY = 160,
+): string {
+  let d = `M 0 ${midY}`;
+  const half = wavelength / 2;
+  d += ` Q ${half / 2} ${midY - amplitude}, ${half} ${midY}`;
+  for (let x = wavelength; x <= totalWidth + wavelength; x += half) {
+    d += ` T ${x} ${midY}`;
+  }
+  return d;
+}
 
 export default function HospitalitySection() {
   const containerRef = useRef<HTMLDivElement>(null);
   const trackRef = useRef<HTMLDivElement>(null);
+  const measureRef = useRef<HTMLDivElement>(null);
   const headingTitleRef = useRef<HTMLHeadingElement>(null);
-  const [currentHeading, setCurrentHeading] = useState<'پیش‌رویداد' | 'برنامه‌های عصرگاهی'>('پیش‌رویداد');
+  const imageRefs = useRef<(HTMLDivElement | null)[]>([]);
 
-  // Parallax refs for floating image clusters
-  const p1Ref = useRef<HTMLDivElement>(null);
-  const p2Ref = useRef<HTMLDivElement>(null);
-  const p3Ref = useRef<HTMLDivElement>(null);
-  const p4Ref = useRef<HTMLDivElement>(null);
-  const p5Ref = useRef<HTMLDivElement>(null);
-  const p6Ref = useRef<HTMLDivElement>(null);
+  // Calculate dynamic dimensions based on array length
+  const STATION_CARD_WIDTH = 840;
+  const STATION_GAP = 160;
+  const STEP_WIDTH = STATION_CARD_WIDTH + STATION_GAP;
+  const svgWidth = Math.max(3400, (TIMELINE_STATIONS.length + 1) * STEP_WIDTH);
+  const sineWavePath = generateSineWavePath(svgWidth, STEP_WIDTH, 90, 160);
 
   useEffect(() => {
     const container = containerRef.current;
     const track = trackRef.current;
-    if (!container || !track) return;
+    const measure = measureRef.current;
+    if (!container || !track || !measure) return;
 
     const ctx = gsap.context(() => {
-      const getScrollDistance = () => Math.max(0, track.scrollWidth - window.innerWidth + 140);
-      const getDwellBuffer = () => Math.max(window.innerHeight * 0.75, 600);
-      const getTotalPinDistance = () => getScrollDistance() + getDwellBuffer();
+      // Travel exactly the horizontal content's width (minus its end padding) so
+      // the last station's end edge meets the viewport edge exactly when the
+      // pin releases. Measured from real layout on the flex content wrapper
+      // (the decorative SVG is a sibling, so it can't inflate scrollWidth),
+      // and re-measured on resize via invalidateOnRefresh.
+      const getScrollDistance = () => {
+        const endPadding =
+          parseFloat(getComputedStyle(measure).paddingLeft) || 0;
+        return Math.max(
+          0,
+          measure.scrollWidth - window.innerWidth - endPadding,
+        );
+      };
+      // Total pinned distance equals the exact travel — no extra dwell space.
+      const getTotalPinDistance = () => getScrollDistance();
 
-      // Timeline that pins container until all 3 milestone stops are completed with deliberate dwell time
+      // Timeline that pins container for exactly as long as the horizontal track needs
       const tl = gsap.timeline({
         scrollTrigger: {
-          id: 'experience-pin',
+          id: "experience-pin",
           trigger: container,
-          start: 'top top',
+          start: "top top",
           end: () => `+=${getTotalPinDistance()}`,
           pin: true,
           pinSpacing: true,
           anticipatePin: 0,
           scrub: 0.8,
           invalidateOnRefresh: true,
-          onUpdate: (self) => {
-            // Transition heading gracefully around 48% scroll progress
-            if (self.progress > 0.46) {
-              setCurrentHeading('برنامه‌های عصرگاهی');
-            } else {
-              setCurrentHeading('پیش‌رویداد');
-            }
-          },
         },
       });
 
-      // 1. Horizontal scrubbing movement through all 3 milestone stops (flowing Right-to-Left in RTL)
+      // 1. Horizontal scrubbing through every milestone stop (flowing Right-to-Left in RTL).
+      //    Reaches the exact travel distance at pin end.
       tl.to(track, {
         x: () => getScrollDistance(),
-        ease: 'none',
+        ease: "none",
         duration: 1.0,
       });
 
-      // 2. Dwell hold phase: Keeps pin locked so Milestone 3 is fully visible and readable
-      tl.to({}, { duration: 0.35 });
-
-      // 3. Organic parallax offsets on image clusters
-      if (p1Ref.current && p2Ref.current) {
-        gsap.to(p1Ref.current, {
-          yPercent: -18,
-          ease: 'none',
+      // 3. Parallax floating offsets on station image cards
+      imageRefs.current.forEach((el, index) => {
+        if (!el) return;
+        const yOffset = index % 2 === 0 ? -18 : 18;
+        gsap.to(el, {
+          yPercent: yOffset,
+          ease: "none",
           scrollTrigger: {
             trigger: container,
-            start: 'top top',
+            start: "top top",
             end: () => `+=${getTotalPinDistance()}`,
-            scrub: 1.2,
+            scrub: 1 + (index % 3) * 0.2,
           },
         });
-        gsap.to(p2Ref.current, {
-          yPercent: 20,
-          ease: 'none',
-          scrollTrigger: {
-            trigger: container,
-            start: 'top top',
-            end: () => `+=${getTotalPinDistance()}`,
-            scrub: 0.8,
-          },
-        });
-      }
-
-      if (p3Ref.current && p4Ref.current) {
-        gsap.to(p3Ref.current, {
-          yPercent: 18,
-          ease: 'none',
-          scrollTrigger: {
-            trigger: container,
-            start: 'top top',
-            end: () => `+=${getTotalPinDistance()}`,
-            scrub: 1,
-          },
-        });
-        gsap.to(p4Ref.current, {
-          yPercent: -15,
-          ease: 'none',
-          scrollTrigger: {
-            trigger: container,
-            start: 'top top',
-            end: () => `+=${getTotalPinDistance()}`,
-            scrub: 1.4,
-          },
-        });
-      }
-
-      if (p5Ref.current && p6Ref.current) {
-        gsap.to(p5Ref.current, {
-          yPercent: -22,
-          ease: 'none',
-          scrollTrigger: {
-            trigger: container,
-            start: 'top top',
-            end: () => `+=${getTotalPinDistance()}`,
-            scrub: 1.1,
-          },
-        });
-        gsap.to(p6Ref.current, {
-          yPercent: 16,
-          ease: 'none',
-          scrollTrigger: {
-            trigger: container,
-            start: 'top top',
-            end: () => `+=${getTotalPinDistance()}`,
-            scrub: 0.9,
-          },
-        });
-      }
+      });
 
       // Refresh measurements once DOM elements are rendered
       ScrollTrigger.refresh();
@@ -155,12 +186,12 @@ export default function HospitalitySection() {
       dir="rtl"
       className="relative w-full h-screen bg-[#080808] text-white overflow-hidden text-right select-none"
     >
-      {/* 1. Visual Atmosphere & Canvas: Dark Slate Texture + Noise Grain */}
+      {/* 1. Visual Atmosphere & Canvas: Subtle wave texture + vignette */}
       <div
         className="absolute inset-0 opacity-[0.06] pointer-events-none bg-repeat bg-center mix-blend-screen"
         style={{
           backgroundImage: `url('/assets/hospitality-bg-wave.png')`,
-          backgroundSize: '256px 256px',
+          backgroundSize: "256px 256px",
         }}
       />
       <div className="absolute inset-0 bg-gradient-to-b from-black/80 via-transparent to-black/80 pointer-events-none" />
@@ -169,15 +200,15 @@ export default function HospitalitySection() {
       <div className="absolute top-10 sm:top-14 right-6 sm:right-14 z-20 pointer-events-none">
         <div className="flex items-center gap-3">
           <span className="text-xs uppercase tracking-[0.2em] text-[#c5a880] font-semibold">
-            ۰۳ / تجربه رویداد
+            روایت رویداد
           </span>
           <span className="w-8 h-[1px] bg-[#c5a880]/30" />
         </div>
         <h2
           ref={headingTitleRef}
-          className="text-4xl sm:text-6xl lg:text-7xl font-bold text-white tracking-tight mt-1 transition-all duration-700 ease-out drop-shadow-lg"
+          className="text-3xl sm:text-5xl lg:text-6xl font-bold text-white tracking-tight mt-12 transition-all duration-700 ease-out drop-shadow-lg"
         >
-          {currentHeading}
+          از کجا شروع شد
         </h2>
       </div>
 
@@ -190,23 +221,36 @@ export default function HospitalitySection() {
       <div className="relative z-10 w-full h-full flex items-center">
         <div
           ref={trackRef}
-          className="relative flex items-center h-full pr-[28vw] sm:pr-[24vw] pl-[20vw] w-max will-change-transform"
+          className="relative flex items-center h-full w-max will-change-transform"
         >
           {/* Continuous Glowing Gold Sine Wave SVG across the entire track */}
           <svg
-            className="absolute top-1/2 right-0 -translate-y-1/2 w-[3400px] h-[320px] pointer-events-none overflow-visible z-0 opacity-70 scale-x-[-1]"
-            viewBox="0 0 3400 320"
+            className="absolute top-1/2 right-0 -translate-y-1/2 pointer-events-none overflow-visible z-0 opacity-70 scale-x-[-1]"
+            style={{ width: `${svgWidth}px`, height: "320px" }}
+            viewBox={`0 0 ${svgWidth} 320`}
             fill="none"
           >
             <defs>
-              <linearGradient id="goldSineGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+              <linearGradient
+                id="goldSineGrad"
+                x1="0%"
+                y1="0%"
+                x2="100%"
+                y2="0%"
+              >
                 <stop offset="0%" stopColor="#c5a880" stopOpacity="0.1" />
                 <stop offset="20%" stopColor="#e2ceb5" stopOpacity="0.85" />
                 <stop offset="50%" stopColor="#c5a880" stopOpacity="0.9" />
                 <stop offset="80%" stopColor="#e2ceb5" stopOpacity="0.85" />
                 <stop offset="100%" stopColor="#c5a880" stopOpacity="0.15" />
               </linearGradient>
-              <filter id="sineGlow" x="-20%" y="-20%" width="140%" height="140%">
+              <filter
+                id="sineGlow"
+                x="-20%"
+                y="-20%"
+                width="140%"
+                height="140%"
+              >
                 <feGaussianBlur stdDeviation="6" result="blur" />
                 <feMerge>
                   <feMergeNode in="blur" />
@@ -215,9 +259,9 @@ export default function HospitalitySection() {
               </filter>
             </defs>
 
-            {/* Glowing Bezier Sine Wave */}
+            {/* Dynamically calculated glowing Bezier Sine Wave */}
             <path
-              d="M 0 160 Q 300 60, 600 160 T 1200 160 T 1800 160 T 2400 160 T 3000 160 T 3400 160"
+              d={sineWavePath}
               stroke="url(#goldSineGrad)"
               strokeWidth="2.5"
               filter="url(#sineGlow)"
@@ -226,194 +270,77 @@ export default function HospitalitySection() {
           </svg>
 
           {/* ═════════════════════════════════════════════════════════════════════ */}
-          {/* MILESTONE 1: Pre-Event Welcome Tour                                 */}
+          {/* Dynamic Timeline Stations (Mapped from TIMELINE_STATIONS array)      */}
           {/* ═════════════════════════════════════════════════════════════════════ */}
-          <div className="relative flex items-center gap-12 sm:gap-16 shrink-0 w-[880px] z-10">
-            {/* Wave Node Pinpoint */}
-            <div className="absolute top-1/2 right-0 -translate-y-1/2 translate-x-1/2 z-20 flex items-center justify-center">
-              <div className="w-5 h-5 rounded-full bg-[#c5a880]/20 animate-ping absolute" />
-              <div className="w-3 h-3 rounded-full bg-[#c5a880] border-2 border-black shadow-[0_0_12px_#c5a880]" />
-            </div>
+          <div
+            ref={measureRef}
+            className="relative flex items-center h-full pr-[28vw] sm:pr-[24vw] pl-[20vw] shrink-0"
+          >
+            {TIMELINE_STATIONS.map((station, index) => (
+              <React.Fragment key={station.id}>
+                <div className="relative flex items-center gap-10 sm:gap-14 shrink-0 w-[780px] sm:w-[840px] z-10">
+                  {/* Wave Node Pinpoint */}
+                  <div className="absolute top-1/2 right-0 -translate-y-1/2 translate-x-1/2 z-20 flex items-center justify-center pointer-events-none">
+                    <div className="w-5 h-5 rounded-full bg-[#c5a880]/20 animate-ping absolute" />
+                    <div className="w-3 h-3 rounded-full bg-[#c5a880] border-2 border-black shadow-[0_0_12px_#c5a880]" />
+                  </div>
 
-            {/* Milestone 1 Text & Details */}
-            <div className="w-[380px] space-y-5 shrink-0 pr-6">
-              {/* Date & Time above wave */}
-              <div className="space-y-1 text-xs tracking-wider text-zinc-400">
-                <div className="text-[#c5a880] font-medium">پنج‌شنبه، ۲۶ شهریور ۱۴۰۵</div>
-                <div className="text-zinc-500">۱۸:۰۰ الی ۲۰:۰۰</div>
-              </div>
+                  {/* Station Text & Narrative Details */}
+                  <div className="w-[340px] sm:w-[380px] space-y-4 shrink-0 pr-6">
+                    {/* Station Tag & Badge */}
+                    <div className="flex items-center gap-2.5">
+                      <span className="text-[11px] font-mono font-bold tracking-wider px-2.5 py-0.5 rounded-full bg-[#c5a880]/15 text-[#e2ceb5] border border-[#c5a880]/30">
+                        ایستگاه {station.stationNumber}
+                      </span>
+                      <span className="text-xs font-semibold text-[#c5a880] tracking-wide">
+                        {station.badge}
+                      </span>
+                    </div>
 
-              {/* Inner Circle Badge */}
-              <div>
-                <span className="inline-block text-[10px] tracking-wider px-3 py-1 rounded-full border border-[#c5a880]/40 text-[#c5a880] bg-[#c5a880]/10 font-medium">
-                  [ حلقه اختصاصی ]
-                </span>
-              </div>
+                    {/* Title & Description */}
+                    <div className="space-y-3">
+                      <h3 className="text-2xl sm:text-3xl text-white font-bold leading-snug tracking-tight">
+                        {station.title}
+                      </h3>
+                      <p className="text-xs sm:text-sm text-zinc-400 font-light leading-relaxed">
+                        {station.description}
+                      </p>
+                    </div>
+                  </div>
 
-              {/* Title & Description below wave */}
-              <div className="space-y-3">
-                <h3 className="text-2xl sm:text-3xl text-white font-bold leading-tight">
-                  تور اختصاصی و بازدید از استودیو
-                </h3>
-                <p className="text-xs sm:text-sm text-zinc-400 font-light leading-relaxed">
-                  دعوت ویژه از اعضای حلقه اختصاصی جهت بازدید خصوصی از سوئیت زیبایی آپا در دانشگاه NYU و دورهمی صمیمانه در دفتر آپا استتیک نیویورک.
-                </p>
-              </div>
-            </div>
+                  {/* Station Visual Card with Parallax Float */}
+                  <div className="relative w-[360px] sm:w-[420px] h-[380px] sm:h-[440px] shrink-0 flex items-center justify-center">
+                    <div
+                      ref={(el) => {
+                        imageRefs.current[index] = el;
+                      }}
+                      className="relative w-full h-[260px] sm:h-[320px] rounded-2xl overflow-hidden shadow-[0_24px_60px_rgba(0,0,0,0.85)] border border-white/10 bg-zinc-900 group will-change-transform"
+                    >
+                      <img
+                        src={station.image}
+                        alt={station.title}
+                        className="w-full h-full object-cover filter contrast-[1.06] brightness-95 group-hover:scale-105 transition-transform duration-700 ease-out"
+                        loading="lazy"
+                      />
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/10 to-transparent pointer-events-none" />
+                      <div className="absolute bottom-3 right-4 left-4 flex items-center justify-between text-[11px] text-zinc-300 font-medium pointer-events-none">
+                        <span className="text-xs text-zinc-400 font-mono tracking-wider">
+                          {station.stationNumber} / ۰۶
+                        </span>
+                        <span className="text-[11px] text-[#e2ceb5] tracking-wider font-semibold">
+                          {station.badge}
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
 
-            {/* Milestone 1 Asymmetric Image Cluster */}
-            <div className="relative w-[440px] h-[480px] shrink-0 flex items-center">
-              {/* Photo 1 */}
-              <div
-                ref={p1Ref}
-                className="absolute right-0 top-6 w-[240px] aspect-[3/4] rounded-2xl overflow-hidden shadow-[0_24px_60px_rgba(0,0,0,0.8)] border border-white/10 z-10 will-change-transform"
-              >
-                <img
-                  src="/assets/hospitality-suite-hallway.jpg"
-                  alt="راهروی سوئیت زیبایی آپا"
-                  className="w-full h-full object-cover filter contrast-105 brightness-95"
-                />
-              </div>
-
-              {/* Photo 2 */}
-              <div
-                ref={p2Ref}
-                className="absolute left-0 bottom-8 w-[260px] aspect-[4/3] rounded-2xl overflow-hidden shadow-[0_24px_60px_rgba(0,0,0,0.9)] border border-white/15 z-20 will-change-transform"
-              >
-                <img
-                  src="/assets/hospitality-clinical-prep.jpg"
-                  alt="تدارکات بالینی"
-                  className="w-full h-full object-cover filter contrast-105"
-                />
-              </div>
-            </div>
-          </div>
-
-          {/* Spacer between milestones */}
-          <div className="w-[180px] shrink-0" />
-
-          {/* ═════════════════════════════════════════════════════════════════════ */}
-          {/* MILESTONE 2: Evening Reception                                      */}
-          {/* ═════════════════════════════════════════════════════════════════════ */}
-          <div className="relative flex items-center gap-12 sm:gap-16 shrink-0 w-[880px] z-10">
-            {/* Wave Node Pinpoint */}
-            <div className="absolute top-1/2 right-0 -translate-y-1/2 translate-x-1/2 z-20 flex items-center justify-center">
-              <div className="w-5 h-5 rounded-full bg-[#c5a880]/20 animate-ping absolute" />
-              <div className="w-3 h-3 rounded-full bg-[#c5a880] border-2 border-black shadow-[0_0_12px_#c5a880]" />
-            </div>
-
-            {/* Milestone 2 Text & Details */}
-            <div className="w-[380px] space-y-5 shrink-0 pr-6">
-              {/* Date & Time above wave */}
-              <div className="space-y-1 text-xs tracking-wider text-zinc-400">
-                <div className="text-[#c5a880] font-medium">جمعه، ۲۷ شهریور ۱۴۰۵</div>
-                <div className="text-zinc-500">۲۰:۰۰ تا پاسی از شب</div>
-              </div>
-
-              {/* Title & Description */}
-              <div className="space-y-3">
-                <h3 className="text-2xl sm:text-3xl text-white font-bold leading-tight">
-                  گردهمایی و رسپشن شبانه
-                </h3>
-                <p className="text-xs sm:text-sm text-zinc-400 font-light leading-relaxed">
-                  پایان روز اول با گفتگو، کوکتل و میان‌وعده‌های دست‌چین‌شده در کنار دکتر آپا، سایر شرکت‌کنندگان و تیم بالینی آپا در نیویورک.
-                </p>
-              </div>
-            </div>
-
-            {/* Milestone 2 Asymmetric Image Cluster */}
-            <div className="relative w-[440px] h-[480px] shrink-0 flex items-center">
-              {/* Photo 3 */}
-              <div
-                ref={p3Ref}
-                className="absolute right-2 top-4 w-[230px] aspect-[3/4] rounded-2xl overflow-hidden shadow-[0_24px_60px_rgba(0,0,0,0.8)] border border-white/10 z-10 will-change-transform"
-              >
-                <img
-                  src="/assets/hospitality-evening-guests.jpg"
-                  alt="مهمانان رسپشن شبانه"
-                  className="w-full h-full object-cover filter contrast-105 brightness-95"
-                />
-              </div>
-
-              {/* Photo 4 */}
-              <div
-                ref={p4Ref}
-                className="absolute left-0 bottom-4 w-[250px] aspect-[4/5] rounded-2xl overflow-hidden shadow-[0_24px_60px_rgba(0,0,0,0.9)] border border-white/15 z-20 will-change-transform"
-              >
-                <img
-                  src="/assets/hospitality-nyc-night.jpg"
-                  alt="فضای شبانه نیویورک سیتی"
-                  className="w-full h-full object-cover filter contrast-110"
-                />
-              </div>
-            </div>
-          </div>
-
-          {/* Spacer between milestones */}
-          <div className="w-[180px] shrink-0" />
-
-          {/* ═════════════════════════════════════════════════════════════════════ */}
-          {/* MILESTONE 3: Private Dinner with Dr. Apa                            */}
-          {/* ═════════════════════════════════════════════════════════════════════ */}
-          <div className="relative flex items-center gap-12 sm:gap-16 shrink-0 w-[880px] z-10">
-            {/* Wave Node Pinpoint */}
-            <div className="absolute top-1/2 right-0 -translate-y-1/2 translate-x-1/2 z-20 flex items-center justify-center">
-              <div className="w-5 h-5 rounded-full bg-[#c5a880]/20 animate-ping absolute" />
-              <div className="w-3 h-3 rounded-full bg-[#c5a880] border-2 border-black shadow-[0_0_12px_#c5a880]" />
-            </div>
-
-            {/* Milestone 3 Text & Details */}
-            <div className="w-[380px] space-y-5 shrink-0 pr-6">
-              {/* Date & Time */}
-              <div className="space-y-1 text-xs tracking-wider text-zinc-400">
-                <div className="text-[#c5a880] font-medium">شنبه، ۲۸ شهریور ۱۴۰۵</div>
-                <div className="text-zinc-500">۱۷:۳۰ الی ۲۰:۰۰</div>
-              </div>
-
-              {/* Inner Circle Badge */}
-              <div>
-                <span className="inline-block text-[10px] tracking-wider px-3 py-1 rounded-full border border-[#c5a880]/40 text-[#c5a880] bg-[#c5a880]/10 font-medium">
-                  [ حلقه اختصاصی ]
-                </span>
-              </div>
-
-              {/* Title & Description */}
-              <div className="space-y-3">
-                <h3 className="text-2xl sm:text-3xl text-white font-bold leading-tight">
-                  ضیافت شام خصوصی با دکتر آپا
-                </h3>
-                <p className="text-xs sm:text-sm text-zinc-400 font-light leading-relaxed">
-                  مختص اعضای اینر سرکل؛ یک فضای صمیمانه و ممتاز برای گفتگوی مستقیم، منتورشیپ فردی و تبادل تجربیات بالینی همراه با صرف شام مجلل.
-                </p>
-              </div>
-            </div>
-
-            {/* Milestone 3 Asymmetric Image Cluster */}
-            <div className="relative w-[440px] h-[480px] shrink-0 flex items-center">
-              {/* Photo 5 */}
-              <div
-                ref={p5Ref}
-                className="absolute right-0 top-8 w-[250px] aspect-[4/3] rounded-2xl overflow-hidden shadow-[0_24px_60px_rgba(0,0,0,0.8)] border border-white/10 z-10 will-change-transform"
-              >
-                <img
-                  src="/assets/hospitality-dinner-table.jpg"
-                  alt="میز شام خصوصی"
-                  className="w-full h-full object-cover filter contrast-105"
-                />
-              </div>
-
-              {/* Photo 6 */}
-              <div
-                ref={p6Ref}
-                className="absolute left-2 bottom-6 w-[240px] aspect-[3/4] rounded-2xl overflow-hidden shadow-[0_24px_60px_rgba(0,0,0,0.9)] border border-white/15 z-20 will-change-transform"
-              >
-                <img
-                  src="/assets/hospitality-dinner-dr-apa.jpg"
-                  alt="دکتر مایکل آپا در ضیافت شام"
-                  className="w-full h-full object-cover filter contrast-105 brightness-95"
-                />
-              </div>
-            </div>
+                {/* Dynamic Spacer between stations */}
+                {index < TIMELINE_STATIONS.length - 1 && (
+                  <div className="w-[140px] sm:w-[160px] shrink-0" />
+                )}
+              </React.Fragment>
+            ))}
           </div>
         </div>
       </div>
