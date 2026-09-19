@@ -148,6 +148,15 @@ export default function RootLayout({
           href={getAssetPath('/apple-touch-icon.png')}
         />
 
+        {/* Preload critical LCP Hero Poster Image */}
+        <link
+          rel="preload"
+          as="image"
+          href={getAssetPath('/videos/hero_section-poster.webp')}
+          type="image/webp"
+          fetchPriority="high"
+        />
+
         {/* Schema.org Event JSON-LD */}
         <script
           type="application/ld+json"

@@ -34,16 +34,27 @@ export default function HeroSection() {
     >
       {/* Background Macro Organic Video / Canvas Layer */}
       <div className="absolute inset-0 z-0 overflow-hidden bg-[#0a0a0a]">
+        {/* Instant LCP Poster Layer */}
+        <img
+          src={getAssetPath("/videos/hero_section-poster.webp")}
+          alt="پس‌زمینه رویداد در میان مه"
+          fetchPriority="high"
+          decoding="sync"
+          className="absolute inset-0 w-full h-full object-cover filter brightness-[0.65] contrast-[1.1]"
+        />
         <motion.video
           style={{ scale: videoScale }}
-          src={getAssetPath(EXPERIENCE_DATA.hero.videoUrl)}
+          poster={getAssetPath("/videos/hero_section-poster.webp")}
           autoPlay
           loop
           muted
           playsInline
           preload="metadata"
-          className="w-full h-full object-cover filter brightness-[0.65] contrast-[1.1]"
-        />
+          className="relative w-full h-full object-cover filter brightness-[0.65] contrast-[1.1]"
+        >
+          <source src={getAssetPath("/videos/hero_section.webm")} type="video/webm" />
+          <source src={getAssetPath("/videos/hero_section.mp4")} type="video/mp4" />
+        </motion.video>
         {/* Soft vignette overlay */}
         <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-transparent to-[#0a0a0a]" />
       </div>
