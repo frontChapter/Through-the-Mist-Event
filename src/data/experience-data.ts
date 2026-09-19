@@ -131,19 +131,19 @@ export const EXPERIENCE_DATA = {
     gallery: [
       {
         title: "فضای اصلی کارگاه",
-        image: "/assets/venue-zavieh-1.jpg",
+        image: "/assets/venue-zavieh-1.webp",
       },
       {
         title: "سالن پنل و گفت‌وگو",
-        image: "/assets/venue-zavieh-2.jpg",
+        image: "/assets/venue-zavieh-2.webp",
       },
       {
         title: "ورودی و پذیرش",
-        image: "/assets/venue-zavieh-3.jpg",
+        image: "/assets/venue-zavieh-3.webp",
       },
       {
         title: "فضای پذیرایی",
-        image: "/assets/venue-zavieh-4.jpg",
+        image: "/assets/venue-zavieh-4.webp",
       },
     ],
   },

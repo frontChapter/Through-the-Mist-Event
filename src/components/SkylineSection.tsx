@@ -105,7 +105,7 @@ export default function SkylineSection() {
           initial={{ opacity: 0 }}
           animate={{ opacity: 0.35 }}
           transition={{ duration: 1.5 }}
-          src={getAssetPath("/assets/dar-miyan-e-meh-skyline-clouds-left.png")}
+          src={getAssetPath("/assets/dar-miyan-e-meh-skyline-clouds-left.webp")}
           alt="Clouds Right"
           width={827}
           height={465}
@@ -123,7 +123,7 @@ export default function SkylineSection() {
           initial={{ opacity: 0 }}
           animate={{ opacity: 0.4 }}
           transition={{ duration: 1.5 }}
-          src={getAssetPath("/assets/dar-miyan-e-meh-skyline-clouds-right.png")}
+          src={getAssetPath("/assets/dar-miyan-e-meh-skyline-clouds-right.webp")}
           alt="Clouds Left"
           width={992}
           height={802}

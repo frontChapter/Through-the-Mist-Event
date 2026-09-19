@@ -17,7 +17,7 @@ const dana = localFont({
 });
 
 const siteUrl = 'https://mist.frontchapter.ir';
-const ogImageUrl = `${siteUrl}/assets/dar-miyan-e-meh-og-preview.png`;
+const ogImageUrl = `${siteUrl}/assets/dar-miyan-e-meh-og-preview.jpg`;
 
 export const metadata: Metadata = {
   title: 'در میان مه | رویداد حضوری فرانت‌چپتر',

@@ -47,7 +47,7 @@ export default function TicketsSection() {
                 <div
                   className="absolute inset-0 opacity-15 pointer-events-none bg-cover bg-center mix-blend-overlay"
                   style={{
-                    backgroundImage: `url('${getAssetPath('/assets/dar-miyan-e-meh-card-texture.png')}')`,
+                    backgroundImage: `url('${getAssetPath('/assets/dar-miyan-e-meh-card-texture.webp')}')`,
                   }}
                 />
 
@@ -118,6 +118,7 @@ export default function TicketsSection() {
                     href={pass.link}
                     target="_blank"
                     rel="noopener noreferrer"
+                    aria-label={`خرید ${pass.name} در درگاه پرداخت`}
                     className="group flex items-center justify-center gap-2 w-full py-3.5 rounded-full bg-white text-black hover:bg-zinc-200 text-xs sm:text-sm tracking-wider font-bold transition-all duration-300 shadow-xl text-center"
                   >
                     <span>{pass.ctaText}</span>

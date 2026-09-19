@@ -125,7 +125,7 @@ export default function EventFooter() {
           }}
         >
           <img
-            src={getAssetPath("/assets/footer-shahnameh-relief.png")}
+            src={getAssetPath("/assets/footer-shahnameh-relief.webp")}
             alt="در میان مه - نقش‌برجسته شاهنامه"
             width={1152}
             height={480}
@@ -154,7 +154,7 @@ export default function EventFooter() {
             }}
           >
             <img
-              src={getAssetPath("/assets/footer-shahnameh-relief.png")}
+              src={getAssetPath("/assets/footer-shahnameh-relief.webp")}
               alt="در میان مه - کانون نور نقش‌برجسته"
               width={1152}
               height={480}
@@ -192,6 +192,7 @@ export default function EventFooter() {
           </span>
           <a
             href="#reservations"
+            aria-label="رفتن به بخش رزرو صندلی و مشاهده بلیت‌ها"
             onClick={(e) => handleJump(e, "reservations")}
             className="group inline-flex items-center gap-2 px-10 py-3.5 rounded-full bg-[#181818] text-white text-xs font-bold tracking-wider hover:bg-black transition-all duration-300 shadow-xl hover:shadow-2xl hover:scale-105 active:scale-95"
           >
@@ -246,7 +247,7 @@ export default function EventFooter() {
         </div>
 
         {/* Left (End in RTL) */}
-        <div className="text-[11px] sm:text-xs tracking-wider text-zinc-500">
+        <div className="text-[11px] sm:text-xs tracking-wider text-zinc-700">
           © ۱۴۰۵ فرانتچپتر. کلیه حقوق محفوظ است.
         </div>
       </div>

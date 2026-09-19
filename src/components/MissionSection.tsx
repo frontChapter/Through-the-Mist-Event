@@ -198,7 +198,7 @@ export default function MissionSection() {
         {/* 1. Base Persian Marble Sculpture Layer (Soft, Matte, Ambient) */}
         <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none select-none">
           <img
-            src={getAssetPath("/assets/dar-miyan-e-meh-mission-sculpture.jpg")}
+            src={getAssetPath("/assets/dar-miyan-e-meh-mission-sculpture.webp")}
             alt="تندیس‌های مرمرین ماموریت"
             loading="lazy"
             decoding="async"
@@ -221,7 +221,7 @@ export default function MissionSection() {
           }}
         >
           <img
-            src={getAssetPath("/assets/dar-miyan-e-meh-mission-sculpture.jpg")}
+            src={getAssetPath("/assets/dar-miyan-e-meh-mission-sculpture.webp")}
             alt="تندیس‌های مرمرین - کانون نور"
             loading="lazy"
             decoding="async"

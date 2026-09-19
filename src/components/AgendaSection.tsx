@@ -1,6 +1,6 @@
 "use client";
 
-import React from "react";
+import React, { useRef, useState, useEffect } from "react";
 import { getAssetPath } from "@/utils/basePath";
 
 interface AgendaItem {
@@ -100,8 +100,30 @@ const getBadgeStyle = (category: string) => {
 };
 
 export default function AgendaSection() {
+  const containerRef = useRef<HTMLElement>(null);
+  const [isInView, setIsInView] = useState(false);
+
+  useEffect(() => {
+    const el = containerRef.current;
+    if (!el) return;
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setIsInView(true);
+          observer.disconnect();
+        }
+      },
+      { rootMargin: "400px" }
+    );
+
+    observer.observe(el);
+    return () => observer.disconnect();
+  }, []);
+
   return (
     <section
+      ref={containerRef}
       id="agenda"
       data-theme="dark"
       dir="rtl"
@@ -109,16 +131,26 @@ export default function AgendaSection() {
     >
       {/* Background Video Layer with Atmospheric Dark Overlays */}
       <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none">
-        <video
-          src={getAssetPath("/assets/dar-miyan-e-meh-sculpture-video.mp4")}
-          poster={getAssetPath("/assets/dar-miyan-e-meh-sculpture-poster.webp")}
-          autoPlay
-          loop
-          muted
-          playsInline
-          preload="none"
-          className="w-full h-full object-cover filter brightness-[0.26] contrast-125 saturate-40 scale-105"
-        />
+        {isInView ? (
+          <video
+            src={getAssetPath("/assets/dar-miyan-e-meh-sculpture-video.mp4")}
+            poster={getAssetPath("/assets/dar-miyan-e-meh-sculpture-poster.webp")}
+            autoPlay
+            loop
+            muted
+            playsInline
+            preload="metadata"
+            className="w-full h-full object-cover filter brightness-[0.26] contrast-125 saturate-40 scale-105"
+          />
+        ) : (
+          <img
+            src={getAssetPath("/assets/dar-miyan-e-meh-sculpture-poster.webp")}
+            alt="Sculpture poster"
+            loading="lazy"
+            decoding="async"
+            className="w-full h-full object-cover filter brightness-[0.26] contrast-125 saturate-40 scale-105"
+          />
+        )}
         {/* Luxury Dark Frosted & Vignette Overlays for maximum text readability */}
         <div className="absolute inset-0 bg-[#070707]/75 backdrop-blur-[2px]" />
         <div className="absolute inset-0 bg-gradient-to-t from-[#070707] via-transparent to-[#070707]/90" />
@@ -239,8 +271,10 @@ export default function AgendaSection() {
             <div className="relative aspect-[4/5] w-full max-w-md h-[340px] sm:h-[400px] lg:h-full lg:max-h-[58vh] rounded-3xl overflow-hidden border border-white/10 bg-zinc-950 shadow-[0_24px_60px_rgba(0,0,0,0.85)] group">
               <div className="w-full h-full relative">
                 <img
-                  src={getAssetPath("/assets/frontchapter-community.jpg")}
+                  src={getAssetPath("/assets/frontchapter-community.webp")}
                   alt="جامعه فرانت‌چپتر در رویداد"
+                  loading="lazy"
+                  decoding="async"
                   className="w-full h-full object-cover filter grayscale contrast-110 brightness-[0.8] group-hover:grayscale-0 group-hover:brightness-100 transition-all duration-700 ease-out"
                 />
                 {/* Shadow overlay gradient */}

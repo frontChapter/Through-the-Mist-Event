@@ -26,7 +26,7 @@ const SPEAKERS: Speaker[] = [
     pillRole: "بنیان‌گذار فرانت‌چپتر",
     role: "بنیان‌گذار فرانت‌چپتر، توسعه‌دهنده ارشد وب",
     bio: "با ۱۲ سال سابقه توسعه وب و همکاری با نئوبانک فرانسوی ولکانت، پلتفرم شب و استارت‌آپ‌های گوناگون ایرانی و خارجی؛ بنیان‌گذار کامیونیتی فرانت‌چپتر و میزبان پنل گفت‌وگوی پایانی.",
-    image: "/assets/speaker-saleh-shojaei.jpg",
+    image: "/assets/speaker-saleh-shojaei.webp",
     links: {
       website: "https://roxaleh.ir",
       linkedin: "https://www.linkedin.com/in/salehshojaei/",
@@ -37,7 +37,7 @@ const SPEAKERS: Speaker[] = [
     pillRole: "روان‌شناس بالینی",
     role: "روان‌شناس، کاندیدای دکتری روان‌شناسی بالینی دانشگاه شیراز",
     bio: "مدرس دانشگاه و مؤلف و مترجم کتاب؛ هدایت‌کننده‌ی کارگاه تعاملی Group Support برای مواجهه‌ی مشترک با بحران و بلاتکلیفی.",
-    image: "/assets/speaker-mahyar-pouyamehr.jpg",
+    image: "/assets/speaker-mahyar-pouyamehr.webp",
     links: {
       website: "https://www.drmahyarpouyamehr.ir",
       instagram: "https://www.instagram.com/dr.mahyar.pouyamehr/",
@@ -48,7 +48,7 @@ const SPEAKERS: Speaker[] = [
     pillRole: "مهندس ارشد نرم‌افزار",
     role: "مهندس ارشد نرم‌افزار، مدیر فناوری (CTO) شرکت InteliCraft",
     bio: "متخصص معماری نرم‌افزار و توسعه محصولات دیجیتال؛ با تجربه در راهبری تیم‌های فنی، طراحی سیستم‌های مقیاس‌پذیر و به‌کارگیری فناوری‌های نوین از جمله هوش مصنوعی در پروژه‌های نرم‌افزاری.",
-    image: "/assets/speaker-amir-karimi.jpg",
+    image: "/assets/speaker-amir-karimi.webp",
     links: {
       website: "https://amirzone.ir",
       linkedin: "https://www.linkedin.com/in/amirhosseinkarimi/",
@@ -60,7 +60,7 @@ const SPEAKERS: Speaker[] = [
     pillRole: "برنامه‌نویس ارشد",
     role: "برنامه‌نویس ارشد، با سوابقی چون مدیر فنی یک‌پی (Yekpay) و کاربوم (Karboom)",
     bio: "با ۸ سال تجربه‌ی برنامه‌نویسی در پروژه‌های ایرانی و بین‌المللی؛ همراه صالح شجاعی و امیر کریمی در پنل گفت‌وگوی پارادایم‌شیفت‌ها و مسیر پیشِ‌رو.",
-    image: "/assets/speaker-pouya-sabramooz.jpg",
+    image: "/assets/speaker-pouya-sabramooz.webp",
     links: {
       website: "https://sabramooz.ir",
       linkedin: "https://www.linkedin.com/in/pooya-sabramooz/",
@@ -227,9 +227,9 @@ export default function ApaMethodSection() {
                       rel="noopener noreferrer"
                       aria-label={`وب‌سایت ${speaker.name}`}
                       title="وب‌سایت"
-                      className="inline-flex items-center justify-center w-6.5 h-6.5 rounded-full bg-black/[0.03] text-black/50 hover:text-black hover:bg-black/[0.08] hover:scale-105 transition-all duration-200 border border-black/5"
+                      className="inline-flex items-center justify-center w-8 h-8 rounded-full bg-black/[0.04] text-black/60 hover:text-black hover:bg-black/[0.1] hover:scale-105 transition-all duration-200 border border-black/10"
                     >
-                      <GlobeIcon className="w-3 h-3" />
+                      <GlobeIcon className="w-3.5 h-3.5" />
                     </a>
                   )}
 
@@ -240,9 +240,9 @@ export default function ApaMethodSection() {
                       rel="noopener noreferrer"
                       aria-label={`لینکدین ${speaker.name}`}
                       title="LinkedIn"
-                      className="inline-flex items-center justify-center w-6.5 h-6.5 rounded-full bg-black/[0.03] text-black/50 hover:text-black hover:bg-black/[0.08] hover:scale-105 transition-all duration-200 border border-black/5"
+                      className="inline-flex items-center justify-center w-8 h-8 rounded-full bg-black/[0.04] text-black/60 hover:text-black hover:bg-black/[0.1] hover:scale-105 transition-all duration-200 border border-black/10"
                     >
-                      <LinkedInIcon className="w-3 h-3" />
+                      <LinkedInIcon className="w-3.5 h-3.5" />
                     </a>
                   )}
 
@@ -253,9 +253,9 @@ export default function ApaMethodSection() {
                       rel="noopener noreferrer"
                       aria-label={`گیت‌هاب ${speaker.name}`}
                       title="GitHub"
-                      className="inline-flex items-center justify-center w-6.5 h-6.5 rounded-full bg-black/[0.03] text-black/50 hover:text-black hover:bg-black/[0.08] hover:scale-105 transition-all duration-200 border border-black/5"
+                      className="inline-flex items-center justify-center w-8 h-8 rounded-full bg-black/[0.04] text-black/60 hover:text-black hover:bg-black/[0.1] hover:scale-105 transition-all duration-200 border border-black/10"
                     >
-                      <GithubIcon className="w-3 h-3" />
+                      <GithubIcon className="w-3.5 h-3.5" />
                     </a>
                   )}
 
@@ -266,9 +266,9 @@ export default function ApaMethodSection() {
                       rel="noopener noreferrer"
                       aria-label={`اینستاگرام ${speaker.name}`}
                       title="Instagram"
-                      className="inline-flex items-center justify-center w-6.5 h-6.5 rounded-full bg-black/[0.03] text-black/50 hover:text-black hover:bg-black/[0.08] hover:scale-105 transition-all duration-200 border border-black/5"
+                      className="inline-flex items-center justify-center w-8 h-8 rounded-full bg-black/[0.04] text-black/60 hover:text-black hover:bg-black/[0.1] hover:scale-105 transition-all duration-200 border border-black/10"
                     >
-                      <InstagramIcon className="w-3 h-3" />
+                      <InstagramIcon className="w-3.5 h-3.5" />
                     </a>
                   )}
 
@@ -279,9 +279,9 @@ export default function ApaMethodSection() {
                       rel="noopener noreferrer"
                       aria-label={`اکانت X ${speaker.name}`}
                       title="X (Twitter)"
-                      className="inline-flex items-center justify-center w-6.5 h-6.5 rounded-full bg-black/[0.03] text-black/50 hover:text-black hover:bg-black/[0.08] hover:scale-105 transition-all duration-200 border border-black/5"
+                      className="inline-flex items-center justify-center w-8 h-8 rounded-full bg-black/[0.04] text-black/60 hover:text-black hover:bg-black/[0.1] hover:scale-105 transition-all duration-200 border border-black/10"
                     >
-                      <XIcon className="w-2.5 h-2.5" />
+                      <XIcon className="w-3 h-3" />
                     </a>
                   )}
                 </div>

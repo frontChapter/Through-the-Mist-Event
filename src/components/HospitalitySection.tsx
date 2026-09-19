@@ -24,7 +24,7 @@ export const TIMELINE_STATIONS: TimelineStation[] = [
     title: "سالی که همه‌چیز زیر سؤال رفت",
     description:
       "یک سال پر از ابهام؛ سالی که خیلی از فرض‌های قدیمیمون درباره‌ی آینده، دیگر جواب نداد.",
-    image: "/assets/timeline-01-uncertainty.jpg",
+    image: "/assets/timeline-01-uncertainty.webp",
   },
   {
     id: 2,
@@ -33,7 +33,7 @@ export const TIMELINE_STATIONS: TimelineStation[] = [
     title: "وقتی هوش مصنوعی همه‌چیز را دگرگون کرد",
     description:
       "ابزارهایی که یک‌شبه جای کدنویس، طراح و نویسنده را گرفتند و قواعد بازی را عوض کردند.",
-    image: "/assets/timeline-02-ai-wave.jpg",
+    image: "/assets/timeline-02-ai-wave.webp",
   },
   {
     id: 3,
@@ -42,7 +42,7 @@ export const TIMELINE_STATIONS: TimelineStation[] = [
     title: "مسیرهایی که دیگر همان مسیر قبلی نبودند",
     description:
       "شغل‌هایی که شکل عوض کردند، پروژه‌هایی که متوقف شدند، برنامه‌هایی که باید از نو نوشته می‌شدند.",
-    image: "/assets/timeline-03-aftermath.jpg",
+    image: "/assets/timeline-03-aftermath.webp",
   },
   {
     id: 4,
@@ -51,7 +51,7 @@ export const TIMELINE_STATIONS: TimelineStation[] = [
     title: "حالا چه‌کار کنیم؟",
     description:
       "سؤالی که تقریباً همه‌ی ما، هرکدام به‌تنهایی، با خودمان داشتیم.",
-    image: "/assets/timeline-04-question.jpg",
+    image: "/assets/timeline-04-question.webp",
   },
   {
     id: 5,
@@ -60,7 +60,7 @@ export const TIMELINE_STATIONS: TimelineStation[] = [
     title: "به‌جای سکوت، دور هم جمع شدیم",
     description:
       "فرانت‌چپتر تصمیم گرفت این بار، به‌جای تنها ماندن، این سؤال را با هم جواب بدهد؛ همین‌جا «در میان مه» شکل گرفت.",
-    image: "/assets/timeline-05-frontchapter.jpg",
+    image: "/assets/timeline-05-frontchapter.webp",
   },
   {
     id: 6,
@@ -69,7 +69,7 @@ export const TIMELINE_STATIONS: TimelineStation[] = [
     title: "فضای کار اشتراکی زاویه",
     description:
       "کارخانه نوآوری آزادی تهران؛ جایی که قرار است ۵۰ نفر دور هم جمع شویم و مسیر را با هم پیدا کنیم.",
-    image: "/assets/timeline-06-venue.jpg",
+    image: "/assets/timeline-06-venue.webp",
   },
 ];
 

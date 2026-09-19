@@ -135,9 +135,9 @@ export default function LocationSection() {
             <span className="text-[10px] uppercase tracking-wider text-[#c5a880] block font-semibold">
               میزبان رویداد
             </span>
-            <h4 className="text-sm sm:text-base text-white font-bold">
+            <h3 className="text-sm sm:text-base text-white font-bold">
               فضای کار اشتراکی زاویه
-            </h4>
+            </h3>
             <p className="text-xs text-zinc-400">
               تهران • کارخانه نوآوری آزادی
             </p>
@@ -148,7 +148,7 @@ export default function LocationSection() {
         <div className="space-y-3 shrink-0">
           <div className="flex items-center justify-between border-b border-white/10 pb-2 text-xs tracking-wider text-zinc-400 font-medium">
             <span>نمایی از فضای برگزاری</span>
-            <span className="text-zinc-500">کارخانه نوآوری آزادی • زاویه</span>
+            <span className="text-zinc-400">کارخانه نوآوری آزادی • زاویه</span>
           </div>
 
           <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">

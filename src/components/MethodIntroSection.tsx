@@ -1,11 +1,30 @@
 "use client";
 
-import React, { useRef } from "react";
+import React, { useRef, useState, useEffect } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
 import { getAssetPath } from "@/utils/basePath";
 
 export default function MethodIntroSection() {
   const containerRef = useRef<HTMLElement>(null);
+  const [isInView, setIsInView] = useState(false);
+
+  useEffect(() => {
+    const el = containerRef.current;
+    if (!el) return;
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setIsInView(true);
+          observer.disconnect();
+        }
+      },
+      { rootMargin: "400px" }
+    );
+
+    observer.observe(el);
+    return () => observer.disconnect();
+  }, []);
 
   const { scrollYProgress } = useScroll({
     target: containerRef,
@@ -37,16 +56,26 @@ export default function MethodIntroSection() {
     >
       {/* Background Video Layer with Mission Sculpture Video */}
       <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none">
-        <video
-          src={getAssetPath("/assets/dar-miyan-e-meh-sculpture-video.mp4")}
-          poster={getAssetPath("/assets/dar-miyan-e-meh-sculpture-poster.webp")}
-          autoPlay
-          loop
-          muted
-          playsInline
-          preload="none"
-          className="w-full h-full object-cover filter brightness-[0.48] contrast-115 saturate-80 scale-105"
-        />
+        {isInView ? (
+          <video
+            src={getAssetPath("/assets/dar-miyan-e-meh-sculpture-video.mp4")}
+            poster={getAssetPath("/assets/dar-miyan-e-meh-sculpture-poster.webp")}
+            autoPlay
+            loop
+            muted
+            playsInline
+            preload="metadata"
+            className="w-full h-full object-cover filter brightness-[0.48] contrast-115 saturate-80 scale-105"
+          />
+        ) : (
+          <img
+            src={getAssetPath("/assets/dar-miyan-e-meh-sculpture-poster.webp")}
+            alt="Sculpture poster"
+            loading="lazy"
+            decoding="async"
+            className="w-full h-full object-cover filter brightness-[0.48] contrast-115 saturate-80 scale-105"
+          />
+        )}
         {/* Cinematic Vignette Overlay to ensure text readability while showing the video */}
         <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/30 to-black/75" />
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_75%_60%_at_50%_50%,transparent_15%,rgba(0,0,0,0.85)_95%)]" />

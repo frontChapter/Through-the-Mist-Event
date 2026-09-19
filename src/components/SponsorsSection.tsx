@@ -133,7 +133,7 @@ export default function SponsorsSection() {
             <p className="text-xs sm:text-sm text-zinc-300 font-medium">
               علاقه‌مند به حمایت از رویدادها یا همکاری با کامیونیتی فرانت‌چپتر هستید؟
             </p>
-            <p className="text-xs text-zinc-500 font-light">
+            <p className="text-xs text-zinc-400 font-light">
               امکان معرفی محصول، ارائه‌ی خدمات یا مشارکت در برنامه‌های آتی رویداد.
             </p>
           </div>
