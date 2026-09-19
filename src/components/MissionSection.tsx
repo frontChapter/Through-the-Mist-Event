@@ -279,7 +279,8 @@ export default function MissionSection() {
                 </p>
                 <p className="text-black/80 leading-loose text-balance bg-white/60 backdrop-blur-md p-4 sm:p-5 rounded-2xl border border-black/5 shadow-sm">
                   فراتر از مباحث نظری، شرکت‌کنندگان از یک گفت‌وگوی صریح میان{" "}
-                  <span className="font-bold text-black">صالح شجاعی</span> و{" "}
+                  <span className="font-bold text-black">صالح شجاعی</span>،{" "}
+                  <span className="font-bold text-black">امیر کریمی</span> و{" "}
                   <span className="font-bold text-black">پویا صبرآموز</span>،
                   تجربه‌ای دست‌اول از پارادایم‌های تازه‌ی بازار کار به دست
                   می‌آورند؛ گفت‌وگویی که قرار نیست نگرانی را کم کند، بلکه قرار است

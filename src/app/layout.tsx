@@ -92,6 +92,11 @@ const jsonLdEvent = {
     },
     {
       '@type': 'Person',
+      name: 'امیر کریمی',
+      jobTitle: 'مهندس ارشد نرم‌افزار و مدیر فناوری InteliCraft',
+    },
+    {
+      '@type': 'Person',
       name: 'پویا صبرآموز',
       jobTitle: 'برنامه‌نویس ارشد',
     },
