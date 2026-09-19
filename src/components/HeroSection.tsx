@@ -10,19 +10,13 @@ export default function HeroSection() {
   const [isVideoReady, setIsVideoReady] = useState(false);
 
   useEffect(() => {
-    // Defer background video playback until user interaction or idle settlement
+    // Defer background video playback strictly until genuine user interaction
     const onInteraction = () => {
       setIsVideoReady(true);
       cleanup();
     };
 
-    const timer = setTimeout(() => {
-      setIsVideoReady(true);
-      cleanup();
-    }, 4000);
-
     const cleanup = () => {
-      clearTimeout(timer);
       window.removeEventListener("scroll", onInteraction);
       window.removeEventListener("touchstart", onInteraction);
       window.removeEventListener("mousemove", onInteraction);
