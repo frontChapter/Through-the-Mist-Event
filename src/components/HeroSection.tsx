@@ -10,24 +10,31 @@ export default function HeroSection() {
   const [isVideoReady, setIsVideoReady] = useState(false);
 
   useEffect(() => {
-    // Defer background video playback until after initial paint & LCP settlement
-    const timer = setTimeout(() => {
-      setIsVideoReady(true);
-    }, 2500);
-
+    // Defer background video playback until user interaction or idle settlement
     const onInteraction = () => {
       setIsVideoReady(true);
       cleanup();
     };
 
+    const timer = setTimeout(() => {
+      setIsVideoReady(true);
+      cleanup();
+    }, 4000);
+
     const cleanup = () => {
       clearTimeout(timer);
       window.removeEventListener("scroll", onInteraction);
       window.removeEventListener("touchstart", onInteraction);
+      window.removeEventListener("mousemove", onInteraction);
+      window.removeEventListener("click", onInteraction);
+      window.removeEventListener("keydown", onInteraction);
     };
 
     window.addEventListener("scroll", onInteraction, { passive: true, once: true });
     window.addEventListener("touchstart", onInteraction, { passive: true, once: true });
+    window.addEventListener("mousemove", onInteraction, { passive: true, once: true });
+    window.addEventListener("click", onInteraction, { passive: true, once: true });
+    window.addEventListener("keydown", onInteraction, { passive: true, once: true });
 
     return cleanup;
   }, []);
