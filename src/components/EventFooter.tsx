@@ -2,6 +2,7 @@
 
 import React, { useRef, useEffect } from "react";
 import { EXPERIENCE_DATA } from "@/data/experience-data";
+import { getAssetPath } from "@/utils/basePath";
 
 export default function EventFooter() {
   const footerRef = useRef<HTMLElement>(null);
@@ -124,7 +125,7 @@ export default function EventFooter() {
           }}
         >
           <img
-            src="/assets/footer-shahnameh-relief.png"
+            src={getAssetPath("/assets/footer-shahnameh-relief.png")}
             alt="در میان مه - نقش‌برجسته شاهنامه"
             className="w-full h-full object-cover object-bottom opacity-80 filter contrast-100 brightness-[0.98]"
           />
@@ -149,7 +150,7 @@ export default function EventFooter() {
             }}
           >
             <img
-              src="/assets/footer-shahnameh-relief.png"
+              src={getAssetPath("/assets/footer-shahnameh-relief.png")}
               alt="در میان مه - کانون نور نقش‌برجسته"
               className="w-full h-full object-cover object-bottom opacity-100 filter contrast-125 brightness-105"
             />

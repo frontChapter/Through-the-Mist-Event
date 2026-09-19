@@ -1,6 +1,7 @@
 "use client";
 
 import React from "react";
+import { getAssetPath } from "@/utils/basePath";
 
 interface SpeakerLink {
   website?: string;
@@ -157,9 +158,9 @@ export default function ApaMethodSection() {
               {/* Full Portrait Aspect Image Container */}
               <div className="relative w-full aspect-[4/5] overflow-hidden bg-[#EFECE6] shrink-0">
                 <img
-                  src={speaker.image}
-                  alt={`پرتره ${speaker.name}`}
-                  className="w-full h-full object-cover object-top filter contrast-[1.04] brightness-95 group-hover:scale-[1.03] transition-transform duration-500 ease-out"
+                  src={getAssetPath(speaker.image)}
+                  alt={speaker.name}
+                  className="w-full h-full object-cover filter contrast-[1.03] group-hover:scale-105 transition-transform duration-500 ease-out"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/15 to-transparent pointer-events-none" />
 

@@ -3,6 +3,7 @@
 import React, { useRef, useEffect } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { getAssetPath } from "@/utils/basePath";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -190,7 +191,7 @@ export default function HospitalitySection() {
       <div
         className="absolute inset-0 opacity-[0.06] pointer-events-none bg-repeat bg-center mix-blend-screen"
         style={{
-          backgroundImage: `url('/assets/hospitality-bg-wave.png')`,
+          backgroundImage: `url('${getAssetPath('/assets/dar-miyan-e-meh-timeline-wave.png')}')`,
           backgroundSize: "256px 256px",
         }}
       />
@@ -317,7 +318,7 @@ export default function HospitalitySection() {
                       className="relative w-full h-[260px] sm:h-[320px] rounded-2xl overflow-hidden shadow-[0_24px_60px_rgba(0,0,0,0.85)] border border-white/10 bg-zinc-900 group will-change-transform"
                     >
                       <img
-                        src={station.image}
+                        src={getAssetPath(station.image)}
                         alt={station.title}
                         className="w-full h-full object-cover filter contrast-[1.06] brightness-95 group-hover:scale-105 transition-transform duration-700 ease-out"
                         loading="lazy"

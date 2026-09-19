@@ -2,6 +2,7 @@
 
 import React, { useRef } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
+import { getAssetPath } from "@/utils/basePath";
 
 export default function MethodIntroSection() {
   const containerRef = useRef<HTMLElement>(null);
@@ -37,8 +38,8 @@ export default function MethodIntroSection() {
       {/* Background Video Layer with Mission Sculpture Video */}
       <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none">
         <video
-          src="/assets/mission-sculpture.mp4"
-          poster="/assets/mission-sculpture-poster.webp"
+          src={getAssetPath("/assets/dar-miyan-e-meh-sculpture-video.mp4")}
+          poster={getAssetPath("/assets/dar-miyan-e-meh-sculpture-poster.webp")}
           autoPlay
           loop
           muted

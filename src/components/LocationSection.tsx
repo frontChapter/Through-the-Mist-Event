@@ -2,6 +2,7 @@
 
 import React from "react";
 import { EXPERIENCE_DATA } from "@/data/experience-data";
+import { getAssetPath } from "@/utils/basePath";
 
 export default function LocationSection() {
   const { location } = EXPERIENCE_DATA;
@@ -100,7 +101,7 @@ export default function LocationSection() {
               >
                 <div className="relative aspect-[16/10] overflow-hidden bg-zinc-900">
                   <img
-                    src={item.image}
+                    src={getAssetPath(item.image)}
                     alt={item.title}
                     className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300 filter contrast-105"
                   />

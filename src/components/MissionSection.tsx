@@ -4,6 +4,7 @@ import React, { useRef, useEffect, useState } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { EXPERIENCE_DATA } from "@/data/experience-data";
+import { getAssetPath } from "@/utils/basePath";
 
 export default function MissionSection() {
   const containerRef = useRef<HTMLElement>(null);
@@ -201,7 +202,7 @@ export default function MissionSection() {
         {/* 1. Base Persian Marble Sculpture Layer (Soft, Matte, Ambient) */}
         <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none select-none">
           <img
-            src="/assets/mission-sculpture-persian.jpg"
+            src={getAssetPath("/assets/dar-miyan-e-meh-mission-sculpture.jpg")}
             alt="تندیس‌های مرمرین ماموریت"
             className="w-full h-full object-cover object-left opacity-25 sm:opacity-40 filter contrast-95 brightness-102 transition-transform duration-700"
           />
@@ -222,7 +223,7 @@ export default function MissionSection() {
           }}
         >
           <img
-            src="/assets/mission-sculpture-persian.jpg"
+            src={getAssetPath("/assets/dar-miyan-e-meh-mission-sculpture.jpg")}
             alt="تندیس‌های مرمرین - کانون نور"
             className="w-full h-full object-cover object-left opacity-70 filter contrast-125 brightness-105 transition-transform duration-700"
           />

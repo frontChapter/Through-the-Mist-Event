@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://frontchapter.github.io/Through-the-Mist-Event/sitemap.xml

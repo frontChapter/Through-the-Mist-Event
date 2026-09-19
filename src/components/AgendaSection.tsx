@@ -1,6 +1,7 @@
 "use client";
 
 import React from "react";
+import { getAssetPath } from "@/utils/basePath";
 
 interface AgendaItem {
   number: string;
@@ -109,8 +110,8 @@ export default function AgendaSection() {
       {/* Background Video Layer with Atmospheric Dark Overlays */}
       <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none">
         <video
-          src="/assets/mission-sculpture.mp4"
-          poster="/assets/mission-sculpture-poster.webp"
+          src={getAssetPath("/assets/dar-miyan-e-meh-sculpture-video.mp4")}
+          poster={getAssetPath("/assets/dar-miyan-e-meh-sculpture-poster.webp")}
           autoPlay
           loop
           muted
@@ -238,7 +239,7 @@ export default function AgendaSection() {
             <div className="relative aspect-[4/5] w-full max-w-md h-full max-h-[58vh] rounded-3xl overflow-hidden border border-white/10 bg-zinc-950 shadow-[0_24px_60px_rgba(0,0,0,0.85)] group">
               <div className="w-full h-full relative">
                 <img
-                  src="/assets/frontchapter-community.jpg"
+                  src={getAssetPath("/assets/frontchapter-community.jpg")}
                   alt="جامعه فرانت‌چپتر در رویداد"
                   className="w-full h-full object-cover filter grayscale contrast-110 brightness-[0.8] group-hover:grayscale-0 group-hover:brightness-100 transition-all duration-700 ease-out"
                 />

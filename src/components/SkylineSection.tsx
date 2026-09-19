@@ -8,6 +8,7 @@ import {
   useMotionValue,
   useSpring,
 } from "framer-motion";
+import { getAssetPath } from "@/utils/basePath";
 
 export default function SkylineSection() {
   const containerRef = useRef<HTMLElement>(null);
@@ -55,13 +56,11 @@ export default function SkylineSection() {
     [cloud2ScrollY, cloud2MouseY],
     ([sy, my]: number[]) => sy + my
   );
-
   useEffect(() => {
     const handleMouseMove = (e: MouseEvent) => {
       if (!containerRef.current) return;
       const rect = containerRef.current.getBoundingClientRect();
 
-      // Only track when the section is in or near viewport
       if (rect.top < window.innerHeight && rect.bottom > 0) {
         const x = ((e.clientX - rect.left) / rect.width - 0.5) * 2;
         const y = ((e.clientY - rect.top) / rect.height - 0.5) * 2;
@@ -85,7 +84,7 @@ export default function SkylineSection() {
       {/* B&W Skyline Image */}
       <div className="absolute inset-0 w-full h-full pointer-events-none">
         <img
-          src="/assets/skyline-tehran.webp"
+          src={getAssetPath("/assets/dar-miyan-e-meh-tehran-skyline.webp")}
           alt="خط افق تهران"
           className="w-full h-full object-cover filter grayscale contrast-125 brightness-75"
         />
@@ -102,7 +101,7 @@ export default function SkylineSection() {
           initial={{ opacity: 0 }}
           animate={{ opacity: 0.35 }}
           transition={{ duration: 1.5 }}
-          src="/assets/hospitality-catering.png"
+          src={getAssetPath("/assets/dar-miyan-e-meh-skyline-clouds-left.png")}
           alt="Clouds Right"
           className="w-full h-auto object-contain mix-blend-screen"
         />
@@ -116,7 +115,7 @@ export default function SkylineSection() {
           initial={{ opacity: 0 }}
           animate={{ opacity: 0.4 }}
           transition={{ duration: 1.5 }}
-          src="/assets/hospitality-reception.png"
+          src={getAssetPath("/assets/dar-miyan-e-meh-skyline-clouds-right.png")}
           alt="Clouds Left"
           className="w-full h-auto object-contain mix-blend-screen"
         />

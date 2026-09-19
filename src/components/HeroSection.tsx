@@ -3,6 +3,7 @@
 import React, { useRef } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
 import { EXPERIENCE_DATA } from "@/data/experience-data";
+import { getAssetPath } from "@/utils/basePath";
 
 export default function HeroSection() {
   const containerRef = useRef<HTMLElement>(null);
@@ -35,7 +36,7 @@ export default function HeroSection() {
       <div className="absolute inset-0 z-0 overflow-hidden bg-[#0a0a0a]">
         <motion.video
           style={{ scale: videoScale }}
-          src={EXPERIENCE_DATA.hero.videoUrl}
+          src={getAssetPath(EXPERIENCE_DATA.hero.videoUrl)}
           autoPlay
           loop
           muted

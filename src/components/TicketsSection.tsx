@@ -3,6 +3,7 @@
 import React from "react";
 import { motion } from "framer-motion";
 import { EXPERIENCE_DATA } from "@/data/experience-data";
+import { getAssetPath } from "@/utils/basePath";
 
 export default function TicketsSection() {
   return (
@@ -46,7 +47,7 @@ export default function TicketsSection() {
                 <div
                   className="absolute inset-0 opacity-15 pointer-events-none bg-cover bg-center mix-blend-overlay"
                   style={{
-                    backgroundImage: `url('/assets/tickets-card-texture.png')`,
+                    backgroundImage: `url('${getAssetPath('/assets/dar-miyan-e-meh-card-texture.png')}')`,
                   }}
                 />
 
