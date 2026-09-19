@@ -103,7 +103,7 @@ const jsonLdEvent = {
       price: '455000',
       priceCurrency: 'IRR',
       availability: 'https://schema.org/InStock',
-      url: `${siteUrl}/#reservations`,
+      url: 'https://pay.frontchapter.ir/link/779598',
     },
     {
       '@type': 'Offer',
@@ -111,7 +111,7 @@ const jsonLdEvent = {
       price: '755000',
       priceCurrency: 'IRR',
       availability: 'https://schema.org/InStock',
-      url: `${siteUrl}/#reservations`,
+      url: 'https://pay.frontchapter.ir/link/779934',
     },
   ],
 };

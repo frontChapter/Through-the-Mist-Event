@@ -54,6 +54,7 @@ export const EXPERIENCE_DATA = {
         "پذیرایی میان‌برنامه",
       ],
       ctaText: "رزرو صندلی",
+      link: "https://pay.frontchapter.ir/link/779598",
       isSoldOut: false,
     },
     {
@@ -69,6 +70,7 @@ export const EXPERIENCE_DATA = {
         "پذیرایی میان‌برنامه",
       ],
       ctaText: "رزرو صندلی + قلب",
+      link: "https://pay.frontchapter.ir/link/779934",
       isSoldOut: false,
     },
   ],

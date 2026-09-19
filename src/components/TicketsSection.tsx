@@ -115,7 +115,9 @@ export default function TicketsSection() {
                 {/* Bottom Action CTA */}
                 <div className="relative z-10 pt-6 mt-auto">
                   <a
-                    href="#reservations"
+                    href={pass.link}
+                    target="_blank"
+                    rel="noopener noreferrer"
                     className="group flex items-center justify-center gap-2 w-full py-3.5 rounded-full bg-white text-black hover:bg-zinc-200 text-xs sm:text-sm tracking-wider font-bold transition-all duration-300 shadow-xl text-center"
                   >
                     <span>{pass.ctaText}</span>
