@@ -117,7 +117,7 @@ export default function EventFooter() {
       <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none select-none bg-[#F0ECE5]">
         {/* Layer 1: Base sculpture with smooth parallax */}
         <div
-          className="absolute inset-x-0 bottom-0 w-full h-[60vh] sm:h-[68vh] md:h-[75vh] will-change-transform"
+          className="absolute inset-x-0 -bottom-28 w-full h-[60vh] sm:h-[68vh] md:h-[75vh] will-change-transform"
           style={{
             transform:
               "translate3d(var(--shift-x, 0px), var(--shift-y, 0px), 0) scale(1.03)",
