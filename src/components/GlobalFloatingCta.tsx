@@ -65,7 +65,7 @@ export default function GlobalFloatingCta() {
   return (
     <div
       dir="rtl"
-      className="fixed bottom-6 left-1/2 -translate-x-1/2 z-[90] pointer-events-none"
+      className="fixed bottom-6 left-1/2 -translate-x-1/2 z-[90] pointer-events-none touch-manipulation"
     >
       <AnimatePresence>
         {isVisible && (
@@ -74,9 +74,9 @@ export default function GlobalFloatingCta() {
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: 12, scale: 0.92 }}
             transition={{ type: 'spring', stiffness: 420, damping: 30 }}
-            className="pointer-events-auto"
+            className="pointer-events-auto touch-manipulation"
           >
-            <div className="group flex flex-col items-center justify-center bg-[#111111]/95 hover:bg-[#161616] text-white border border-white/15 px-7 py-2.5 rounded-full shadow-[0_12px_36px_rgba(0,0,0,0.8)] backdrop-blur-xl transition-all duration-300 hover:border-white/30 hover:shadow-[0_16px_40px_rgba(0,0,0,0.95)] min-w-[190px] w-auto text-center select-none">
+            <div className="group flex flex-col items-center justify-center bg-[#111111]/95 hover:bg-[#161616] text-white border border-white/15 px-7 py-2.5 rounded-full shadow-[0_12px_36px_rgba(0,0,0,0.8)] backdrop-blur-xl transition-all duration-300 hover:border-white/30 hover:shadow-[0_16px_40px_rgba(0,0,0,0.95)] min-w-[190px] w-auto text-center select-none touch-manipulation">
               {/* Subtle top indicator text */}
               <span className="text-[11px] text-[#c5a880] tracking-wide block whitespace-nowrap font-medium">
                 ظرفیت محدود • ۵۰ نفر

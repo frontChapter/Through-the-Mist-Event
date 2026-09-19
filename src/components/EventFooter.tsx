@@ -111,7 +111,7 @@ export default function EventFooter() {
       dir="rtl"
       onMouseMove={handleMouseMove}
       onMouseLeave={handleMouseLeave}
-      className="relative h-screen w-full min-h-screen flex flex-col justify-between pt-16 sm:pt-24 pb-8 px-6 sm:px-12 bg-[#F0ECE5] text-[#111111] overflow-hidden text-right select-none"
+      className="relative min-h-screen h-auto lg:h-screen w-full flex flex-col justify-between pt-16 sm:pt-24 pb-8 px-6 sm:px-12 bg-[#F0ECE5] text-[#111111] overflow-hidden text-right select-none"
     >
       {/* Background Sculptural Relief */}
       <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none select-none bg-[#F0ECE5]">

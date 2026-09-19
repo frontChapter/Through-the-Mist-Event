@@ -76,7 +76,7 @@ export default function MissionSection() {
     };
   }, []);
 
-  // GSAP ScrollTrigger Pinned Narrative Scroll Animation
+  // GSAP ScrollTrigger Pinned Narrative Scroll Animation (Desktop only)
   useEffect(() => {
     const container = containerRef.current;
     const stage = pinnedStageRef.current;
@@ -86,7 +86,9 @@ export default function MissionSection() {
 
     if (!container || !stage || !b1 || !b2 || !b3) return;
 
-    const ctx = gsap.context(() => {
+    const mm = gsap.matchMedia();
+
+    mm.add("(min-width: 1024px)", () => {
       // Set initial states: Block 1 crystal clear, Blocks 2 and 3 hidden with blur
       gsap.set(b1, { opacity: 1, filter: "blur(0px)", y: 0, pointerEvents: "auto" });
       gsap.set(b2, { opacity: 0, filter: "blur(14px)", y: 30, pointerEvents: "none" });
@@ -116,7 +118,6 @@ export default function MissionSection() {
       });
 
       // Total timeline normalized to 3.0 units with generous dwell windows
-      // Block 1 Dwells until 0.7, then transitions out between 0.7 and 1.05
       tl.to(
         b1,
         {
@@ -129,7 +130,6 @@ export default function MissionSection() {
         },
         0.7
       )
-        // Block 2 Enters and unblurs between 0.75 and 1.05
         .to(
           b2,
           {
@@ -142,8 +142,6 @@ export default function MissionSection() {
           },
           0.75
         )
-        // Block 2 Dwells in 100% crisp focus from 1.05 to 1.75
-        // Transitions out between 1.75 and 2.05
         .to(
           b2,
           {
@@ -156,7 +154,6 @@ export default function MissionSection() {
           },
           1.75
         )
-        // Block 3 Enters and unblurs between 1.80 and 2.15
         .to(
           b3,
           {
@@ -169,11 +166,10 @@ export default function MissionSection() {
           },
           1.80
         )
-        // Hold Block 3 in 100% crisp focus until 3.0 (end of timeline)
         .set({}, {}, 3.0);
-    }, container);
+    });
 
-    return () => ctx.revert();
+    return () => mm.revert();
   }, []);
 
   const handleJumpToReservations = () => {
@@ -190,31 +186,31 @@ export default function MissionSection() {
       id="mission"
       data-theme="light"
       dir="rtl"
-      className="relative w-full h-[280vh] bg-[#FAF9F5] text-[#1a1a1a] select-none"
+      className="relative w-full h-auto lg:h-[280vh] bg-[#FAF9F5] text-[#1a1a1a] select-none py-16 sm:py-20 lg:py-0"
     >
-      {/* Pinned Viewport Container (Fixed during 280vh scroll scrub) */}
+      {/* Pinned Viewport Container in Desktop, Natural Container in Mobile */}
       <div
         ref={pinnedStageRef}
         onMouseMove={handleMouseMove}
         onMouseLeave={handleMouseLeave}
-        className="sticky top-0 h-screen w-full flex flex-col justify-center overflow-hidden pt-20 pb-16 sm:py-20 px-5 sm:px-12 lg:px-20 text-right transition-colors duration-500"
+        className="relative lg:sticky lg:top-0 min-h-screen lg:h-screen w-full flex flex-col justify-center overflow-hidden py-6 lg:py-20 px-5 sm:px-12 lg:px-20 text-right transition-colors duration-500"
       >
         {/* 1. Base Persian Marble Sculpture Layer (Soft, Matte, Ambient) */}
         <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none select-none">
           <img
             src={getAssetPath("/assets/dar-miyan-e-meh-mission-sculpture.jpg")}
             alt="تندیس‌های مرمرین ماموریت"
-            className="w-full h-full object-cover object-left opacity-25 sm:opacity-40 filter contrast-95 brightness-102 transition-transform duration-700"
+            className="w-full h-full object-cover object-left opacity-20 sm:opacity-40 filter contrast-95 brightness-102 transition-transform duration-700"
           />
           {/* High-Legibility Frosted Gradient Overlay for mobile & tablets (< lg) */}
-          <div className="absolute inset-0 bg-[#FAF9F5]/85 backdrop-blur-[2px] pointer-events-none lg:hidden block" />
-          {/* Desktop Luxury Horizontal Gradient: Left reveals marble, Right provides pristine white-cream for text */}
+          <div className="absolute inset-0 bg-[#FAF9F5]/90 backdrop-blur-[2px] pointer-events-none lg:hidden block" />
+          {/* Desktop Luxury Horizontal Gradient */}
           <div className="absolute inset-0 bg-gradient-to-r from-transparent via-[#FAF9F5]/70 to-[#FAF9F5] pointer-events-none hidden lg:block" />
         </div>
 
-        {/* 2. Spotlight Luminous Layer (Sharp High-Relief Persian Marble Revealed Around Cursor) */}
+        {/* 2. Spotlight Luminous Layer (Desktop only) */}
         <div
-          className="absolute inset-0 z-0 overflow-hidden pointer-events-none select-none hidden sm:block"
+          className="absolute inset-0 z-0 overflow-hidden pointer-events-none select-none hidden lg:block"
           style={{
             maskImage:
               "radial-gradient(circle 380px at var(--mouse-x, -9999px) var(--mouse-y, -9999px), black 0%, transparent 70%)",
@@ -231,11 +227,11 @@ export default function MissionSection() {
 
         {/* 3. Text Narrative Content Container */}
         <div className="container mx-auto max-w-7xl relative z-10 text-right h-full flex flex-col justify-center">
-          <div className="max-w-2xl relative min-h-[380px] sm:min-h-[440px] flex items-center">
+          <div className="max-w-3xl relative min-h-0 lg:min-h-[440px] flex flex-col justify-center space-y-12 lg:space-y-0">
             {/* Step 1: Main Quote & Manifesto */}
             <div
               ref={block1Ref}
-              className="w-full space-y-5 sm:space-y-6 will-change-[transform,opacity,filter]"
+              className="w-full space-y-5 sm:space-y-6 pb-8 lg:pb-0 border-b border-black/10 lg:border-none will-change-[transform,opacity]"
             >
               <div className="flex items-center gap-3">
                 <span className="text-xs uppercase tracking-[0.2em] font-semibold text-black/60">
@@ -253,7 +249,7 @@ export default function MissionSection() {
                 — هراکلیتوس / درنگ در معنای دگرگونی و آغاز راه
               </p>
 
-              <div className="pt-3 flex items-center gap-2 text-[11px] text-black/45 font-medium">
+              <div className="pt-3 hidden lg:flex items-center gap-2 text-[11px] text-black/45 font-medium">
                 <span>اسکرول کنید تا روایت آشکار شود</span>
                 <span className="animate-bounce">↓</span>
               </div>
@@ -262,7 +258,7 @@ export default function MissionSection() {
             {/* Step 2: Philosophy and Narrative Lead */}
             <div
               ref={block2Ref}
-              className="w-full space-y-5 sm:space-y-6 absolute inset-0 my-auto flex flex-col justify-center will-change-[transform,opacity,filter]"
+              className="w-full space-y-5 sm:space-y-6 py-8 lg:py-0 border-b border-black/10 lg:border-none lg:absolute lg:inset-0 my-auto flex flex-col justify-center will-change-[transform,opacity]"
             >
               <div className="flex items-center gap-3">
                 <span className="text-xs uppercase tracking-[0.2em] font-semibold text-black/60">
@@ -295,7 +291,7 @@ export default function MissionSection() {
             {/* Step 3: Three Pillars & Call To Action */}
             <div
               ref={block3Ref}
-              className="w-full space-y-6 absolute inset-0 my-auto flex flex-col justify-center will-change-[transform,opacity,filter]"
+              className="w-full space-y-6 pt-4 lg:pt-0 lg:absolute lg:inset-0 my-auto flex flex-col justify-center will-change-[transform,opacity]"
             >
               <div className="flex items-center gap-3">
                 <span className="text-xs uppercase tracking-[0.2em] font-semibold text-black/60">
@@ -328,11 +324,11 @@ export default function MissionSection() {
               </div>
 
               {/* Inline Action Button */}
-              <div className="pt-2 flex items-center gap-4">
+              <div className="pt-2 flex flex-wrap items-center gap-4">
                 <button
                   type="button"
                   onClick={handleJumpToReservations}
-                  className="inline-flex items-center gap-2.5 px-6 py-3 rounded-full bg-[#111111] text-[#FAF9F5] text-xs sm:text-sm font-bold shadow-[0_8px_20px_rgba(0,0,0,0.12)] hover:bg-black hover:scale-[1.02] active:scale-[0.98] transition-all"
+                  className="inline-flex items-center gap-2.5 px-6 py-3 rounded-full bg-[#111111] text-[#FAF9F5] text-xs sm:text-sm font-bold shadow-[0_8px_20px_rgba(0,0,0,0.12)] hover:bg-black hover:scale-[1.02] active:scale-[0.98] transition-all cursor-pointer"
                 >
                   <span>رزرو صندلی در میان مه</span>
                   <span className="text-white/60">←</span>
@@ -345,8 +341,8 @@ export default function MissionSection() {
           </div>
         </div>
 
-        {/* 4. Interactive Step Indicator (Bottom Corner) */}
-        <div className="absolute bottom-6 left-6 sm:bottom-8 sm:left-10 z-20 flex items-center gap-3 text-[11px] tracking-wider text-black/80 bg-white/85 backdrop-blur-md px-4 py-2 rounded-full border border-black/5 shadow-sm font-medium select-none pointer-events-none">
+        {/* 4. Interactive Step Indicator (Desktop only) */}
+        <div className="hidden lg:flex absolute bottom-8 left-10 z-20 items-center gap-3 text-[11px] tracking-wider text-black/80 bg-white/85 backdrop-blur-md px-4 py-2 rounded-full border border-black/5 shadow-sm font-medium select-none pointer-events-none">
           <div className="flex items-center gap-1.5">
             <span
               className={`w-2 h-2 rounded-full transition-all duration-300 ${

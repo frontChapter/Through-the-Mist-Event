@@ -69,8 +69,21 @@ export default function LocationSection() {
             height="450"
             allowFullScreen
             loading="lazy"
-            className="rounded-2xl border-0 w-full h-[320px] sm:h-[400px] md:h-[450px]"
+            className="rounded-2xl border-0 w-full h-[320px] sm:h-[400px] md:h-[450px] pointer-events-none sm:pointer-events-auto"
           />
+
+          {/* Mobile Overlay: Direct tap to open in Neshan without capturing vertical scroll gestures */}
+          <a
+            href="https://neshan.org/maps/places/4e09fb9c5fe83b144bf619b64313d78f"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="sm:hidden absolute inset-0 z-10 flex items-end justify-center pb-4 bg-gradient-to-t from-black/80 via-transparent to-transparent"
+          >
+            <span className="px-4 py-2 rounded-full bg-black/70 backdrop-blur-md border border-white/20 text-xs font-semibold text-white shadow-lg inline-flex items-center gap-2">
+              <span>مشاهده و مسیریابی در نشان</span>
+              <span>←</span>
+            </span>
+          </a>
 
           {/* Host Info Box */}
           <div className="absolute top-4 right-4 max-w-xs bg-black/85 backdrop-blur-xl border border-white/15 p-3.5 rounded-xl shadow-2xl space-y-1 text-right pointer-events-none">

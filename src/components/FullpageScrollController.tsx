@@ -46,11 +46,13 @@ export default function FullpageScrollController() {
     isAnimatingRef.current = true;
     lastWheelTimeRef.current = Date.now();
 
+    const isDesktop = typeof window !== 'undefined' && window.innerWidth >= 1024;
+
     if (window.__lenis) {
       window.__lenis.scrollTo(targetEl, {
-        offset: 0,
+        offset: isDesktop ? 0 : -60,
         duration: customDuration,
-        lock: true,
+        lock: isDesktop,
       });
     } else {
       targetEl.scrollIntoView({ behavior: 'smooth' });
@@ -58,7 +60,7 @@ export default function FullpageScrollController() {
 
     setTimeout(() => {
       isAnimatingRef.current = false;
-    }, LOCKOUT_MS);
+    }, isDesktop ? LOCKOUT_MS : 250);
   }, []);
 
   const goToNext = useCallback(() => {
@@ -102,7 +104,6 @@ export default function FullpageScrollController() {
   useEffect(() => {
     const handleScrollSync = () => {
       if (isAnimatingRef.current) return;
-      const scrollY = window.scrollY;
       const windowHeight = window.innerHeight;
 
       for (let i = 0; i < SECTION_IDS.length; i++) {
@@ -126,9 +127,14 @@ export default function FullpageScrollController() {
     };
   }, []);
 
-  // Wheel listener with trackpad momentum decay filter & inner-scroll boundary checks
+  // Wheel listener with trackpad momentum decay filter & inner-scroll boundary checks (Desktop only)
   useEffect(() => {
     const handleWheel = (e: WheelEvent) => {
+      // Only enable strict fullpage wheel snapping on desktop screens (>= 1024px)
+      if (typeof window !== 'undefined' && window.innerWidth < 1024) {
+        return;
+      }
+
       const now = Date.now();
       const deltaY = e.deltaY;
 
@@ -186,11 +192,9 @@ export default function FullpageScrollController() {
 
       if (stAgenda && (stAgenda.isActive || isAtAgenda)) {
         if (deltaY > 0 && stAgenda.progress < 0.98) {
-          // Allow natural Lenis scrub through the pinned agenda section until all phases complete
           return;
         }
         if (deltaY < 0 && stAgenda.progress > 0.02) {
-          // Allow natural Lenis scrub backwards through the pinned agenda section
           return;
         }
       }
@@ -202,11 +206,9 @@ export default function FullpageScrollController() {
 
       if (stMission && (stMission.isActive || isAtMission)) {
         if (deltaY > 0 && stMission.progress < 0.96) {
-          // Allow natural Lenis scrub through the mission storytelling timeline
           return;
         }
         if (deltaY < 0 && stMission.progress > 0.04) {
-          // Allow natural Lenis scrub backwards through the mission section
           return;
         }
       }
@@ -227,9 +229,13 @@ export default function FullpageScrollController() {
     };
   }, [goToNext, goToPrev]);
 
-  // Keyboard navigation shortcuts
+  // Keyboard navigation shortcuts (Desktop only)
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
+      if (typeof window !== 'undefined' && window.innerWidth < 1024) {
+        return;
+      }
+
       if (['ArrowDown', 'PageDown', ' '].includes(e.key)) {
         e.preventDefault();
         goToNext();
@@ -243,58 +249,6 @@ export default function FullpageScrollController() {
 
     return () => {
       window.removeEventListener('keydown', handleKeyDown);
-    };
-  }, [goToNext, goToPrev]);
-
-  // Mobile swipe navigation with support for pinned sections
-  useEffect(() => {
-    let touchStartY = 0;
-
-    const handleTouchStart = (e: TouchEvent) => {
-      touchStartY = e.touches[0].clientY;
-    };
-
-    const handleTouchEnd = (e: TouchEvent) => {
-      const touchEndY = e.changedTouches[0].clientY;
-      const delta = touchStartY - touchEndY;
-
-      if (Math.abs(delta) > 45) {
-        // Prevent snapping while mobile user is scrolling inside pinned sections
-        const stMission = typeof window !== 'undefined' ? ScrollTrigger.getById('mission-pin') : null;
-        const isAtMission = currentIndexRef.current === SECTION_IDS.indexOf('mission');
-        if (stMission && (stMission.isActive || isAtMission)) {
-          if (delta > 0 && stMission.progress < 0.95) return;
-          if (delta < 0 && stMission.progress > 0.05) return;
-        }
-
-        const stAgenda = typeof window !== 'undefined' ? ScrollTrigger.getById('agenda-pin') : null;
-        const isAtAgenda = currentIndexRef.current === SECTION_IDS.indexOf('agenda');
-        if (stAgenda && (stAgenda.isActive || isAtAgenda)) {
-          if (delta > 0 && stAgenda.progress < 0.95) return;
-          if (delta < 0 && stAgenda.progress > 0.05) return;
-        }
-
-        const stExp = typeof window !== 'undefined' ? ScrollTrigger.getById('experience-pin') : null;
-        const isAtExp = currentIndexRef.current === SECTION_IDS.indexOf('experience');
-        if (stExp && (stExp.isActive || isAtExp)) {
-          if (delta > 0 && stExp.progress < 0.95) return;
-          if (delta < 0 && stExp.progress > 0.05) return;
-        }
-
-        if (delta > 0) {
-          goToNext();
-        } else {
-          goToPrev();
-        }
-      }
-    };
-
-    window.addEventListener('touchstart', handleTouchStart, { passive: true });
-    window.addEventListener('touchend', handleTouchEnd, { passive: true });
-
-    return () => {
-      window.removeEventListener('touchstart', handleTouchStart);
-      window.removeEventListener('touchend', handleTouchEnd);
     };
   }, [goToNext, goToPrev]);
 

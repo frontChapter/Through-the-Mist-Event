@@ -109,12 +109,11 @@ export default function HospitalitySection() {
     const measure = measureRef.current;
     if (!container || !track || !measure) return;
 
-    const ctx = gsap.context(() => {
-      // Travel exactly the horizontal content's width (minus its end padding) so
-      // the last station's end edge meets the viewport edge exactly when the
-      // pin releases. Measured from real layout on the flex content wrapper
-      // (the decorative SVG is a sibling, so it can't inflate scrollWidth),
-      // and re-measured on resize via invalidateOnRefresh.
+    const mm = gsap.matchMedia();
+
+    mm.add("(min-width: 1024px)", () => {
+      // Travel exactly the horizontal content's width so the last station's end
+      // edge meets the viewport edge exactly when the pin releases.
       const getScrollDistance = () => {
         const endPadding =
           parseFloat(getComputedStyle(measure).paddingLeft) || 0;
@@ -123,7 +122,6 @@ export default function HospitalitySection() {
           measure.scrollWidth - window.innerWidth - endPadding,
         );
       };
-      // Total pinned distance equals the exact travel — no extra dwell space.
       const getTotalPinDistance = () => getScrollDistance();
 
       // Timeline that pins container for exactly as long as the horizontal track needs
@@ -142,14 +140,13 @@ export default function HospitalitySection() {
       });
 
       // 1. Horizontal scrubbing through every milestone stop (flowing Right-to-Left in RTL).
-      //    Reaches the exact travel distance at pin end.
       tl.to(track, {
         x: () => getScrollDistance(),
         ease: "none",
         duration: 1.0,
       });
 
-      // 3. Parallax floating offsets on station image cards
+      // 2. Parallax floating offsets on station image cards
       imageRefs.current.forEach((el, index) => {
         if (!el) return;
         const yOffset = index % 2 === 0 ? -18 : 18;
@@ -165,17 +162,11 @@ export default function HospitalitySection() {
         });
       });
 
-      // Refresh measurements once DOM elements are rendered
       ScrollTrigger.refresh();
-    }, container);
-
-    const refreshTimer = setTimeout(() => {
-      ScrollTrigger.refresh();
-    }, 500);
+    });
 
     return () => {
-      clearTimeout(refreshTimer);
-      ctx.revert();
+      mm.revert();
     };
   }, []);
 
@@ -185,7 +176,7 @@ export default function HospitalitySection() {
       id="experience"
       data-theme="dark"
       dir="rtl"
-      className="relative w-full h-screen bg-[#080808] text-white overflow-hidden text-right select-none"
+      className="relative w-full min-h-screen h-auto lg:h-screen bg-[#080808] text-white overflow-hidden text-right select-none py-16 sm:py-20 lg:py-0"
     >
       {/* 1. Visual Atmosphere & Canvas: Subtle wave texture + vignette */}
       <div
@@ -197,8 +188,8 @@ export default function HospitalitySection() {
       />
       <div className="absolute inset-0 bg-gradient-to-b from-black/80 via-transparent to-black/80 pointer-events-none" />
 
-      {/* Pinned Top-Right Narrative Heading in RTL */}
-      <div className="absolute top-10 sm:top-14 right-6 sm:right-14 z-20 pointer-events-none">
+      {/* Narrative Heading: Relative in mobile, Pinned in desktop */}
+      <div className="lg:absolute lg:top-14 lg:right-14 z-20 px-6 sm:px-10 lg:px-0 mb-10 lg:mb-0 pointer-events-none">
         <div className="flex items-center gap-3">
           <span className="text-xs uppercase tracking-[0.2em] text-[#c5a880] font-semibold">
             روایت رویداد
@@ -207,19 +198,76 @@ export default function HospitalitySection() {
         </div>
         <h2
           ref={headingTitleRef}
-          className="text-3xl sm:text-5xl lg:text-6xl font-bold text-white tracking-tight mt-12 transition-all duration-700 ease-out drop-shadow-lg"
+          className="text-3xl sm:text-4xl lg:text-6xl font-bold text-white tracking-tight mt-3 lg:mt-12 transition-all duration-700 ease-out drop-shadow-lg"
         >
           از کجا شروع شد
         </h2>
       </div>
 
-      {/* Pinned Top-Left Navigation hint in RTL */}
-      <div className="absolute top-12 sm:top-16 left-6 sm:left-14 z-20 pointer-events-none text-xs tracking-wider text-zinc-400 hidden sm:block">
+      {/* Pinned Top-Left Navigation hint in RTL (Desktop only) */}
+      <div className="absolute top-12 sm:top-16 left-6 sm:left-14 z-20 pointer-events-none text-xs tracking-wider text-zinc-400 hidden lg:block">
         خط زمانی افقی • برای مشاهده به پایین اسکرول کنید
       </div>
 
-      {/* 2. Pinned Horizontal Track */}
-      <div className="relative z-10 w-full h-full flex items-center">
+      {/* ═══════════════════════════════════════════════════════════════════════ */}
+      {/* Mobile & Tablet Vertical Flow Layout (< 1024px, zero scroll-jacking)    */}
+      {/* ═══════════════════════════════════════════════════════════════════════ */}
+      <div className="lg:hidden relative z-10 px-6 sm:px-10 max-w-2xl mx-auto space-y-10">
+        <div className="relative pr-6 border-r border-[#c5a880]/25 space-y-10">
+          {TIMELINE_STATIONS.map((station) => (
+            <div key={station.id} className="relative space-y-4">
+              {/* Timeline Node Indicator on the line */}
+              <div className="absolute -right-[31px] top-1 z-10 flex items-center justify-center">
+                <div className="w-2.5 h-2.5 rounded-full bg-[#c5a880] border-2 border-[#080808] shadow-[0_0_8px_#c5a880]" />
+              </div>
+
+              {/* Station Tag & Badge */}
+              <div className="flex items-center gap-2.5">
+                <span className="text-[11px] font-mono font-bold tracking-wider px-2.5 py-0.5 rounded-full bg-[#c5a880]/15 text-[#e2ceb5] border border-[#c5a880]/30">
+                  ایستگاه {station.stationNumber}
+                </span>
+                <span className="text-xs font-semibold text-[#c5a880] tracking-wide">
+                  {station.badge}
+                </span>
+              </div>
+
+              {/* Title & Description */}
+              <div className="space-y-2">
+                <h3 className="text-xl sm:text-2xl text-white font-bold leading-snug">
+                  {station.title}
+                </h3>
+                <p className="text-xs sm:text-sm text-zinc-400 font-light leading-relaxed">
+                  {station.description}
+                </p>
+              </div>
+
+              {/* Station Visual Card */}
+              <div className="relative w-full h-[220px] sm:h-[260px] rounded-2xl overflow-hidden border border-white/10 bg-zinc-900 shadow-xl">
+                <img
+                  src={getAssetPath(station.image)}
+                  alt={station.title}
+                  className="w-full h-full object-cover filter contrast-[1.06] brightness-95"
+                  loading="lazy"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/10 to-transparent pointer-events-none" />
+                <div className="absolute bottom-2.5 right-3.5 left-3.5 flex items-center justify-between text-[11px] text-zinc-300 font-medium pointer-events-none">
+                  <span className="text-xs text-zinc-400 font-mono tracking-wider">
+                    {station.stationNumber} / ۰۶
+                  </span>
+                  <span className="text-[11px] text-[#e2ceb5] tracking-wider font-semibold">
+                    {station.badge}
+                  </span>
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      {/* ═══════════════════════════════════════════════════════════════════════ */}
+      {/* Desktop Pinned Horizontal Track (>= 1024px)                             */}
+      {/* ═══════════════════════════════════════════════════════════════════════ */}
+      <div className="hidden lg:flex relative z-10 w-full h-full items-center">
         <div
           ref={trackRef}
           className="relative flex items-center h-full w-max will-change-transform"
@@ -270,9 +318,7 @@ export default function HospitalitySection() {
             />
           </svg>
 
-          {/* ═════════════════════════════════════════════════════════════════════ */}
-          {/* Dynamic Timeline Stations (Mapped from TIMELINE_STATIONS array)      */}
-          {/* ═════════════════════════════════════════════════════════════════════ */}
+          {/* Dynamic Timeline Stations (Mapped from TIMELINE_STATIONS array) */}
           <div
             ref={measureRef}
             className="relative flex items-center h-full pr-[28vw] sm:pr-[24vw] pl-[20vw] shrink-0"

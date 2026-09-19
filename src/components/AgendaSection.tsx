@@ -105,7 +105,7 @@ export default function AgendaSection() {
       id="agenda"
       data-theme="dark"
       dir="rtl"
-      className="relative w-full h-screen min-h-screen bg-[#070707] text-white select-none flex flex-col justify-between pt-20 pb-8 px-6 sm:px-12 lg:px-16 overflow-hidden"
+      className="relative w-full min-h-screen h-auto lg:h-screen bg-[#070707] text-white select-none flex flex-col justify-between pt-16 sm:pt-20 pb-12 lg:pb-8 px-6 sm:px-12 lg:px-16 overflow-visible lg:overflow-hidden"
     >
       {/* Background Video Layer with Atmospheric Dark Overlays */}
       <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none">
@@ -129,7 +129,7 @@ export default function AgendaSection() {
       <div className="absolute top-1/3 left-0 w-96 h-96 bg-[#c5a880]/[0.05] rounded-full blur-3xl pointer-events-none" />
       <div className="absolute bottom-1/4 right-0 w-80 h-80 bg-white/[0.03] rounded-full blur-2xl pointer-events-none" />
 
-      <div className="container mx-auto max-w-7xl h-full flex flex-col justify-between relative z-10">
+      <div className="container mx-auto max-w-7xl h-full flex flex-col justify-between relative z-10 space-y-6 lg:space-y-0">
         {/* Top Bar: Section Label and Context Tag */}
         <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-5 border-b border-white/10 shrink-0">
           {/* Tag & Heading Label */}
@@ -150,9 +150,9 @@ export default function AgendaSection() {
         </div>
 
         {/* Main Stage: Dynamic Two-Column Layout */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-14 py-6 items-center flex-1 min-h-0">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-14 py-4 lg:py-6 items-center flex-1 min-h-0">
           {/* Right Column: Title, Schedule Specs, and Sequential Curriculum Matrix */}
-          <div className="lg:col-span-7 flex flex-col h-full max-h-[64vh] min-h-0 justify-between">
+          <div className="lg:col-span-7 flex flex-col h-auto lg:h-full lg:max-h-[64vh] min-h-0 justify-between space-y-4 lg:space-y-0">
             {/* Header Block */}
             <div className="space-y-2.5 shrink-0 pb-3">
               {/* Time and Date Badge */}
@@ -182,10 +182,10 @@ export default function AgendaSection() {
               <span>نوع بخش</span>
             </div>
 
-            {/* Scrollable Curriculum Rows with Ultra-Fine Borders */}
+            {/* Scrollable Curriculum Rows on Desktop, Flowing on Mobile */}
             <div
               data-inner-scroll="true"
-              className="divide-y divide-white/[0.08] overflow-y-auto pl-2 pr-1 space-y-0.5 select-text flex-1 min-h-0"
+              className="divide-y divide-white/[0.08] overflow-visible lg:overflow-y-auto pl-2 pr-1 space-y-0.5 select-text flex-1 min-h-0"
               style={{
                 scrollbarWidth: "thin",
                 scrollbarColor: "rgba(255,255,255,0.18) transparent",
@@ -234,9 +234,9 @@ export default function AgendaSection() {
             </div>
           </div>
 
-          {/* Left Column: Authentic Community Gathering Image with Dark Atmosphere */}
-          <div className="lg:col-span-5 h-full max-h-[64vh] flex items-center justify-center relative">
-            <div className="relative aspect-[4/5] w-full max-w-md h-full max-h-[58vh] rounded-3xl overflow-hidden border border-white/10 bg-zinc-950 shadow-[0_24px_60px_rgba(0,0,0,0.85)] group">
+          {/* Left Column: Authentic Community Gathering Image */}
+          <div className="lg:col-span-5 h-auto lg:h-full lg:max-h-[64vh] flex items-center justify-center relative mt-6 lg:mt-0">
+            <div className="relative aspect-[4/5] w-full max-w-md h-[340px] sm:h-[400px] lg:h-full lg:max-h-[58vh] rounded-3xl overflow-hidden border border-white/10 bg-zinc-950 shadow-[0_24px_60px_rgba(0,0,0,0.85)] group">
               <div className="w-full h-full relative">
                 <img
                   src={getAssetPath("/assets/frontchapter-community.jpg")}

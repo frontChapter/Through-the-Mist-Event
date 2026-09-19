@@ -9,6 +9,8 @@
     background-color: #0a0a0a;
     color: #f1f5f9;
     overflow-x: hidden;
+    -webkit-overflow-scrolling: touch;
+    touch-action: pan-y;
   }
 }
 

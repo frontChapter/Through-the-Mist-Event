@@ -20,9 +20,9 @@ export default function FaqSection() {
       id="faq"
       data-theme="light"
       dir="rtl"
-      className="relative min-h-screen h-screen w-full bg-[#FFFFFF] text-[#111111] flex flex-col justify-center pt-16 pb-8 px-6 sm:px-12 border-t border-black/5 text-right overflow-hidden"
+      className="relative min-h-screen h-auto lg:h-screen w-full bg-[#FFFFFF] text-[#111111] flex flex-col justify-center pt-16 sm:pt-20 pb-12 lg:pb-8 px-6 sm:px-12 border-t border-black/5 text-right overflow-visible lg:overflow-hidden"
     >
-      <div className="container mx-auto max-w-5xl lg:max-w-6xl h-full flex flex-col justify-center space-y-6">
+      <div className="container mx-auto max-w-5xl lg:max-w-6xl h-auto lg:h-full flex flex-col justify-center space-y-6 sm:space-y-8">
         {/* Section Header */}
         <div className="space-y-2 shrink-0">
           <div className="flex items-center gap-3">
@@ -42,7 +42,7 @@ export default function FaqSection() {
         {/* 2-Column Responsive Layout */}
         <div
           data-inner-scroll="true"
-          className="w-full overflow-y-auto max-h-[62vh] md:max-h-none md:overflow-visible pl-1 select-text"
+          className="w-full overflow-visible lg:overflow-y-auto lg:max-h-[62vh] xl:max-h-none xl:overflow-visible pl-1 select-text"
           style={{
             scrollbarWidth: "thin",
             scrollbarColor: "rgba(0,0,0,0.2) transparent",
