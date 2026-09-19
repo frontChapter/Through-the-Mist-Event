@@ -98,7 +98,7 @@ const jsonLdEvent = {
     {
       '@type': 'Person',
       name: 'پویا صبرآموز',
-      jobTitle: 'برنامه‌نویس ارشد',
+      jobTitle: 'مدیرعامل (CEO) و مدیر فناوری سابق',
     },
   ],
   offers: [

@@ -57,15 +57,15 @@ const SPEAKERS: Speaker[] = [
   },
   {
     name: "پویا صبرآموز",
-    pillRole: "برنامه‌نویس ارشد",
-    role: "برنامه‌نویس ارشد، با سوابقی چون مدیر فنی یک‌پی (Yekpay) و کاربوم (Karboom)",
-    bio: "با ۸ سال تجربه‌ی برنامه‌نویسی در پروژه‌های ایرانی و بین‌المللی؛ همراه صالح شجاعی و امیر کریمی در پنل گفت‌وگوی پارادایم‌شیفت‌ها و مسیر پیشِ‌رو.",
+    pillRole: "مدیرعامل و CTO سابق",
+    role: "مدیرعامل (CEO) فعلی و مدیر فناوری (CTO) سابق یک‌پی (Yekpay) و کاربوم (Karboom)",
+    bio: "با ۱۲ سال تجربه‌ی برنامه‌نویسی در پروژه‌های ایرانی و بین‌المللی؛ همراه صالح شجاعی و امیر کریمی در پنل گفت‌وگوی پارادایم‌شیفت‌ها و مسیر پیشِ‌رو.",
     image: "/assets/speaker-pouya-sabramooz.webp",
     links: {
       website: "https://sabramooz.ir",
       linkedin: "https://www.linkedin.com/in/pooya-sabramooz/",
+      github: "https://github.com/sabramooz",
       instagram: "https://www.instagram.com/sabramooz",
-      x: "https://x.com/pooya_alen1990",
     },
   },
 ];
