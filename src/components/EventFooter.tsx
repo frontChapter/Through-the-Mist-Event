@@ -31,8 +31,8 @@ export default function EventFooter() {
     if (!footerRef.current) return;
     footerRef.current.style.setProperty("--mouse-x", `${x}px`);
     footerRef.current.style.setProperty("--mouse-y", `${y}px`);
-    footerRef.current.style.setProperty("--shift-x", `${normX * -14}px`);
-    footerRef.current.style.setProperty("--shift-y", `${normY * -8}px`);
+    footerRef.current.style.setProperty("--shift-x", `${normX * -6}px`);
+    footerRef.current.style.setProperty("--shift-y", `${normY * -4}px`);
   };
 
   const handleMouseMove = (e: React.MouseEvent<HTMLElement>) => {
@@ -115,50 +115,50 @@ export default function EventFooter() {
     >
       {/* Background Sculptural Relief */}
       <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none select-none bg-[#F0ECE5]">
-        {/* Layer 1: Base sculpture with smooth parallax */}
+        {/* Layer 1: Base sculpture with smooth subtle parallax and natural scale */}
         <div
-          className="absolute inset-x-0 -bottom-28 w-full h-[60vh] sm:h-[68vh] md:h-[75vh] will-change-transform"
+          className="absolute inset-x-0 bottom-0 w-full h-[38vh] sm:h-[44vh] md:h-[48vh] flex justify-center items-end will-change-transform"
           style={{
             transform:
-              "translate3d(var(--shift-x, 0px), var(--shift-y, 0px), 0) scale(1.03)",
+              "translate3d(var(--shift-x, 0px), var(--shift-y, 0px), 0) scale(1)",
             transition: "transform 0.15s ease-out",
           }}
         >
           <img
             src={getAssetPath("/assets/footer-shahnameh-relief.png")}
             alt="در میان مه - نقش‌برجسته شاهنامه"
-            className="w-full h-full object-cover object-bottom opacity-80 filter contrast-100 brightness-[0.98]"
+            className="w-full h-full max-w-5xl lg:max-w-6xl object-contain object-bottom opacity-85 filter contrast-[1.02] brightness-[0.98]"
           />
         </div>
 
-        {/* Layer 2: Interactive Spotlight Layer (Reveals crisp high-relief texture under cursor) */}
+        {/* Layer 2: Interactive Spotlight Layer */}
         <div
           className="absolute inset-0 z-0 overflow-hidden pointer-events-none select-none hidden sm:block will-change-transform"
           style={{
             maskImage:
-              "radial-gradient(circle 380px at var(--mouse-x, -9999px) var(--mouse-y, -9999px), black 0%, transparent 70%)",
+              "radial-gradient(circle 320px at var(--mouse-x, -9999px) var(--mouse-y, -9999px), black 0%, transparent 70%)",
             WebkitMaskImage:
-              "radial-gradient(circle 380px at var(--mouse-x, -9999px) var(--mouse-y, -9999px), black 0%, transparent 70%)",
+              "radial-gradient(circle 320px at var(--mouse-x, -9999px) var(--mouse-y, -9999px), black 0%, transparent 70%)",
           }}
         >
           <div
-            className="absolute inset-x-0 bottom-0 w-full h-[60vh] sm:h-[68vh] md:h-[75vh]"
+            className="absolute inset-x-0 bottom-0 w-full h-[38vh] sm:h-[44vh] md:h-[48vh] flex justify-center items-end"
             style={{
               transform:
-                "translate3d(calc(var(--shift-x, 0px) * 1.35), calc(var(--shift-y, 0px) * 1.35), 0) scale(1.05)",
+                "translate3d(calc(var(--shift-x, 0px) * 1.1), calc(var(--shift-y, 0px) * 1.1), 0) scale(1.005)",
               transition: "transform 0.15s ease-out",
             }}
           >
             <img
               src={getAssetPath("/assets/footer-shahnameh-relief.png")}
               alt="در میان مه - کانون نور نقش‌برجسته"
-              className="w-full h-full object-cover object-bottom opacity-100 filter contrast-125 brightness-105"
+              className="w-full h-full max-w-5xl lg:max-w-6xl object-contain object-bottom opacity-100 filter contrast-115 brightness-105"
             />
           </div>
         </div>
 
         {/* Subtle top blend gradient: seamless fade from solid #F0ECE5 to transparent */}
-        <div className="absolute inset-x-0 top-0 h-44 bg-gradient-to-b from-[#F0ECE5] via-[#F0ECE5]/75 to-transparent pointer-events-none" />
+        <div className="absolute inset-x-0 top-0 h-36 bg-gradient-to-b from-[#F0ECE5] via-[#F0ECE5]/70 to-transparent pointer-events-none" />
       </div>
 
       {/* Top Spacer */}
