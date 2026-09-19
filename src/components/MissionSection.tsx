@@ -2,7 +2,6 @@
 
 import React, { useRef, useEffect, useState } from "react";
 import gsap from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { EXPERIENCE_DATA } from "@/data/experience-data";
 import { getAssetPath } from "@/utils/basePath";
 

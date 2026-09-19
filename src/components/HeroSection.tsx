@@ -2,7 +2,6 @@
 
 import React, { useRef, useState, useEffect } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
-import { EXPERIENCE_DATA } from "@/data/experience-data";
 import { getAssetPath } from "@/utils/basePath";
 
 export default function HeroSection() {
@@ -24,11 +23,26 @@ export default function HeroSection() {
       window.removeEventListener("keydown", onInteraction);
     };
 
-    window.addEventListener("scroll", onInteraction, { passive: true, once: true });
-    window.addEventListener("touchstart", onInteraction, { passive: true, once: true });
-    window.addEventListener("mousemove", onInteraction, { passive: true, once: true });
-    window.addEventListener("click", onInteraction, { passive: true, once: true });
-    window.addEventListener("keydown", onInteraction, { passive: true, once: true });
+    window.addEventListener("scroll", onInteraction, {
+      passive: true,
+      once: true,
+    });
+    window.addEventListener("touchstart", onInteraction, {
+      passive: true,
+      once: true,
+    });
+    window.addEventListener("mousemove", onInteraction, {
+      passive: true,
+      once: true,
+    });
+    window.addEventListener("click", onInteraction, {
+      passive: true,
+      once: true,
+    });
+    window.addEventListener("keydown", onInteraction, {
+      passive: true,
+      once: true,
+    });
 
     return cleanup;
   }, []);
@@ -79,8 +93,14 @@ export default function HeroSection() {
             preload="auto"
             className="absolute inset-0 w-full h-full object-cover filter brightness-[0.65] contrast-[1.1]"
           >
-            <source src={getAssetPath("/videos/hero_section.webm")} type="video/webm" />
-            <source src={getAssetPath("/videos/hero_section.mp4")} type="video/mp4" />
+            <source
+              src={getAssetPath("/videos/hero_section.webm")}
+              type="video/webm"
+            />
+            <source
+              src={getAssetPath("/videos/hero_section.mp4")}
+              type="video/mp4"
+            />
           </video>
         )}
         {/* Soft vignette overlay */}
