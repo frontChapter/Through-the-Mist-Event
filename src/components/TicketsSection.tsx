@@ -157,7 +157,7 @@ export default function TicketsSection() {
             </div>
 
             <a
-              href="#"
+              href="https://t.me/frontChapterSupport"
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center justify-center gap-2 px-5 py-2.5 rounded-full border border-white/15 bg-white/5 hover:bg-white/10 hover:border-white/30 text-xs sm:text-sm text-zinc-300 hover:text-white font-medium transition-all duration-200 shrink-0"
