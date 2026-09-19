@@ -1,12 +1,36 @@
 "use client";
 
-import React, { useRef } from "react";
+import React, { useRef, useState, useEffect } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
 import { EXPERIENCE_DATA } from "@/data/experience-data";
 import { getAssetPath } from "@/utils/basePath";
 
 export default function HeroSection() {
   const containerRef = useRef<HTMLElement>(null);
+  const [isVideoReady, setIsVideoReady] = useState(false);
+
+  useEffect(() => {
+    // Defer background video playback until after initial paint & LCP settlement
+    const timer = setTimeout(() => {
+      setIsVideoReady(true);
+    }, 2500);
+
+    const onInteraction = () => {
+      setIsVideoReady(true);
+      cleanup();
+    };
+
+    const cleanup = () => {
+      clearTimeout(timer);
+      window.removeEventListener("scroll", onInteraction);
+      window.removeEventListener("touchstart", onInteraction);
+    };
+
+    window.addEventListener("scroll", onInteraction, { passive: true, once: true });
+    window.addEventListener("touchstart", onInteraction, { passive: true, once: true });
+
+    return cleanup;
+  }, []);
 
   // Scroll animation for pinned container effect
   const { scrollYProgress } = useScroll({
@@ -33,7 +57,10 @@ export default function HeroSection() {
       className="relative h-screen w-full min-h-screen flex flex-col justify-between pt-20 pb-8 px-6 sm:px-12 bg-[#0a0a0a] text-white overflow-hidden select-none text-right"
     >
       {/* Background Macro Organic Video / Canvas Layer */}
-      <div className="absolute inset-0 z-0 overflow-hidden bg-[#0a0a0a]">
+      <motion.div
+        style={{ scale: videoScale }}
+        className="absolute inset-0 z-0 overflow-hidden bg-[#0a0a0a]"
+      >
         {/* Instant LCP Poster Layer */}
         <img
           src={getAssetPath("/videos/hero_section-poster.webp")}
@@ -42,22 +69,22 @@ export default function HeroSection() {
           decoding="sync"
           className="absolute inset-0 w-full h-full object-cover filter brightness-[0.65] contrast-[1.1]"
         />
-        <motion.video
-          style={{ scale: videoScale }}
-          poster={getAssetPath("/videos/hero_section-poster.webp")}
-          autoPlay
-          loop
-          muted
-          playsInline
-          preload="metadata"
-          className="relative w-full h-full object-cover filter brightness-[0.65] contrast-[1.1]"
-        >
-          <source src={getAssetPath("/videos/hero_section.webm")} type="video/webm" />
-          <source src={getAssetPath("/videos/hero_section.mp4")} type="video/mp4" />
-        </motion.video>
+        {isVideoReady && (
+          <video
+            autoPlay
+            loop
+            muted
+            playsInline
+            preload="auto"
+            className="absolute inset-0 w-full h-full object-cover filter brightness-[0.65] contrast-[1.1]"
+          >
+            <source src={getAssetPath("/videos/hero_section.webm")} type="video/webm" />
+            <source src={getAssetPath("/videos/hero_section.mp4")} type="video/mp4" />
+          </video>
+        )}
         {/* Soft vignette overlay */}
         <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-transparent to-[#0a0a0a]" />
-      </div>
+      </motion.div>
 
       {/* Top Sides Metadata: Date (Right in RTL) & Location (Left in RTL) */}
       <div className="relative z-10 w-full flex items-center justify-between text-xs tracking-wider text-zinc-300 pt-4">
