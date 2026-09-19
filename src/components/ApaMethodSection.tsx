@@ -190,6 +190,8 @@ export default function ApaMethodSection() {
                 <img
                   src={getAssetPath(speaker.image)}
                   alt={speaker.name}
+                  loading="lazy"
+                  decoding="async"
                   className="w-full h-full object-cover filter contrast-[1.03] group-hover:scale-105 transition-transform duration-500 ease-out"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/15 to-transparent pointer-events-none" />

@@ -200,6 +200,8 @@ export default function MissionSection() {
           <img
             src={getAssetPath("/assets/dar-miyan-e-meh-mission-sculpture.jpg")}
             alt="تندیس‌های مرمرین ماموریت"
+            loading="lazy"
+            decoding="async"
             className="w-full h-full object-cover object-left opacity-20 sm:opacity-40 filter contrast-95 brightness-102 transition-transform duration-700"
           />
           {/* High-Legibility Frosted Gradient Overlay for mobile & tablets (< lg) */}
@@ -221,6 +223,8 @@ export default function MissionSection() {
           <img
             src={getAssetPath("/assets/dar-miyan-e-meh-mission-sculpture.jpg")}
             alt="تندیس‌های مرمرین - کانون نور"
+            loading="lazy"
+            decoding="async"
             className="w-full h-full object-cover object-left opacity-70 filter contrast-125 brightness-105 transition-transform duration-700"
           />
         </div>

@@ -1,11 +1,31 @@
 "use client";
 
-import React from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { EXPERIENCE_DATA } from "@/data/experience-data";
 import { getAssetPath } from "@/utils/basePath";
 
 export default function LocationSection() {
   const { location } = EXPERIENCE_DATA;
+  const [loadMap, setLoadMap] = useState(false);
+  const mapContainerRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const el = mapContainerRef.current;
+    if (!el) return;
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setLoadMap(true);
+          observer.disconnect();
+        }
+      },
+      { rootMargin: "350px" }
+    );
+
+    observer.observe(el);
+    return () => observer.disconnect();
+  }, []);
 
   return (
     <section
@@ -60,17 +80,42 @@ export default function LocationSection() {
           </div>
         </div>
 
-        {/* Custom Dark Styled Map Container */}
-        <div className="rounded-2xl overflow-hidden border border-white/10 relative bg-[#111111] shadow-[0_20px_50px_rgba(0,0,0,0.8)] shrink-0">
-          <iframe
-            title="map-iframe"
-            src="https://neshan.org/maps/iframe/places/4e09fb9c5fe83b144bf619b64313d78f#c35.700-51.319-20z-0p/35.699950527535606/51.31910263372955"
-            width="100%"
-            height="450"
-            allowFullScreen
-            loading="lazy"
-            className="rounded-2xl border-0 w-full h-[320px] sm:h-[400px] md:h-[450px] pointer-events-none sm:pointer-events-auto"
-          />
+        {/* Custom Dark Styled Map Container with Lazy Mount */}
+        <div
+          ref={mapContainerRef}
+          className="rounded-2xl overflow-hidden border border-white/10 relative bg-[#111111] shadow-[0_20px_50px_rgba(0,0,0,0.8)] shrink-0 min-h-[320px] sm:min-h-[400px] md:min-h-[450px]"
+        >
+          {loadMap ? (
+            <iframe
+              title="map-iframe"
+              src="https://neshan.org/maps/iframe/places/4e09fb9c5fe83b144bf619b64313d78f#c35.700-51.319-20z-0p/35.699950527535606/51.31910263372955"
+              width="100%"
+              height="450"
+              allowFullScreen
+              loading="lazy"
+              className="rounded-2xl border-0 w-full h-[320px] sm:h-[400px] md:h-[450px] pointer-events-none sm:pointer-events-auto transition-opacity duration-500"
+            />
+          ) : (
+            <div className="w-full h-[320px] sm:h-[400px] md:h-[450px] flex flex-col items-center justify-center gap-3 bg-[#0d0d0d] text-zinc-500">
+              <div className="w-10 h-10 rounded-full border border-white/10 flex items-center justify-center text-[#c5a880] animate-pulse">
+                <svg
+                  className="w-5 h-5"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                >
+                  <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z" />
+                  <circle cx="12" cy="10" r="3" />
+                </svg>
+              </div>
+              <span className="text-xs font-mono text-zinc-400">
+                در حال آماده‌سازی نقشه موقعیت...
+              </span>
+            </div>
+          )}
 
           {/* Mobile Overlay: Direct tap to open in Neshan without capturing vertical scroll gestures */}
           <a
@@ -116,6 +161,8 @@ export default function LocationSection() {
                   <img
                     src={getAssetPath(item.image)}
                     alt={item.title}
+                    loading="lazy"
+                    decoding="async"
                     className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300 filter contrast-105"
                   />
                 </div>

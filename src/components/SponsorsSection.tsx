@@ -72,6 +72,10 @@ export default function SponsorsSection() {
                   <img
                     src={getAssetPath(sponsor.logoWhite)}
                     alt={sponsor.name}
+                    width={180}
+                    height={70}
+                    loading="lazy"
+                    decoding="async"
                     className="max-h-16 sm:max-h-20 max-w-[80%] object-contain filter contrast-125 opacity-90 group-hover:opacity-100 group-hover:scale-105 transition-all duration-300"
                   />
                 </div>

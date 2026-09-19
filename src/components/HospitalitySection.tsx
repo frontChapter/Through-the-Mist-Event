@@ -368,6 +368,7 @@ export default function HospitalitySection() {
                         alt={station.title}
                         className="w-full h-full object-cover filter contrast-[1.06] brightness-95 group-hover:scale-105 transition-transform duration-700 ease-out"
                         loading="lazy"
+                        decoding="async"
                       />
                       <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/10 to-transparent pointer-events-none" />
                       <div className="absolute bottom-3 right-4 left-4 flex items-center justify-between text-[11px] text-zinc-300 font-medium pointer-events-none">

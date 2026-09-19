@@ -116,7 +116,7 @@ export default function AgendaSection() {
           loop
           muted
           playsInline
-          preload="auto"
+          preload="none"
           className="w-full h-full object-cover filter brightness-[0.26] contrast-125 saturate-40 scale-105"
         />
         {/* Luxury Dark Frosted & Vignette Overlays for maximum text readability */}

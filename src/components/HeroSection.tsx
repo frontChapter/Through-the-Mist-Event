@@ -41,7 +41,7 @@ export default function HeroSection() {
           loop
           muted
           playsInline
-          preload="auto"
+          preload="metadata"
           className="w-full h-full object-cover filter brightness-[0.65] contrast-[1.1]"
         />
         {/* Soft vignette overlay */}

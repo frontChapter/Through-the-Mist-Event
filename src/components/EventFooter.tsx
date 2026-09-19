@@ -127,6 +127,10 @@ export default function EventFooter() {
           <img
             src={getAssetPath("/assets/footer-shahnameh-relief.png")}
             alt="در میان مه - نقش‌برجسته شاهنامه"
+            width={1152}
+            height={480}
+            loading="lazy"
+            decoding="async"
             className="w-full h-full max-w-5xl lg:max-w-6xl object-contain object-bottom opacity-85 filter contrast-[1.02] brightness-[0.98]"
           />
         </div>
@@ -152,6 +156,10 @@ export default function EventFooter() {
             <img
               src={getAssetPath("/assets/footer-shahnameh-relief.png")}
               alt="در میان مه - کانون نور نقش‌برجسته"
+              width={1152}
+              height={480}
+              loading="lazy"
+              decoding="async"
               className="w-full h-full max-w-5xl lg:max-w-6xl object-contain object-bottom opacity-100 filter contrast-115 brightness-105"
             />
           </div>

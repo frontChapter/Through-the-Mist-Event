@@ -86,6 +86,10 @@ export default function SkylineSection() {
         <img
           src={getAssetPath("/assets/dar-miyan-e-meh-tehran-skyline.webp")}
           alt="خط افق تهران"
+          width={1920}
+          height={1080}
+          loading="lazy"
+          decoding="async"
           className="w-full h-full object-cover filter grayscale contrast-125 brightness-75"
         />
         {/* Subtle dark overlay */}
@@ -103,6 +107,10 @@ export default function SkylineSection() {
           transition={{ duration: 1.5 }}
           src={getAssetPath("/assets/dar-miyan-e-meh-skyline-clouds-left.png")}
           alt="Clouds Right"
+          width={827}
+          height={465}
+          loading="lazy"
+          decoding="async"
           className="w-full h-auto object-contain mix-blend-screen"
         />
       </motion.div>
@@ -117,6 +125,10 @@ export default function SkylineSection() {
           transition={{ duration: 1.5 }}
           src={getAssetPath("/assets/dar-miyan-e-meh-skyline-clouds-right.png")}
           alt="Clouds Left"
+          width={992}
+          height={802}
+          loading="lazy"
+          decoding="async"
           className="w-full h-auto object-contain mix-blend-screen"
         />
       </motion.div>

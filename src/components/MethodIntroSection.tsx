@@ -44,7 +44,7 @@ export default function MethodIntroSection() {
           loop
           muted
           playsInline
-          preload="auto"
+          preload="none"
           className="w-full h-full object-cover filter brightness-[0.48] contrast-115 saturate-80 scale-105"
         />
         {/* Cinematic Vignette Overlay to ensure text readability while showing the video */}
