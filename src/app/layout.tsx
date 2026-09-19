@@ -16,7 +16,7 @@ const dana = localFont({
   display: 'swap',
 });
 
-const siteUrl = 'https://frontchapter.github.io/Through-the-Mist-Event';
+const siteUrl = 'https://mist.frontchapter.ir';
 const ogImageUrl = `${siteUrl}/assets/dar-miyan-e-meh-og-preview.png`;
 
 export const metadata: Metadata = {
