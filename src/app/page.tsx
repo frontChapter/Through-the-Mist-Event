@@ -18,6 +18,7 @@ import TicketsSection from '@/components/TicketsSection';
 import LocationSection from '@/components/LocationSection';
 import FaqSection from '@/components/FaqSection';
 import SponsorsSection from '@/components/SponsorsSection';
+import TeamSection from '@/components/TeamSection';
 import EventFooter from '@/components/EventFooter';
 
 export default function ExperiencePage() {
@@ -33,7 +34,7 @@ export default function ExperiencePage() {
         {/* Global Floating Reserve Capsule */}
         <GlobalFloatingCta />
 
-        {/* 11 Narrative Sections */}
+        {/* 12 Narrative Sections */}
         <main id="main-content">
           {/* Section 1: Hero & Entrance */}
           <HeroSection />
@@ -67,9 +68,12 @@ export default function ExperiencePage() {
 
           {/* Section 11: Sponsors & Supporters (Dark) */}
           <SponsorsSection />
+
+          {/* Section 12: Organizing Team (Dark) */}
+          <TeamSection />
         </main>
 
-        {/* Section 12: Outro & Sculptural Climax */}
+        {/* Section 13: Outro & Sculptural Climax */}
         <EventFooter />
       </div>
     </SmoothScrollProvider>

@@ -13,6 +13,7 @@ const NAV_ITEMS = [
   { label: 'رزرو', id: 'reservations' },
   { label: 'سوالات متداول', id: 'faq' },
   { label: 'حامیان', id: 'sponsors' },
+  { label: 'تیم برگزاری', id: 'team' },
 ];
 
 export default function Navbar() {
