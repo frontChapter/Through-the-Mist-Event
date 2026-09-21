@@ -84,21 +84,25 @@ const jsonLdEvent = {
       '@type': 'Person',
       name: 'دکتر مهیار پویامهر',
       jobTitle: 'روان‌شناس بالینی و مدرس دانشگاه',
+      image: `${siteUrl}/assets/speaker-mahyar-pouyamehr.webp`,
     },
     {
       '@type': 'Person',
       name: 'یاسین همتی',
       jobTitle: 'رئیس هیئت‌مدیره شرکت تأمین آلیاژ کارا صنعت',
+      image: `${siteUrl}/assets/speaker-yasin-hemmati.webp`,
     },
     {
       '@type': 'Person',
       name: 'امیر کریمی',
       jobTitle: 'مهندس ارشد نرم‌افزار و مدیر فناوری InteliCraft',
+      image: `${siteUrl}/assets/speaker-amir-karimi.webp`,
     },
     {
       '@type': 'Person',
       name: 'پویا صبرآموز',
       jobTitle: 'مدیرعامل (CEO) و مدیر فناوری سابق',
+      image: `${siteUrl}/assets/speaker-pouya-sabramooz.webp`,
     },
   ],
   offers: [

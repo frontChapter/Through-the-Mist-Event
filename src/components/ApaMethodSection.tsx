@@ -187,14 +187,19 @@ export default function ApaMethodSection() {
           {SPEAKERS.map((speaker) => (
             <div
               key={speaker.name}
+              itemScope
+              itemType="https://schema.org/Person"
               className="flex flex-col rounded-2xl overflow-hidden bg-white/90 backdrop-blur-sm border border-black/[0.08] shadow-[0_8px_24px_rgba(0,0,0,0.03)] hover:shadow-[0_16px_36px_rgba(0,0,0,0.07)] hover:border-black/15 transition-all duration-300 group"
             >
               {/* Full Portrait Aspect Image Container */}
               <div className="relative w-full aspect-[4/5] overflow-hidden bg-[#EFECE6] shrink-0">
-                {/* Real Photo (Base Layer) */}
+                {/* Real Photo (Base Layer) - Primary SEO Image */}
                 <img
                   src={getAssetPath(speaker.image)}
-                  alt={speaker.name}
+                  alt={`عکس ${speaker.name} - ${speaker.role}`}
+                  itemProp="image"
+                  width={1024}
+                  height={1024}
                   loading={speaker.romanImage ? "eager" : "lazy"}
                   decoding="async"
                   className="w-full h-full object-cover filter contrast-[1.03] group-hover:scale-105 origin-[48%_35%] transition-all duration-700 ease-out will-change-[opacity,transform]"
@@ -204,7 +209,9 @@ export default function ApaMethodSection() {
                 {speaker.romanImage && (
                   <img
                     src={getAssetPath(speaker.romanImage)}
-                    alt={`${speaker.name} - رومی`}
+                    alt={`پرتره هنری رومی ${speaker.name} در رویداد در میان مه فرانت‌چپتر`}
+                    width={1024}
+                    height={1024}
                     loading="eager"
                     decoding="async"
                     className="absolute inset-0 w-full h-full object-cover filter contrast-[1.03] opacity-100 group-hover:opacity-0 group-hover:scale-105 origin-[48%_35%] transition-all duration-700 ease-in-out pointer-events-none will-change-[opacity,transform]"
@@ -215,7 +222,7 @@ export default function ApaMethodSection() {
 
                 {/* Name & Role Glass Pill Overlay on Image */}
                 <div className="absolute bottom-2.5 left-2.5 right-2.5 flex items-center justify-between text-[11px] text-white bg-black/65 backdrop-blur-md px-3 py-1.5 rounded-full border border-white/15 shadow-sm font-medium z-20">
-                  <span className="font-bold tracking-tight">
+                  <span itemProp="name" className="font-bold tracking-tight">
                     {speaker.name}
                   </span>
                   <span className="text-white/80 text-[10px] font-normal truncate max-w-[120px]">
@@ -227,10 +234,10 @@ export default function ApaMethodSection() {
               {/* Ultra-Compact Bottom Box */}
               <div className="px-3.5 py-3 sm:px-4 sm:py-3.5 flex flex-col flex-1 justify-between gap-2.5 text-right">
                 <div className="space-y-1">
-                  <div className="text-[11.5px] font-bold text-black/90 leading-snug">
+                  <div itemProp="jobTitle" className="text-[11.5px] font-bold text-black/90 leading-snug">
                     {speaker.role}
                   </div>
-                  <p className="text-[11px] text-black/65 leading-relaxed font-normal">
+                  <p itemProp="description" className="text-[11px] text-black/65 leading-relaxed font-normal">
                     {speaker.bio}
                   </p>
                 </div>

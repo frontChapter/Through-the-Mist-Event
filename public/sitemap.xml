@@ -1,9 +1,51 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
   <url>
     <loc>https://mist.frontchapter.ir/</loc>
-    <lastmod>2026-09-19</lastmod>
+    <lastmod>2026-09-21</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
+    <!-- Speakers Images for Google Images Indexing -->
+    <image:image>
+      <image:loc>https://mist.frontchapter.ir/assets/speaker-mahyar-pouyamehr.webp</image:loc>
+      <image:title>دکتر مهیار پویامهر - سخنران رویداد در میان مه فرانت‌چپتر</image:title>
+      <image:caption>دکتر مهیار پویامهر روان‌شناس بالینی و مدرس دانشگاه در کارگاه تعاملی رویداد در میان مه</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://mist.frontchapter.ir/assets/speaker-mahyar-pouyamehr-roman.webp</image:loc>
+      <image:title>طرح هنری رومی دکتر مهیار پویامهر</image:title>
+      <image:caption>پرتره مفهومی اساطیری و رومی دکتر مهیار پویامهر</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://mist.frontchapter.ir/assets/speaker-yasin-hemmati.webp</image:loc>
+      <image:title>یاسین همتی - سخنران رویداد در میان مه فرانت‌چپتر</image:title>
+      <image:caption>یاسین همتی رئیس هیئت‌مدیره شرکت تأمین آلیاژ کارا صنعت</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://mist.frontchapter.ir/assets/speaker-yasin-hemmati-roman.webp</image:loc>
+      <image:title>طرح هنری رومی یاسین همتی</image:title>
+      <image:caption>پرتره مفهومی اساطیری و رومی یاسین همتی</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://mist.frontchapter.ir/assets/speaker-amir-karimi.webp</image:loc>
+      <image:title>امیر کریمی - سخنران رویداد در میان مه فرانت‌چپتر</image:title>
+      <image:caption>امیر کریمی مهندس ارشد نرم‌افزار و مدیر فناوری InteliCraft</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://mist.frontchapter.ir/assets/speaker-amir-karimi-roman.webp</image:loc>
+      <image:title>طرح هنری رومی امیر کریمی</image:title>
+      <image:caption>پرتره مفهومی اساطیری و رومی امیر کریمی</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://mist.frontchapter.ir/assets/speaker-pouya-sabramooz.webp</image:loc>
+      <image:title>پویا صبرآموز - سخنران رویداد در میان مه فرانت‌چپتر</image:title>
+      <image:caption>پویا صبرآموز مدیرعامل و CTO سابق یک‌پی و کاربوم</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://mist.frontchapter.ir/assets/speaker-pouya-sabramooz-roman.webp</image:loc>
+      <image:title>طرح هنری رومی پویا صبرآموز</image:title>
+      <image:caption>پرتره مفهومی اساطیری و رومی پویا صبرآموز</image:caption>
+    </image:image>
   </url>
 </urlset>
