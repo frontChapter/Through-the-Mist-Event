@@ -17,6 +17,7 @@ interface Speaker {
   pillRole: string;
   bio: string;
   image: string;
+  romanImage?: string;
   links: SpeakerLink;
 }
 
@@ -27,6 +28,7 @@ const SPEAKERS: Speaker[] = [
     role: "رئیس هیئت‌مدیره شرکت تأمین آلیاژ کارا صنعت",
     bio: "با بیش از ۲۰ سال سابقه در تولید نرم‌افزار و بیش از یک دهه تجربه در زنجیره تأمین؛ رئیس هیئت‌مدیره شرکت تأمین آلیاژ کارا صنعت و فعال در حوزه نوآوری، تحلیل بازار و همکاری‌های پایدار صنعتی.",
     image: "/assets/speaker-yasin-hemmati.webp",
+    romanImage: "/assets/speaker-yasin-hemmati-roman.webp",
     links: {
       linkedin: "https://www.linkedin.com/in/yasiinhemmatii/",
     },
@@ -37,6 +39,7 @@ const SPEAKERS: Speaker[] = [
     role: "روان‌شناس، کاندیدای دکتری روان‌شناسی بالینی دانشگاه شیراز",
     bio: "مدرس دانشگاه و مؤلف و مترجم کتاب؛ هدایت‌کننده‌ی نشست تخصصی روانشناختی از مِه تا وضوح با حضور مهیار پویامهر برای مواجهه‌ی مشترک با بحران و بلاتکلیفی.",
     image: "/assets/speaker-mahyar-pouyamehr.webp",
+    romanImage: "/assets/speaker-mahyar-pouyamehr-roman.webp",
     links: {
       website: "https://www.drmahyarpouyamehr.ir",
       instagram: "https://www.instagram.com/dr.mahyar.pouyamehr/",
@@ -48,6 +51,7 @@ const SPEAKERS: Speaker[] = [
     role: "مهندس ارشد نرم‌افزار، مدیر فناوری (CTO) شرکت InteliCraft",
     bio: "متخصص معماری نرم‌افزار و توسعه محصولات دیجیتال؛ با تجربه در راهبری تیم‌های فنی، طراحی سیستم‌های مقیاس‌پذیر و به‌کارگیری فناوری‌های نوین از جمله هوش مصنوعی در پروژه‌های نرم‌افزاری.",
     image: "/assets/speaker-amir-karimi.webp",
+    romanImage: "/assets/speaker-amir-karimi-roman.webp",
     links: {
       website: "https://amirzone.ir",
       linkedin: "https://www.linkedin.com/in/amirhosseinkarimi/",
@@ -60,6 +64,7 @@ const SPEAKERS: Speaker[] = [
     role: "مدیرعامل (CEO) فعلی و مدیر فناوری (CTO) سابق یک‌پی (Yekpay) و کاربوم (Karboom)",
     bio: "با ۱۲ سال تجربه‌ی برنامه‌نویسی در پروژه‌های ایرانی و بین‌المللی؛ همراه یاسین همتی و امیر کریمی در پنل گفت‌وگوی پارادایم‌شیفت‌ها و مسیر پیشِ‌رو.",
     image: "/assets/speaker-pouya-sabramooz.webp",
+    romanImage: "/assets/speaker-pouya-sabramooz-roman.webp",
     links: {
       website: "https://sabramooz.ir",
       linkedin: "https://www.linkedin.com/in/pooya-sabramooz/",
@@ -186,17 +191,30 @@ export default function ApaMethodSection() {
             >
               {/* Full Portrait Aspect Image Container */}
               <div className="relative w-full aspect-[4/5] overflow-hidden bg-[#EFECE6] shrink-0">
+                {/* Real Photo (Base Layer) */}
                 <img
                   src={getAssetPath(speaker.image)}
                   alt={speaker.name}
-                  loading="lazy"
+                  loading={speaker.romanImage ? "eager" : "lazy"}
                   decoding="async"
-                  className="w-full h-full object-cover filter contrast-[1.03] group-hover:scale-105 transition-transform duration-500 ease-out"
+                  className="w-full h-full object-cover filter contrast-[1.03] group-hover:scale-105 origin-[48%_35%] transition-all duration-700 ease-out will-change-[opacity,transform]"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/15 to-transparent pointer-events-none" />
+
+                {/* Roman God / Statue Photo (Default Top Layer - Crossfades out on hover) */}
+                {speaker.romanImage && (
+                  <img
+                    src={getAssetPath(speaker.romanImage)}
+                    alt={`${speaker.name} - رومی`}
+                    loading="eager"
+                    decoding="async"
+                    className="absolute inset-0 w-full h-full object-cover filter contrast-[1.03] opacity-100 group-hover:opacity-0 group-hover:scale-105 origin-[48%_35%] transition-all duration-700 ease-in-out pointer-events-none will-change-[opacity,transform]"
+                  />
+                )}
+
+                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/15 to-transparent pointer-events-none z-10" />
 
                 {/* Name & Role Glass Pill Overlay on Image */}
-                <div className="absolute bottom-2.5 left-2.5 right-2.5 flex items-center justify-between text-[11px] text-white bg-black/65 backdrop-blur-md px-3 py-1.5 rounded-full border border-white/15 shadow-sm font-medium">
+                <div className="absolute bottom-2.5 left-2.5 right-2.5 flex items-center justify-between text-[11px] text-white bg-black/65 backdrop-blur-md px-3 py-1.5 rounded-full border border-white/15 shadow-sm font-medium z-20">
                   <span className="font-bold tracking-tight">
                     {speaker.name}
                   </span>
