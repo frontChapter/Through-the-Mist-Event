@@ -1,8 +1,9 @@
 "use client";
 
-import React from "react";
+import React, { useState } from "react";
 import { motion } from "framer-motion";
 import { getAssetPath } from "@/utils/basePath";
+import HeartFlowerRain from "@/components/HeartFlowerRain";
 
 interface TeamMemberLink {
   website?: string;
@@ -23,6 +24,18 @@ interface TeamMember {
 
 const TEAM_MEMBERS: TeamMember[] = [
   {
+    name: "ریحانه ملکی",
+    pillRole: "تولید محتوا",
+    role: "مدیر تولید محتوا و رسانه",
+    bio: "تولیدکننده محتوا و راوی روایت‌های تکنولوژی، جامعه و رویداد «در میان مه».",
+    image: "/assets/team-reyhaneh-maleki.webp",
+    links: {
+      linkedin: "https://www.linkedin.com/in/reyhane-maleki-18387627b/",
+      instagram: "https://www.instagram.com/ryhstm_/",
+      youtube: "https://www.youtube.com/@Ryhnmaleki",
+    },
+  },
+  {
     name: "صالح شجاعی",
     pillRole: "بنیان‌گذار",
     role: "بنیان‌گذار فرانت‌چپتر",
@@ -42,17 +55,6 @@ const TEAM_MEMBERS: TeamMember[] = [
     links: {
       linkedin: "https://www.linkedin.com/in/aligolkarali/",
       instagram: "https://www.instagram.com/lokiwich/",
-    },
-  },
-  {
-    name: "ریحانه ملکی",
-    pillRole: "تولید محتوا",
-    role: "مدیر تولید محتوا و رسانه",
-    bio: "تولیدکننده محتوا و راوی روایت‌های تکنولوژی، جامعه و رویداد «در میان مه».",
-    image: "/assets/team-reyhaneh-maleki.webp",
-    links: {
-      linkedin: "https://www.linkedin.com/in/reyhane-maleki-18387627b/",
-      youtube: "https://www.youtube.com/@Ryhnmaleki",
     },
   },
   {
@@ -146,6 +148,8 @@ function TelegramIcon({ className = "w-3 h-3" }: { className?: string }) {
 }
 
 export default function TeamSection() {
+  const [isReyhanehHovered, setIsReyhanehHovered] = useState(false);
+
   return (
     <section
       id="team"
@@ -153,6 +157,9 @@ export default function TeamSection() {
       dir="rtl"
       className="relative min-h-screen w-full bg-[#080808] text-white flex flex-col justify-center py-12 sm:py-16 px-6 sm:px-12 border-t border-white/10 text-right overflow-hidden"
     >
+      {/* Easter Egg: Rain hearts & flowers when hovering Reyhaneh */}
+      <HeartFlowerRain isActive={isReyhanehHovered} />
+
       {/* Ambient background glow */}
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[400px] bg-[#c5a880]/5 blur-[140px] rounded-full pointer-events-none" />
 
@@ -181,40 +188,58 @@ export default function TeamSection() {
 
         {/* 4 Team Member Cards */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-5 items-stretch">
-          {TEAM_MEMBERS.map((member, index) => (
-            <motion.div
-              key={member.name}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.45, delay: index * 0.1 }}
-              className="relative rounded-2xl p-4 sm:p-5 flex flex-col justify-between border border-white/10 bg-[#121212]/90 backdrop-blur-md hover:border-[#c5a880]/50 hover:bg-[#161616] transition-all duration-300 shadow-[0_16px_40px_rgba(0,0,0,0.5)] group hover:-translate-y-1 overflow-hidden"
-            >
-              {/* Subtle top ambient accent line on hover */}
-              <div className="absolute top-0 right-0 left-0 h-[2px] bg-gradient-to-r from-transparent via-[#c5a880]/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+          {TEAM_MEMBERS.map((member, index) => {
+            const isReyhaneh = member.name === "ریحانه ملکی";
 
-              <div>
-                {/* Photo container with 4:5 aspect ratio */}
-                <div className="relative w-full aspect-[4/5] rounded-xl overflow-hidden bg-[#1a1a1a] mb-3.5 border border-white/5">
-                  <img
-                    src={getAssetPath(member.image)}
-                    alt={member.name}
-                    loading="lazy"
-                    decoding="async"
-                    className="w-full h-full object-cover filter contrast-[1.04] brightness-[0.98] group-hover:scale-105 transition-transform duration-500 ease-out"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/10 to-transparent pointer-events-none" />
+            return (
+              <motion.div
+                key={member.name}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.45, delay: index * 0.1 }}
+                className="relative rounded-2xl p-4 sm:p-5 flex flex-col justify-between border border-white/10 bg-[#121212]/90 backdrop-blur-md hover:border-[#c5a880]/50 hover:bg-[#161616] transition-all duration-300 shadow-[0_16px_40px_rgba(0,0,0,0.5)] group hover:-translate-y-1 overflow-hidden"
+              >
+                {/* Subtle top ambient accent line on hover */}
+                <div className="absolute top-0 right-0 left-0 h-[2px] bg-gradient-to-r from-transparent via-[#c5a880]/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
 
-                  {/* Name and Pill Badge */}
-                  <div className="absolute bottom-2.5 left-2.5 right-2.5 flex items-center justify-between text-[11px] text-white bg-black/75 backdrop-blur-md px-3 py-1.5 rounded-full border border-white/15 shadow-sm font-medium">
-                    <span className="font-bold tracking-tight">
-                      {member.name}
-                    </span>
-                    <span className="text-[#c5a880] text-[10px] font-normal truncate max-w-[110px]">
-                      {member.pillRole}
-                    </span>
+                <div>
+                  {/* Photo container with 4:5 aspect ratio */}
+                  <div
+                    onMouseEnter={() => {
+                      if (isReyhaneh) setIsReyhanehHovered(true);
+                    }}
+                    onMouseLeave={() => {
+                      if (isReyhaneh) setIsReyhanehHovered(false);
+                    }}
+                    onTouchStart={() => {
+                      if (isReyhaneh) setIsReyhanehHovered((prev) => !prev);
+                    }}
+                    className={`relative w-full aspect-[4/5] rounded-xl overflow-hidden bg-[#1a1a1a] mb-3.5 border transition-all duration-300 ${
+                      isReyhaneh && isReyhanehHovered
+                        ? "border-pink-500/50 shadow-[0_0_25px_rgba(236,72,153,0.35)]"
+                        : "border-white/5"
+                    }`}
+                  >
+                    <img
+                      src={getAssetPath(member.image)}
+                      alt={member.name}
+                      loading="lazy"
+                      decoding="async"
+                      className="w-full h-full object-cover filter contrast-[1.04] brightness-[0.98] group-hover:scale-105 transition-transform duration-500 ease-out"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/10 to-transparent pointer-events-none" />
+
+                    {/* Name and Pill Badge */}
+                    <div className="absolute bottom-2.5 left-2.5 right-2.5 flex items-center justify-between text-[11px] text-white bg-black/75 backdrop-blur-md px-3 py-1.5 rounded-full border border-white/15 shadow-sm font-medium">
+                      <span className="font-bold tracking-tight">
+                        {member.name}
+                      </span>
+                      <span className="text-[#c5a880] text-[10px] font-normal truncate max-w-[110px]">
+                        {member.pillRole}
+                      </span>
+                    </div>
                   </div>
-                </div>
 
                 {/* Member Info */}
                 <div className="space-y-1.5">
@@ -305,7 +330,8 @@ export default function TeamSection() {
                   )}
               </div>
             </motion.div>
-          ))}
+          );
+        })}
         </div>
       </div>
     </section>
